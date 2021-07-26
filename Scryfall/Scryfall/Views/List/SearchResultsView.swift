@@ -43,6 +43,7 @@ struct SearchResultsView: View {
                             }
                         }
                     }
+                    .padding(.bottom)
                 }
                 .padding(.horizontal, Style.listSpacing)
             }
