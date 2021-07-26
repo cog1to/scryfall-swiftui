@@ -12,7 +12,7 @@ import SVGKitSwift
 import Combine
 import ScryfallModel
 
-final class SymbolProviderImpl: SymbolProvider {
+final class DefaultSymbolProvider: SymbolProvider {
 
     // MARK: - Private
 
@@ -46,7 +46,8 @@ final class SymbolProviderImpl: SymbolProvider {
                 }
                 .map { localUrl in
                     let image = SVGKImage(contentsOf: localUrl)!
-                    image.scaleToFit(inside: CGSize(width: 16, height: 16))
+                    // TODO: Scale according to the base font size.
+                    image.scaleToFit(inside: CGSize(width: 17, height: 17))
                     return image
                 }
                 .handleEvents(receiveOutput: { image in

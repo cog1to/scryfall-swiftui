@@ -38,7 +38,7 @@ struct TitleView_Previews: PreviewProvider {
         TitleView(
             name: "Akoum Battleslinger",
             manaCost: "{2}{R}{R}",
-            provider: SymbolProviderImpl(
+            provider: DefaultSymbolProvider(
                 fileCache: FileCache(),
                 client: StubClient()
             )

@@ -46,11 +46,14 @@ struct Paragraph: Identifiable {
     }
 }
 
-//struct ParagraphView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ParagraphView(
-//            text: ModelStubs.akoumBattlesinger.oracleText ?? "",
-//            provider: SymbolProviderImpl(fileCache: <#T##FileCache#>, client: StubClient)
-//        )
-//    }
-//}
+struct ParagraphView_Previews: PreviewProvider {
+    static var previews: some View {
+        ParagraphView(
+            text: ModelStubs.akoumBattlesinger.oracleText ?? "",
+            provider: DefaultSymbolProvider(
+                fileCache: FileCache(),
+                client: StubClient()
+            )
+        )
+    }
+}

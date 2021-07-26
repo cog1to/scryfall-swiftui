@@ -17,6 +17,8 @@ struct SearchCardView: View {
                 Color(.gray)
                 Text(card.name)
             }
+            // TODO: Corner radius is not 1:1 MTG card. On real cards it's
+            // asymmetrical between X and Y directions.
             .cornerRadius(geometry.size.width * 0.045)
         }
     }

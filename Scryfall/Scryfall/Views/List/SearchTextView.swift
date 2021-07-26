@@ -61,7 +61,7 @@ struct SearchTextView_Previews: PreviewProvider {
         ScrollView {
             SearchTextView(
                 card: ModelStubs.abominationOfGudul,
-                provider: SymbolProviderImpl(
+                provider: DefaultSymbolProvider(
                     fileCache: FileCache(),
                     client: StubClient()
                 )

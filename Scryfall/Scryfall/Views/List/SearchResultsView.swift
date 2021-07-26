@@ -12,7 +12,7 @@ struct SearchResultsView: View {
 
     let items: ScryfallModel.List<Card>
 
-    let provider = SymbolProviderImpl(
+    let provider = DefaultSymbolProvider(
         fileCache: FileCache(),
         client: StubClient()
     )
