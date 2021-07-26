@@ -17,10 +17,12 @@ struct SearchResultsView: View {
         client: StubClient()
     )
 
+    let cache = FileCache()
+
     @State private var searchText = ""
 
     var gridItems: [GridItem] = [
-        GridItem(.adaptive(minimum: Style.cardSize.width))
+        GridItem(.adaptive(minimum: 300))
     ]
 
     var body: some View {
@@ -39,7 +41,8 @@ struct SearchResultsView: View {
                     LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
                         ForEach(items.data) { item in
                             VStack {
-                                SearchTextView(card: item, provider: provider)
+                                //SearchTextView(card: item, provider: provider)
+                                SearchCardView(card: item, cache: cache)
                             }
                         }
                     }
