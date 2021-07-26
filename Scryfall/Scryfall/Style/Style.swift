@@ -15,6 +15,8 @@ class Style {
 
     static let listElementPadding: CGFloat = 8.0
     static let listElementHorizontalPadding: CGFloat = 12.0
+    static let listSpacing: CGFloat = 10.0
+    static let cardSize = CGSize(width: 200, height: 280)
 
     // MARK: - Font styles
 

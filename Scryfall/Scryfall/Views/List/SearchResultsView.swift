@@ -20,7 +20,7 @@ struct SearchResultsView: View {
     @State private var searchText = ""
 
     var gridItems: [GridItem] = [
-        GridItem(.adaptive(minimum: 280))
+        GridItem(.adaptive(minimum: Style.cardSize.width))
     ]
 
     var body: some View {
@@ -29,7 +29,7 @@ struct SearchResultsView: View {
                 SearchBar(text: $searchText)
 
                 ScrollView {
-                    LazyVGrid(columns: gridItems, alignment: .center, spacing: 10) {
+                    LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
                         ForEach(items.data) { item in
                             VStack {
                                 SearchTextView(card: item, provider: provider)
@@ -37,7 +37,7 @@ struct SearchResultsView: View {
                         }
                     }
                 }
-                .padding(.horizontal, 10)
+                .padding(.horizontal, Style.listSpacing)
             }
             .padding(.top)
             .navigationBarHidden(true)
