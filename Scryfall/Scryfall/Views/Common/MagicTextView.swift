@@ -42,5 +42,6 @@ struct MagicTextView: View {
                 }
             }
         })
+        .fixedSize(horizontal: false, vertical: true)
     }
 }

@@ -26,7 +26,14 @@ struct SearchResultsView: View {
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(text: $searchText)
+                HStack {
+                    SearchBar(text: $searchText)
+                    Button(action: {}, label: {
+                        Image(systemName: "slider.horizontal.3")
+                    })
+                }
+                .padding(.horizontal)
+                .padding(.vertical, Style.listSpacing)
 
                 ScrollView {
                     LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {

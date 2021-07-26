@@ -31,6 +31,7 @@
 		BC41D93826AF117300989253 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC41D92D26AF117300989253 /* Lato-Light.ttf */; };
 		BC41D93926AF117300989253 /* Lato-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC41D92E26AF117300989253 /* Lato-ThinItalic.ttf */; };
 		BC41D94426AF17E900989253 /* AsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D94326AF17E900989253 /* AsyncImage.swift */; };
+		BC41D94C26AF273300989253 /* gleemax.json in Resources */ = {isa = PBXBuildFile; fileRef = BC41D94B26AF273300989253 /* gleemax.json */; };
 		BC4850AE2694AA4100956E83 /* ScryfallClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4850AD2694AA4100956E83 /* ScryfallClient.swift */; };
 		BC4850B62694AC2800956E83 /* DefaultClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4850B52694AC2800956E83 /* DefaultClient.swift */; };
 		BC4850BB2694AC3400956E83 /* StubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4850BA2694AC3400956E83 /* StubClient.swift */; };
@@ -101,6 +102,7 @@
 		BC41D92D26AF117300989253 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		BC41D92E26AF117300989253 /* Lato-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-ThinItalic.ttf"; sourceTree = "<group>"; };
 		BC41D94326AF17E900989253 /* AsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImage.swift; sourceTree = "<group>"; };
+		BC41D94B26AF273300989253 /* gleemax.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = gleemax.json; sourceTree = "<group>"; };
 		BC4850AD2694AA4100956E83 /* ScryfallClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallClient.swift; sourceTree = "<group>"; };
 		BC4850B52694AC2800956E83 /* DefaultClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultClient.swift; sourceTree = "<group>"; };
 		BC4850BA2694AC3400956E83 /* StubClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubClient.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				BC4850F52694CACA00956E83 /* akoum_battlesinger.json */,
 				BC4851412694F17E00956E83 /* abomination_of_gudul.json */,
 				BC48516F269781B800956E83 /* symbology.json */,
+				BC41D94B26AF273300989253 /* gleemax.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC41D93726AF117300989253 /* Lato-BoldItalic.ttf in Resources */,
+				BC41D94C26AF273300989253 /* gleemax.json in Resources */,
 				BC41D93926AF117300989253 /* Lato-ThinItalic.ttf in Resources */,
 				BC485170269781B800956E83 /* symbology.json in Resources */,
 				BC4851112694D02000956E83 /* avacyn.json in Resources */,

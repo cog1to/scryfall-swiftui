@@ -11,8 +11,6 @@ import SwiftUI
 
 class AsyncSymbol: ObservableObject {
 
-    let provider: SymbolProvider
-
     var subscription: AnyCancellable?
 
     let text: String
@@ -21,8 +19,7 @@ class AsyncSymbol: ObservableObject {
 
     init(provider: SymbolProvider, symbol: String) {
         self.text = symbol
-        self.provider = provider
-        
+
         subscription = provider.image(forSymbol: symbol)
             .subscribe(on: DispatchQueue.main)
             .sink(receiveValue: { img in

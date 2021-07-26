@@ -27,6 +27,12 @@ final class ModelStubs {
         return try! ModelStubs.decoder.decode(List<Card>.self, from: data)
     }()
 
+    static let gleemaxSearch: List<Card> = {
+        let dataUrl = Bundle.main.url(forResource: "gleemax", withExtension: "json")!
+        let data = try! Data(contentsOf: dataUrl)
+        return try! ModelStubs.decoder.decode(List<Card>.self, from: data)
+    }()
+
     // MARK: - Cards
 
     static let akoum: Card = {
