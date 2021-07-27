@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BC41D8C6269AB2E800989253 /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8C5269AB2E800989253 /* SVGImageView.swift */; };
-		BC41D8CC269AB32400989253 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8CB269AB32400989253 /* FileCache.swift */; };
+		BC41D8CC269AB32400989253 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8CB269AB32400989253 /* ImageCache.swift */; };
 		BC41D8D4269AB56500989253 /* T.svg in Resources */ = {isa = PBXBuildFile; fileRef = BC41D8D3269AB56500989253 /* T.svg */; };
 		BC41D8DA269AB73500989253 /* SVGKitSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BC41D8D9269AB73500989253 /* SVGKitSwift */; };
 		BC41D8E8269AB80C00989253 /* SVGKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC41D8E7269AB80C00989253 /* SVGKit */; };
@@ -82,7 +82,7 @@
 
 /* Begin PBXFileReference section */
 		BC41D8C5269AB2E800989253 /* SVGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImageView.swift; sourceTree = "<group>"; };
-		BC41D8CB269AB32400989253 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
+		BC41D8CB269AB32400989253 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		BC41D8D3269AB56500989253 /* T.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = T.svg; sourceTree = "<group>"; };
 		BC41D8F526A3BEE500989253 /* SymbolProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolProvider.swift; sourceTree = "<group>"; };
 		BC41D8FA26A3BF5000989253 /* DefaultSymbolProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSymbolProvider.swift; sourceTree = "<group>"; };
@@ -171,7 +171,7 @@
 		BC41D8CA269AB31400989253 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				BC41D8CB269AB32400989253 /* FileCache.swift */,
+				BC41D8CB269AB32400989253 /* ImageCache.swift */,
 				BC41D8F526A3BEE500989253 /* SymbolProvider.swift */,
 				BC41D8FA26A3BF5000989253 /* DefaultSymbolProvider.swift */,
 			);
@@ -567,7 +567,7 @@
 				BC4850E82694C8A000956E83 /* SearchTextView.swift in Sources */,
 				BC4850CE2694B1F300956E83 /* ModelStubs.swift in Sources */,
 				BC48512D2694E4FB00956E83 /* Color+UIColor.swift in Sources */,
-				BC41D8CC269AB32400989253 /* FileCache.swift in Sources */,
+				BC41D8CC269AB32400989253 /* ImageCache.swift in Sources */,
 				BC4850EE2694C9B000956E83 /* TitleView.swift in Sources */,
 				BC4851352694E8D400956E83 /* ColorIndicatorView.swift in Sources */,
 				BC41D91E26AD9C8400989253 /* AsyncSymbolSet.swift in Sources */,

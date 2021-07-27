@@ -10,13 +10,13 @@ import SwiftUI
 import Combine
 
 class AsyncImage: ObservableObject {
-    let fileCache: FileCache
+    let fileCache: ImageCache
     let uri: URL?
     var subscription: AnyCancellable?
 
     @Published var image: UIImage?
 
-    init(fileCache: FileCache, uri: URL?) {
+    init(fileCache: ImageCache, uri: URL?) {
         self.fileCache = fileCache
         self.uri = uri
 

@@ -51,7 +51,7 @@ struct ParagraphView_Previews: PreviewProvider {
         ParagraphView(
             text: ModelStubs.akoumBattlesinger.oracleText ?? "",
             provider: DefaultSymbolProvider(
-                fileCache: FileCache(),
+                fileCache: ImageCache(),
                 client: StubClient()
             )
         )

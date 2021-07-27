@@ -15,7 +15,7 @@ struct SearchCardView: View {
     let card: Card
     @ObservedObject var image: AsyncImage
 
-    init(card: Card, cache: FileCache) {
+    init(card: Card, cache: ImageCache) {
         self.card = card
         if let imageUris = card.imageUris {
             self.image = AsyncImage(fileCache: cache, uri: imageUris.png)
@@ -45,7 +45,7 @@ struct SearchCardView: View {
 
 struct SearchCardView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchCardView(card: ModelStubs.akoum, cache: FileCache())
+        SearchCardView(card: ModelStubs.akoum, cache: ImageCache())
             .previewLayout(.fixed(width: Style.cardSize.width, height: Style.cardSize.height))
     }
 }

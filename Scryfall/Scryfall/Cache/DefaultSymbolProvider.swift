@@ -18,13 +18,13 @@ final class DefaultSymbolProvider: SymbolProvider {
 
     var cache: [String: SVGKImage] = [:]
 
-    let fileCache: FileCache
+    let fileCache: ImageCache
 
     let symbology: AnyPublisher<ScryfallModel.List<CardSymbol>, Error>
 
     // MARK: - Init
 
-    init(fileCache: FileCache, client: ScryfallClient) {
+    init(fileCache: ImageCache, client: ScryfallClient) {
         self.fileCache = fileCache
         self.symbology = client.symbology().shareReplay(capacity: 1).eraseToAnyPublisher()
     }

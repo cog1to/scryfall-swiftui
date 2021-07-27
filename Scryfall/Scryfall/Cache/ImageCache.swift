@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class FileCache {
+final class ImageCache {
 
     // MARK: - Private
 
