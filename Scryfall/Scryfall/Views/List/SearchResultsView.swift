@@ -41,8 +41,8 @@ struct SearchResultsView: View {
                     LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
                         ForEach(items.data) { item in
                             VStack {
-                                //SearchTextView(card: item, provider: provider)
-                                SearchCardView(card: item, cache: cache)
+                                SearchTextView(card: item, provider: provider)
+                                //SearchCardView(card: item, cache: cache)
                             }
                         }
                     }

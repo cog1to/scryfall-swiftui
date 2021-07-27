@@ -10,7 +10,7 @@ import CoreData
 
 struct ContentView: View {
     var body: some View {
-        SearchResultsView(items: ModelStubs.avacynSearch)
+        SearchResultsView(items: ModelStubs.garrukSearch)
     }
 }
 
