@@ -29,7 +29,7 @@ struct SearchCardView: View {
 
     var body: some View {
         ZStack {
-            Image(uiImage: image.image ?? UIImage())
+            Image(uiImage: image.image ?? UIImage(named: "CardBackground")!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(minWidth: Style.cardSize.width, minHeight: Style.cardSize.height)
