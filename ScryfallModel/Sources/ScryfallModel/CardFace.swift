@@ -30,7 +30,7 @@ public final class CardFace: Codable, Identifiable {
     public var illustrationId: String?
     public var loyalty: String?
     public var oracleText: String?
-    public var imageUris: ImageList
+    public var imageUris: ImageList?
 
     // MARK: - Identifiable
 

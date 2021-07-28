@@ -30,17 +30,17 @@ class SearchResultsViewModel: ObservableObject {
 
     func configure() {
         $searchText
-            .dropFirst()
             .filter { !$0.isEmpty }
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
-            .removeDuplicates()
             .flatMap { query in
                 self.client.cards(query: query)
+                    .map { list in
+                        Result<[Card], Error>.success(list.data)
+                    }
+                    .catch { error in
+                        Just<Result<[Card], Error>>(.failure(error))
+                    }
             }
-            .map { list in
-                Result<[Card], Error>.success(list.data)
-            }
-            .replaceError(with: Result<[Card], Error>.failure(ScryfallError.parsingError))
             .receive(on: DispatchQueue.main)
             .assign(to: &$cards)
     }
