@@ -56,6 +56,8 @@
 		BC4AD27026B0D740000875E2 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD26F26B0D740000875E2 /* CommonViewModel.swift */; };
 		BC4AD27926B0E64F000875E2 /* mplantin-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC4AD27826B0E64F000875E2 /* mplantin-italic.ttf */; };
 		BC4AD27E26B0F2F2000875E2 /* search_exalted.json in Resources */ = {isa = PBXBuildFile; fileRef = BC4AD27D26B0F2F2000875E2 /* search_exalted.json */; };
+		BC4AD28326B1E6DC000875E2 /* SearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD28226B1E6DC000875E2 /* SearchResultsViewModel.swift */; };
+		BC4AD28826B1E9CE000875E2 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD28726B1E9CE000875E2 /* Input.swift */; };
 		BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594926873E0800677593 /* ScryfallApp.swift */; };
 		BCBE594C26873E0800677593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594B26873E0800677593 /* ContentView.swift */; };
 		BCBE594E26873E0900677593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE594D26873E0900677593 /* Assets.xcassets */; };
@@ -132,6 +134,8 @@
 		BC4AD26F26B0D740000875E2 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		BC4AD27826B0E64F000875E2 /* mplantin-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mplantin-italic.ttf"; sourceTree = "<group>"; };
 		BC4AD27D26B0F2F2000875E2 /* search_exalted.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_exalted.json; sourceTree = "<group>"; };
+		BC4AD28226B1E6DC000875E2 /* SearchResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModel.swift; sourceTree = "<group>"; };
+		BC4AD28726B1E9CE000875E2 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		BCBE594626873E0800677593 /* Scryfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scryfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE594926873E0800677593 /* ScryfallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallApp.swift; sourceTree = "<group>"; };
 		BCBE594B26873E0800677593 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				BC41D91826AD932000989253 /* TextTokenizer.swift */,
+				BC4AD28726B1E9CE000875E2 /* Input.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				BC4AD26F26B0D740000875E2 /* CommonViewModel.swift */,
+				BC4AD28226B1E6DC000875E2 /* SearchResultsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -591,6 +597,7 @@
 				BC48514B26976BCB00956E83 /* SearchBar.swift in Sources */,
 				BC48513D2694EFC000956E83 /* CardFaceView.swift in Sources */,
 				BCBE5992268F930B00677593 /* SearchCardView.swift in Sources */,
+				BC4AD28326B1E6DC000875E2 /* SearchResultsViewModel.swift in Sources */,
 				BC41D8F626A3BEE500989253 /* SymbolProvider.swift in Sources */,
 				BC4850B62694AC2800956E83 /* DefaultClient.swift in Sources */,
 				BC4AD27026B0D740000875E2 /* CommonViewModel.swift in Sources */,
@@ -599,6 +606,7 @@
 				BC4850E82694C8A000956E83 /* SearchTextView.swift in Sources */,
 				BC4850CE2694B1F300956E83 /* ModelStubs.swift in Sources */,
 				BC48512D2694E4FB00956E83 /* Color+UIColor.swift in Sources */,
+				BC4AD28826B1E9CE000875E2 /* Input.swift in Sources */,
 				BC41D8CC269AB32400989253 /* ImageCache.swift in Sources */,
 				BC4850EE2694C9B000956E83 /* TitleView.swift in Sources */,
 				BC4851352694E8D400956E83 /* ColorIndicatorView.swift in Sources */,

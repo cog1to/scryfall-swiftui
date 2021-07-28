@@ -11,6 +11,8 @@ import ScryfallModel
 
 enum ScryfallError: Error {
     case parsingError
+    case badUrl
+    case networkError(Error)
 }
 
 protocol ScryfallClient {

@@ -12,14 +12,14 @@ struct SearchResultsView: View {
 
     @State private var searchText = ""
 
-    let items: ObjectList<Card>
+    @ObservedObject var searchResult: SearchResultsViewModel
 
     let provider: SymbolProvider
 
     let cache = ImageCache()
 
-    init(items: ObjectList<Card>, model: CommonViewModel) {
-        self.items = items
+    init(model: CommonViewModel, client: ScryfallClient) {
+        self.searchResult = SearchResultsViewModel(client: client)
         self.provider = DefaultSymbolProvider(
             fileCache: ImageCache(),
             viewModel: model
@@ -30,11 +30,19 @@ struct SearchResultsView: View {
         GridItem(.adaptive(minimum: 300))
     ]
 
+    var cards: [Card] {
+        if case let .success(cards) = searchResult.cards {
+            return cards
+        } else {
+            return []
+        }
+    }
+
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    SearchBar(text: $searchText)
+                    SearchBar(text: $searchResult.searchText)
                     Button(action: {}, label: {
                         Image(systemName: "slider.horizontal.3")
                     })
@@ -44,7 +52,7 @@ struct SearchResultsView: View {
 
                 ScrollView {
                     LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
-                        ForEach(items.data) { item in
+                        ForEach(self.cards) { item in
                             VStack {
                                 SearchTextView(card: item, provider: provider)
                                 //SearchCardView(card: item, cache: cache)
@@ -65,8 +73,7 @@ struct SearchResultsView: View {
 struct SearchResultsView_Previews: PreviewProvider {
     static var previews: some View {
         SearchResultsView(
-            items: ModelStubs.avacynSearch,
-            model: CommonViewModel(client: StubClient())
+            model: CommonViewModel(client: StubClient()), client: StubClient()
         )
         .previewDevice("iPhone 8")
     }

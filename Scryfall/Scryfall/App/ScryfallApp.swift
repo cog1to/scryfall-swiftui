@@ -12,7 +12,7 @@ struct ScryfallApp: App {
 
     // MARK: - Environment
 
-    var commonViewModel = CommonViewModel(client: StubClient())
+    var commonViewModel = CommonViewModel(client: DefaultClient())
 
     // MARK: - Content
 
