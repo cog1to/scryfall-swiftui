@@ -14,9 +14,9 @@ class CommonViewModel: ObservableObject {
 
     // MARK: - Observed state
 
-    @Published var symbology: ScryfallModel.List<CardSymbol> = .empty()
+    @Published var symbology: ObjectList<CardSymbol> = .empty()
 
-    @Published var abilityWords: ScryfallModel.Catalog<String> = .empty()
+    @Published var abilityWords: Catalog<String> = .empty()
 
     // MARK: - Internal state
 

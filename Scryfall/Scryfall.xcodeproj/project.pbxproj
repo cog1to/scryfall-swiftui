@@ -55,6 +55,7 @@
 		BC4AD26A26B0D5F3000875E2 /* ability_words.json in Resources */ = {isa = PBXBuildFile; fileRef = BC4AD26926B0D5F3000875E2 /* ability_words.json */; };
 		BC4AD27026B0D740000875E2 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD26F26B0D740000875E2 /* CommonViewModel.swift */; };
 		BC4AD27926B0E64F000875E2 /* mplantin-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC4AD27826B0E64F000875E2 /* mplantin-italic.ttf */; };
+		BC4AD27E26B0F2F2000875E2 /* search_exalted.json in Resources */ = {isa = PBXBuildFile; fileRef = BC4AD27D26B0F2F2000875E2 /* search_exalted.json */; };
 		BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594926873E0800677593 /* ScryfallApp.swift */; };
 		BCBE594C26873E0800677593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594B26873E0800677593 /* ContentView.swift */; };
 		BCBE594E26873E0900677593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE594D26873E0900677593 /* Assets.xcassets */; };
@@ -130,6 +131,7 @@
 		BC4AD26926B0D5F3000875E2 /* ability_words.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ability_words.json; sourceTree = "<group>"; };
 		BC4AD26F26B0D740000875E2 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		BC4AD27826B0E64F000875E2 /* mplantin-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mplantin-italic.ttf"; sourceTree = "<group>"; };
+		BC4AD27D26B0F2F2000875E2 /* search_exalted.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_exalted.json; sourceTree = "<group>"; };
 		BCBE594626873E0800677593 /* Scryfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scryfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE594926873E0800677593 /* ScryfallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallApp.swift; sourceTree = "<group>"; };
 		BCBE594B26873E0800677593 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				BC41D94B26AF273300989253 /* gleemax.json */,
 				BC4AD26126B09B0C000875E2 /* search_garruk.json */,
 				BC4AD26926B0D5F3000875E2 /* ability_words.json */,
+				BC4AD27D26B0F2F2000875E2 /* search_exalted.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -536,6 +539,7 @@
 				BC41D8D4269AB56500989253 /* T.svg in Resources */,
 				BC41D92F26AF117300989253 /* Lato-Italic.ttf in Resources */,
 				BC4850C22694AC9700956E83 /* search_akoum.json in Resources */,
+				BC4AD27E26B0F2F2000875E2 /* search_exalted.json in Resources */,
 				BC4850F62694CACA00956E83 /* akoum_battlesinger.json in Resources */,
 				BC41D93226AF117300989253 /* Lato-Bold.ttf in Resources */,
 				BC41D93026AF117300989253 /* Lato-LightItalic.ttf in Resources */,

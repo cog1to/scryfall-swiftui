@@ -21,16 +21,16 @@ class Style {
     // MARK: - Font styles
 
     enum Fonts {
-        static func main() -> Font {
+        static let main: Font = {
             Font.custom("Lato-Regular", size: 17, relativeTo: .body)
-        }
+        }()
 
-        static func title() -> Font {
+        static let title: Font = {
             Font.custom("Lato-Bold", size: 17, relativeTo: .body)
-        }
+        }()
 
-        static func italic() -> Font {
-            Font.custom("mplantin-italic", size: 17, relativeTo: .body)
-        }
+        static let italic: Font = {
+            Font.custom("mplantin-italic", size: 19, relativeTo: .body)
+        }()
     }
 }

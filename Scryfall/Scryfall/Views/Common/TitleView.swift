@@ -16,7 +16,7 @@ struct TitleView: View {
     var body: some View {
         HStack {
             MagicTextView(text: fullText, bold: true, provider: provider)
-                .font(Style.Fonts.title())
+                .font(Style.Fonts.title)
                 .lineLimit(nil)
             Spacer()
         }

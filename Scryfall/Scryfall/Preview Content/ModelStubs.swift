@@ -21,28 +21,30 @@ final class ModelStubs {
 
     // MARK: - Lists
 
-    static let avacynSearch: List<Card> = {
-        let dataUrl = Bundle.main.url(forResource: "search_avacyn", withExtension: "json")!
+    static func cards(_ filename: String) -> ObjectList<Card> {
+        let dataUrl = Bundle.main.url(forResource: filename, withExtension: "json")!
         let data = try! Data(contentsOf: dataUrl)
-        return try! ModelStubs.decoder.decode(List<Card>.self, from: data)
+        return try! ModelStubs.decoder.decode(ObjectList<Card>.self, from: data)
+    }
+
+    static let avacynSearch: ObjectList<Card> = {
+        cards("search_avacyn")
     }()
 
-    static let gleemaxSearch: List<Card> = {
-        let dataUrl = Bundle.main.url(forResource: "gleemax", withExtension: "json")!
-        let data = try! Data(contentsOf: dataUrl)
-        return try! ModelStubs.decoder.decode(List<Card>.self, from: data)
+    static let gleemaxSearch: ObjectList<Card> = {
+        cards("gleemax")
     }()
 
-    static let garrukSearch: List<Card> = {
-        let dataUrl = Bundle.main.url(forResource: "search_garruk", withExtension: "json")!
-        let data = try! Data(contentsOf: dataUrl)
-        return try! ModelStubs.decoder.decode(List<Card>.self, from: data)
+    static let garrukSearch: ObjectList<Card> = {
+        cards("search_garruk")
     }()
 
-    static let akoumSearch: List<Card> = {
-        let dataUrl = Bundle.main.url(forResource: "search_akoum", withExtension: "json")!
-        let data = try! Data(contentsOf: dataUrl)
-        return try! ModelStubs.decoder.decode(List<Card>.self, from: data)
+    static let akoumSearch: ObjectList<Card> = {
+        cards("search_akoum")
+    }()
+
+    static let exaltedSearch: ObjectList<Card> = {
+        cards("search_exalted")
     }()
 
     // MARK: - Cards

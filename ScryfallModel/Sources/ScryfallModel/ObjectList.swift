@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class List<T: Codable>: Codable {
+public class ObjectList<T: Codable>: Codable {
 
     // MARK: - Properties
 
@@ -31,7 +31,7 @@ public class List<T: Codable>: Codable {
         self.nextPage = nil
     }
 
-    public static func empty() -> List<T> {
-        return List<T>()
+    public static func empty() -> ObjectList<T> {
+        return ObjectList<T>()
     }
 }

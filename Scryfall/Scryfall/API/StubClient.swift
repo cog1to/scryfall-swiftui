@@ -38,11 +38,11 @@ final class StubClient: ScryfallClient {
             .eraseToAnyPublisher()
     }
 
-    func cards(query: String) -> AnyPublisher<List<Card>, Error> {
+    func cards(query: String) -> AnyPublisher<ObjectList<Card>, Error> {
         return load(filename: "card_search_sample")
     }
 
-    func symbology() -> AnyPublisher<List<CardSymbol>, Error> {
+    func symbology() -> AnyPublisher<ObjectList<CardSymbol>, Error> {
         load(filename: "symbology")
     }
 

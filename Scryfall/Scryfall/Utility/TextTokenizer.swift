@@ -13,7 +13,36 @@ enum TextToken {
     case symbol(String)
 }
 
+struct TokenizedText {
+    let rules: [TextToken]
+    let reminder: [TextToken]
+
+    var symbols: Set<String> {
+        Set((rules + reminder).compactMap {
+            if case let .symbol(value) = $0 { return value }
+            return nil
+        })
+    }
+}
+
 extension String {
+    func formatted() -> TokenizedText {
+        let reminderPattern = "\\(.*\\)$"
+        let reminderRange = self.range(of: reminderPattern, options: .regularExpression)
+
+        if let range = reminderRange {
+            let rules = String(self[startIndex..<range.lowerBound])
+            let reminder = String(self[range.lowerBound..<self.endIndex])
+
+            return TokenizedText(
+                rules: rules.tokenize(),
+                reminder: reminder.tokenize()
+            )
+        } else {
+            return TokenizedText(rules: tokenize(), reminder: [])
+        }
+    }
+
     func tokenize() -> [TextToken] {
         let pattern = "\\{[A-Z0-9½∞/]+\\}"
 

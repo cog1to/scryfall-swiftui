@@ -20,7 +20,7 @@ final class DefaultSymbolProvider: SymbolProvider {
 
     let fileCache: ImageCache
 
-    let symbology: AnyPublisher<ScryfallModel.List<CardSymbol>, Never>
+    let symbology: AnyPublisher<ObjectList<CardSymbol>, Never>
 
     // MARK: - Init
 
@@ -47,7 +47,7 @@ final class DefaultSymbolProvider: SymbolProvider {
                 .map { localUrl in
                     let image = SVGKImage(contentsOf: localUrl)!
                     // TODO: Scale according to the base font size.
-                    image.scaleToFit(inside: CGSize(width: 17, height: 17))
+                    image.scaleToFit(inside: CGSize(width: 14, height: 14))
                     return image
                 }
                 .handleEvents(receiveOutput: { image in

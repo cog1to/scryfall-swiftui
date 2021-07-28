@@ -12,7 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var model: CommonViewModel
 
     var body: some View {
-        SearchResultsView(items: ModelStubs.akoumSearch, model: model)
+        SearchResultsView(items: ModelStubs.exaltedSearch, model: model)
     }
 }
 

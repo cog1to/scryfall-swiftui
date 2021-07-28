@@ -20,7 +20,7 @@ struct ParagraphView: View {
             ForEach(paragraphs) { par in
                 HStack {
                     MagicTextView(text: par.text, bold: false, provider: provider)
-                        .font(Style.Fonts.main())
+                        .font(Style.Fonts.main)
                         .lineLimit(nil)
                     Spacer()
                 }

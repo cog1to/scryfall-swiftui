@@ -7,7 +7,7 @@
 
 import Foundation
 
-public final class Set: Identifiable, Codable {
+public final class CardSet: Identifiable, Codable {
     public var id: String
     public var code: String
     public var mtgoCode: String?

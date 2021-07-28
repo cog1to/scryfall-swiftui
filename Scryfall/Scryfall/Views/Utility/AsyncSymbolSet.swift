@@ -17,7 +17,7 @@ class AsyncSymbolSet: ObservableObject {
 
     @Published var symbols: [String: UIImage]
 
-    init(provider: SymbolProvider, symbols: [String]) {
+    init(provider: SymbolProvider, symbols: Set<String>) {
         self.symbols = [:]
         self.provider = provider
 

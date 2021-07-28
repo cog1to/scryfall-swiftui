@@ -12,13 +12,13 @@ struct SearchResultsView: View {
 
     @State private var searchText = ""
 
-    let items: ScryfallModel.List<Card>
+    let items: ObjectList<Card>
 
     let provider: SymbolProvider
 
     let cache = ImageCache()
 
-    init(items: ScryfallModel.List<Card>, model: CommonViewModel) {
+    init(items: ObjectList<Card>, model: CommonViewModel) {
         self.items = items
         self.provider = DefaultSymbolProvider(
             fileCache: ImageCache(),
