@@ -40,7 +40,7 @@ struct TitleView_Previews: PreviewProvider {
             manaCost: "{2}{R}{R}",
             provider: DefaultSymbolProvider(
                 fileCache: ImageCache(),
-                client: StubClient()
+                viewModel: CommonViewModel(client: StubClient())
             )
         )
     }

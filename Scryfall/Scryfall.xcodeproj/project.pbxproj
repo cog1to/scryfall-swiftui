@@ -52,6 +52,9 @@
 		BC48514B26976BCB00956E83 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC48514A26976BCB00956E83 /* SearchBar.swift */; };
 		BC485170269781B800956E83 /* symbology.json in Resources */ = {isa = PBXBuildFile; fileRef = BC48516F269781B800956E83 /* symbology.json */; };
 		BC4AD26226B09B0C000875E2 /* search_garruk.json in Resources */ = {isa = PBXBuildFile; fileRef = BC4AD26126B09B0C000875E2 /* search_garruk.json */; };
+		BC4AD26A26B0D5F3000875E2 /* ability_words.json in Resources */ = {isa = PBXBuildFile; fileRef = BC4AD26926B0D5F3000875E2 /* ability_words.json */; };
+		BC4AD27026B0D740000875E2 /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD26F26B0D740000875E2 /* CommonViewModel.swift */; };
+		BC4AD27926B0E64F000875E2 /* mplantin-italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC4AD27826B0E64F000875E2 /* mplantin-italic.ttf */; };
 		BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594926873E0800677593 /* ScryfallApp.swift */; };
 		BCBE594C26873E0800677593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594B26873E0800677593 /* ContentView.swift */; };
 		BCBE594E26873E0900677593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE594D26873E0900677593 /* Assets.xcassets */; };
@@ -124,6 +127,9 @@
 		BC48514A26976BCB00956E83 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		BC48516F269781B800956E83 /* symbology.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = symbology.json; sourceTree = "<group>"; };
 		BC4AD26126B09B0C000875E2 /* search_garruk.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_garruk.json; sourceTree = "<group>"; };
+		BC4AD26926B0D5F3000875E2 /* ability_words.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ability_words.json; sourceTree = "<group>"; };
+		BC4AD26F26B0D740000875E2 /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
+		BC4AD27826B0E64F000875E2 /* mplantin-italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "mplantin-italic.ttf"; sourceTree = "<group>"; };
 		BCBE594626873E0800677593 /* Scryfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scryfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE594926873E0800677593 /* ScryfallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallApp.swift; sourceTree = "<group>"; };
 		BCBE594B26873E0800677593 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -189,6 +195,7 @@
 		BC41D92226AF115400989253 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				BC4AD27426B0E5FE000875E2 /* MPlantin */,
 				BC41D92326AF117300989253 /* Lato */,
 			);
 			path = Fonts;
@@ -247,6 +254,7 @@
 				BC48516F269781B800956E83 /* symbology.json */,
 				BC41D94B26AF273300989253 /* gleemax.json */,
 				BC4AD26126B09B0C000875E2 /* search_garruk.json */,
+				BC4AD26926B0D5F3000875E2 /* ability_words.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -299,6 +307,22 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		BC4AD26E26B0D720000875E2 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				BC4AD26F26B0D740000875E2 /* CommonViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		BC4AD27426B0E5FE000875E2 /* MPlantin */ = {
+			isa = PBXGroup;
+			children = (
+				BC4AD27826B0E64F000875E2 /* mplantin-italic.ttf */,
+			);
+			path = MPlantin;
+			sourceTree = "<group>";
+		};
 		BCBE593D26873E0800677593 = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +354,7 @@
 				BC4850AC2694AA2000956E83 /* API */,
 				BC48512B2694E4E800956E83 /* Extensions */,
 				BCBE5986268F929300677593 /* Views */,
+				BC4AD26E26B0D720000875E2 /* ViewModels */,
 				BC4850FD2694CB3C00956E83 /* Style */,
 				BCBE5982268F928A00677593 /* App */,
 			);
@@ -520,10 +545,12 @@
 				BC4AD26226B09B0C000875E2 /* search_garruk.json in Resources */,
 				BC41D93626AF117300989253 /* OFL.txt in Resources */,
 				BC41D93426AF117300989253 /* Lato-Regular.ttf in Resources */,
+				BC4AD27926B0E64F000875E2 /* mplantin-italic.ttf in Resources */,
 				BC41D93826AF117300989253 /* Lato-Light.ttf in Resources */,
 				BC4851422694F17E00956E83 /* abomination_of_gudul.json in Resources */,
 				BC4850D62694B22600956E83 /* akoum.json in Resources */,
 				BC41D93326AF117300989253 /* Lato-Black.ttf in Resources */,
+				BC4AD26A26B0D5F3000875E2 /* ability_words.json in Resources */,
 				BC41D93126AF117300989253 /* Lato-Thin.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,6 +589,7 @@
 				BCBE5992268F930B00677593 /* SearchCardView.swift in Sources */,
 				BC41D8F626A3BEE500989253 /* SymbolProvider.swift in Sources */,
 				BC4850B62694AC2800956E83 /* DefaultClient.swift in Sources */,
+				BC4AD27026B0D740000875E2 /* CommonViewModel.swift in Sources */,
 				BC41D91926AD932000989253 /* TextTokenizer.swift in Sources */,
 				BC41D90926AA049600989253 /* AsyncSymbol.swift in Sources */,
 				BC4850E82694C8A000956E83 /* SearchTextView.swift in Sources */,

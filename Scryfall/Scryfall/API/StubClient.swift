@@ -21,15 +21,15 @@ final class StubClient: ScryfallClient {
         return decoder
     }()
 
-    func cards(query: String) -> AnyPublisher<List<Card>, Error> {
-        let dataUrl = Bundle.main.url(forResource: "card_search_sample", withExtension: "json")!
+    private func load<T: Decodable>(filename: String) -> AnyPublisher<T, Error> {
+        let dataUrl = Bundle.main.url(forResource: filename, withExtension: "json")!
         guard let data = try? Data(contentsOf: dataUrl) else {
-            return Fail<List<Card>, Error>(error: ScryfallError.parsingError)
+            return Fail<T, Error>(error: ScryfallError.parsingError)
                 .eraseToAnyPublisher()
         }
 
-        guard let list = try? Self.decoder.decode(List<Card>.self, from: data) else {
-            return Fail<List<Card>, Error>(error: ScryfallError.parsingError)
+        guard let list = try? Self.decoder.decode(T.self, from: data) else {
+            return Fail<T, Error>(error: ScryfallError.parsingError)
                 .eraseToAnyPublisher()
         }
 
@@ -38,20 +38,15 @@ final class StubClient: ScryfallClient {
             .eraseToAnyPublisher()
     }
 
+    func cards(query: String) -> AnyPublisher<List<Card>, Error> {
+        return load(filename: "card_search_sample")
+    }
+
     func symbology() -> AnyPublisher<List<CardSymbol>, Error> {
-        let dataUrl = Bundle.main.url(forResource: "symbology", withExtension: "json")!
-        guard let data = try? Data(contentsOf: dataUrl) else {
-            return Fail<List<CardSymbol>, Error>(error: ScryfallError.parsingError)
-                .eraseToAnyPublisher()
-        }
+        load(filename: "symbology")
+    }
 
-        guard let list = try? Self.decoder.decode(List<CardSymbol>.self, from: data) else {
-            return Fail<List<CardSymbol>, Error>(error: ScryfallError.parsingError)
-                .eraseToAnyPublisher()
-        }
-
-        return Just(list)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    func abilityWords() -> AnyPublisher<Catalog<String>, Error> {
+        load(filename: "ability_words")
     }
 }

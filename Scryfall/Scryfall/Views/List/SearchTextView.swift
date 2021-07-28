@@ -63,7 +63,7 @@ struct SearchTextView_Previews: PreviewProvider {
                 card: ModelStubs.abominationOfGudul,
                 provider: DefaultSymbolProvider(
                     fileCache: ImageCache(),
-                    client: StubClient()
+                    viewModel: CommonViewModel(client: StubClient())
                 )
             )
         }

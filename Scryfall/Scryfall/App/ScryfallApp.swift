@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct ScryfallApp: App {
+
+    // MARK: - Environment
+
+    var commonViewModel = CommonViewModel(client: StubClient())
+
+    // MARK: - Content
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(commonViewModel)
         }
     }
 }

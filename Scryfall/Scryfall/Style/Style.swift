@@ -28,5 +28,9 @@ class Style {
         static func title() -> Font {
             Font.custom("Lato-Bold", size: 17, relativeTo: .body)
         }
+
+        static func italic() -> Font {
+            Font.custom("mplantin-italic", size: 17, relativeTo: .body)
+        }
     }
 }

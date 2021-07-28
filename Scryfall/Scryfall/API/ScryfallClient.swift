@@ -16,4 +16,5 @@ enum ScryfallError: Error {
 protocol ScryfallClient {
     func cards(query: String) -> AnyPublisher<List<Card>, Error>
     func symbology() -> AnyPublisher<List<CardSymbol>, Error>
+    func abilityWords() -> AnyPublisher<Catalog<String>, Error>
 }

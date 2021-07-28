@@ -39,6 +39,12 @@ final class ModelStubs {
         return try! ModelStubs.decoder.decode(List<Card>.self, from: data)
     }()
 
+    static let akoumSearch: List<Card> = {
+        let dataUrl = Bundle.main.url(forResource: "search_akoum", withExtension: "json")!
+        let data = try! Data(contentsOf: dataUrl)
+        return try! ModelStubs.decoder.decode(List<Card>.self, from: data)
+    }()
+
     // MARK: - Cards
 
     static let akoum: Card = {

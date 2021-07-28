@@ -52,7 +52,7 @@ struct ParagraphView_Previews: PreviewProvider {
             text: ModelStubs.akoumBattlesinger.oracleText ?? "",
             provider: DefaultSymbolProvider(
                 fileCache: ImageCache(),
-                client: StubClient()
+                viewModel: CommonViewModel(client: StubClient())
             )
         )
     }

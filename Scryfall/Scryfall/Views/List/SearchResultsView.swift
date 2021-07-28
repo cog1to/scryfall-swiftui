@@ -10,16 +10,21 @@ import ScryfallModel
 
 struct SearchResultsView: View {
 
+    @State private var searchText = ""
+
     let items: ScryfallModel.List<Card>
 
-    let provider = DefaultSymbolProvider(
-        fileCache: ImageCache(),
-        client: StubClient()
-    )
+    let provider: SymbolProvider
 
     let cache = ImageCache()
 
-    @State private var searchText = ""
+    init(items: ScryfallModel.List<Card>, model: CommonViewModel) {
+        self.items = items
+        self.provider = DefaultSymbolProvider(
+            fileCache: ImageCache(),
+            viewModel: model
+        )
+    }
 
     var gridItems: [GridItem] = [
         GridItem(.adaptive(minimum: 300))
@@ -59,7 +64,10 @@ struct SearchResultsView: View {
 
 struct SearchResultsView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchResultsView(items: ModelStubs.avacynSearch)
-            .previewDevice("iPhone 8")
+        SearchResultsView(
+            items: ModelStubs.avacynSearch,
+            model: CommonViewModel(client: StubClient())
+        )
+        .previewDevice("iPhone 8")
     }
 }

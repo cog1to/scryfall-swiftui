@@ -9,8 +9,10 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @EnvironmentObject var model: CommonViewModel
+
     var body: some View {
-        SearchResultsView(items: ModelStubs.garrukSearch)
+        SearchResultsView(items: ModelStubs.akoumSearch, model: model)
     }
 }
 

@@ -17,6 +17,8 @@ struct MagicTextView: View {
 
     @ObservedObject var symbols: AsyncSymbolSet
 
+    @EnvironmentObject var model: CommonViewModel
+
     init(text: String, bold: Bool, provider: SymbolProvider) {
         self.text = text.tokenize()
         self.bold = bold
@@ -30,10 +32,17 @@ struct MagicTextView: View {
     }
 
     var body: some View {
-        text.reduce(Text(""), { acc, elem in
-            switch elem {
+        text.enumerated().reduce(Text(""), { acc, elem in
+            switch elem.1 {
             case .plain(let str):
-                return acc + Text(str).fontWeight(bold ? .medium : .regular)
+                if elem.0 == 0, model.abilityWords.data.contains(where: { str.hasPrefix($0) }) {
+                    let abilitySplit = str.split(separator: "—").map({ String($0) })
+                    return acc
+                        + Text(abilitySplit.first!).fontWeight(.regular).font(Style.Fonts.italic())
+                        + Text(" — \(abilitySplit.last!)").fontWeight(.regular)
+                } else {
+                    return acc + Text(str).fontWeight(bold ? .medium : .regular)
+                }
             case .symbol(let str):
                 if let image = symbols.symbols[str] {
                     return acc + Text(Image(uiImage: image)).baselineOffset(-2)
