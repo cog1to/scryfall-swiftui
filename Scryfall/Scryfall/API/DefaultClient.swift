@@ -60,6 +60,10 @@ class DefaultClient: ScryfallClient {
         return loadData(url: Endpoint.abilityWords.url)
     }
 
+    func loadUri<T>(URL: URL) -> AnyPublisher<T, Error> where T : Decodable {
+        return loadData(url: URL)
+    }
+
     // MARK: - Private
 
     private func loadData<T: Decodable>(url: URL) -> AnyPublisher<T, Error> {

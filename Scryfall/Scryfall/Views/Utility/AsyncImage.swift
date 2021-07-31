@@ -23,13 +23,24 @@ class AsyncImage: ObservableObject {
         if let uri = uri {
             self.subscription = fileCache.localUrl(for: uri)
                 .subscribe(on: DispatchQueue.global())
+                .map {
+                    UIImage(contentsOfFile: $0.path)
+                }
+                /*.map { image in
+                    let size = CGSize(width: 200, height: 280)
+                    UIGraphicsBeginImageContextWithOptions(size, false, 0.0);
+                    image?.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                    UIGraphicsEndImageContext()
+                    return newImage
+                }*/
                 .receive(on: DispatchQueue.main)
                 .sink(
                     receiveCompletion: { _ in
                         // TODO: Don't ignore errors.
                     },
                     receiveValue: { value in
-                        self.image = UIImage(contentsOfFile: value.path)
+                        self.image = value
                     }
                 )
         }

@@ -42,6 +42,10 @@ final class StubClient: ScryfallClient {
         return load(filename: "card_search_sample")
     }
 
+    func loadUri<T: Decodable>(URL: URL) -> AnyPublisher<T, Error> {
+        return load(filename: "card_search_sample")
+    }
+
     func symbology() -> AnyPublisher<ObjectList<CardSymbol>, Error> {
         load(filename: "symbology")
     }

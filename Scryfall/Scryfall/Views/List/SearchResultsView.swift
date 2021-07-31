@@ -14,9 +14,13 @@ struct SearchResultsView: View {
 
     @ObservedObject var searchResult: SearchResultsViewModel
 
+    // MARK: - DI
+
     let provider: SymbolProvider
 
     let cache = ImageCache()
+
+    // MARK: - Init
 
     init(model: CommonViewModel, client: ScryfallClient) {
         self.searchResult = SearchResultsViewModel(client: client)
@@ -26,17 +30,38 @@ struct SearchResultsView: View {
         )
     }
 
+    // MARK: - Model
+
+    enum Item: Identifiable {
+        case card(Card)
+        case loader
+
+        var id: String {
+            switch self {
+            case let .card(card):
+                return card.id
+            case .loader:
+                return "loader"
+            }
+        }
+    }
+
     var gridItems: [GridItem] = [
         GridItem(.adaptive(minimum: 300))
     ]
 
-    var cards: [Card] {
-        if case let .success(cards) = searchResult.cards {
+    var items: [Item] {
+        let cards = searchResult.cards.map { Item.card($0) }
+        if searchResult.hasMore {
+            return cards + [.loader]
+        } else if !cards.isEmpty {
             return cards
         } else {
             return []
         }
     }
+
+    // MARK: - Body
 
     var body: some View {
         NavigationView {
@@ -52,10 +77,22 @@ struct SearchResultsView: View {
 
                 ScrollView {
                     LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
-                        ForEach(self.cards) { item in
+                        ForEach(self.items) { item in
                             VStack {
-                                SearchTextView(card: item, provider: provider)
-                                //SearchCardView(card: item, cache: cache)
+                                switch item {
+                                case let .card(card):
+                                    SearchTextView(card: card, provider: provider)
+                                    //SearchCardView(card: card, cache: cache)
+                                case .loader:
+                                    HStack {
+                                        Spacer()
+                                        Spinner(isAnimating: true, style: .medium)
+                                        Spacer()
+                                    }
+                                    .onAppear(perform: {
+                                        self.searchResult.onNext.send(())
+                                    })
+                                }
                             }
                         }
                     }
