@@ -43,22 +43,24 @@ class SearchResultsViewModel: ObservableObject {
         $searchText
             .filter { !$0.isEmpty }
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
-            .sink(receiveValue: { string in
+            .sink(receiveValue: { [weak self] string in
+                guard let self = self else { return }
+
                 self.client.cards(query: string)
                     .receive(on: DispatchQueue.main)
                     .print()
                     .handleEvents(
-                        receiveOutput: { output in
+                        receiveOutput: { [weak self] output in
                             if let nextPage = output.nextPage {
-                                self.nextPageUri.send(nextPage)
-                                self.hasMore = true
+                                self?.nextPageUri.send(nextPage)
+                                self?.hasMore = true
                             } else {
-                                self.hasMore = false
+                                self?.hasMore = false
                             }
                         },
-                        receiveCompletion: { result in
+                        receiveCompletion: { [weak self] result in
                             if case let .failure(error) = result {
-                                self.error = error
+                                self?.error = error
                             }
                         }
                     )
@@ -70,26 +72,29 @@ class SearchResultsViewModel: ObservableObject {
 
         // Next page loading.
         onNext.compactMap { _ in self.nextPageUri.value }
-            .flatMap { url -> AnyPublisher<ObjectList<Card>, Error> in
+            .sink(receiveValue: { [weak self] url in
+                guard let self = self else { return }
+
                 self.client.loadUri(URL: url)
-            }
-            .receive(on: DispatchQueue.main)
-            .handleEvents(
-                receiveOutput: { output in
-                    if let nextPage = output.nextPage {
-                        self.nextPageUri.send(nextPage)
-                        self.hasMore = true
-                    } else {
-                        self.hasMore = false
-                    }
-                }, receiveCompletion: { result in
-                    if case let .failure(error) = result {
-                        self.error = error
-                    }
-                }
-            )
-            .replaceError(with: .empty())
-            .map { data in self.cards + data.data }
-            .assign(to: &$cards)
+                    .receive(on: DispatchQueue.main)
+                    .handleEvents(
+                        receiveOutput: { [weak self] (output: ObjectList<Card>) in
+                            if let nextPage = output.nextPage {
+                                self?.nextPageUri.send(nextPage)
+                                self?.hasMore = true
+                            } else {
+                                self?.hasMore = false
+                            }
+                        }, receiveCompletion: { [weak self] result in
+                            if case let .failure(error) = result {
+                                self?.error = error
+                            }
+                        }
+                    )
+                    .replaceError(with: .empty())
+                    .map { data in self.cards + data.data }
+                    .assign(to: &self.$cards)
+            })
+            .store(in: &subscriptions)
     }
 }
