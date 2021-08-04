@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import ScryfallModel
 
-class DefaultClient: ScryfallClient {
+class NetworkClient: ScryfallClient {
 
     // MARK: - Private state
 
@@ -68,6 +68,11 @@ class DefaultClient: ScryfallClient {
 
     private func loadData<T: Decodable>(url: URL) -> AnyPublisher<T, Error> {
         URLSession.shared.dataTaskPublisher(for: url)
+            .handleEvents(receiveOutput: { output in
+//                if let str = String(data: output.data, encoding: .utf8) {
+//                    print(str)
+//                }
+            })
             .mapError { urlError in
                 ScryfallError.networkError(urlError)
             }

@@ -12,7 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var model: CommonViewModel
 
     var body: some View {
-        SearchResultsView(model: model, client: DefaultClient())
+        SearchResultsView(model: model, client: NetworkClient())
     }
 }
 

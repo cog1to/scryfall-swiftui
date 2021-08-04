@@ -12,7 +12,11 @@ struct SearchResultsView: View {
 
     @State private var searchText = ""
 
+    @State private var showSettings = false
+
     @ObservedObject var searchResult: SearchResultsViewModel
+
+    @EnvironmentObject var settings: SettingsViewModel
 
     // MARK: - DI
 
@@ -64,11 +68,15 @@ struct SearchResultsView: View {
     // MARK: - Body
 
     var body: some View {
+        let presentationStyle = settings.presentationStyle
+
         NavigationView {
             VStack {
                 HStack {
                     SearchBar(text: $searchResult.searchText)
-                    Button(action: {}, label: {
+                    Button(action: {
+                        self.showSettings = true
+                    }, label: {
                         Image(systemName: "slider.horizontal.3")
                     })
                 }
@@ -81,8 +89,11 @@ struct SearchResultsView: View {
                             VStack {
                                 switch item {
                                 case let .card(card):
-                                    SearchTextView(card: card, provider: provider)
-                                    //SearchCardView(card: card, cache: cache)
+                                    if presentationStyle == .text {
+                                        SearchTextView(card: card, provider: provider)
+                                    } else {
+                                        SearchCardView(card: card, cache: cache)
+                                    }
                                 case .loader:
                                     HStack {
                                         Spacer()
@@ -104,6 +115,10 @@ struct SearchResultsView: View {
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .sheet(isPresented: $showSettings) {
+            SettingsView()
+                .environmentObject(settings)
+        }
     }
 }
 

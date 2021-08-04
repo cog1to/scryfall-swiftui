@@ -48,7 +48,6 @@ class SearchResultsViewModel: ObservableObject {
 
                 self.client.cards(query: string)
                     .receive(on: DispatchQueue.main)
-                    .print()
                     .handleEvents(
                         receiveOutput: { [weak self] output in
                             if let nextPage = output.nextPage {

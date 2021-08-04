@@ -12,7 +12,9 @@ struct ScryfallApp: App {
 
     // MARK: - Environment
 
-    var commonViewModel = CommonViewModel(client: DefaultClient())
+    var commonViewModel = CommonViewModel(client: NetworkClient())
+
+    var settingsModel = SettingsViewModel(provider: UserDefaultsSettingsProvider())
 
     // MARK: - Content
 
@@ -20,6 +22,7 @@ struct ScryfallApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(commonViewModel)
+                .environmentObject(settingsModel)
         }
     }
 }
