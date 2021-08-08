@@ -19,6 +19,8 @@ class SearchResultsViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
 
+    private var lastRequest: AnyCancellable?
+
     // MARK: - Public
 
     @Input var searchText = ""
@@ -46,7 +48,11 @@ class SearchResultsViewModel: ObservableObject {
             .sink(receiveValue: { [weak self] string in
                 guard let self = self else { return }
 
-                self.client.cards(query: string)
+                if let lastRequest = self.lastRequest {
+                    lastRequest.cancel()
+                }
+
+                self.lastRequest = self.client.cards(query: string)
                     .receive(on: DispatchQueue.main)
                     .handleEvents(
                         receiveOutput: { [weak self] output in
@@ -65,7 +71,9 @@ class SearchResultsViewModel: ObservableObject {
                     )
                     .replaceError(with: .empty())
                     .map { data in data.data }
-                    .assign(to: &self.$cards)
+                    .sink(receiveValue: { [weak self] cards in
+                        self?.cards = cards
+                    })
             })
             .store(in: &subscriptions)
 
@@ -74,7 +82,11 @@ class SearchResultsViewModel: ObservableObject {
             .sink(receiveValue: { [weak self] url in
                 guard let self = self else { return }
 
-                self.client.loadUri(URL: url)
+                if let lastRequest = self.lastRequest {
+                    lastRequest.cancel()
+                }
+
+                self.lastRequest = self.client.loadUri(URL: url)
                     .receive(on: DispatchQueue.main)
                     .handleEvents(
                         receiveOutput: { [weak self] (output: ObjectList<Card>) in
@@ -91,8 +103,10 @@ class SearchResultsViewModel: ObservableObject {
                         }
                     )
                     .replaceError(with: .empty())
-                    .map { data in self.cards + data.data }
-                    .assign(to: &self.$cards)
+                    .sink { [weak self] data in
+                        guard let self = self else { return }
+                        self.cards = self.cards + data.data
+                    }
             })
             .store(in: &subscriptions)
     }

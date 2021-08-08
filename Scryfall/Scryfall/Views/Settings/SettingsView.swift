@@ -12,6 +12,8 @@ struct SettingsView: View {
 
     let presentationStyle: [PresentationStyle] = [.text, .card]
 
+    @Environment(\.presentationMode) var presentation
+
     var body: some View {
         NavigationView {
             Form {
@@ -24,6 +26,13 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .navigationBarItems(
+                trailing: Button(action: {
+                    self.presentation.wrappedValue.dismiss()
+                }) {
+                    Text("Close")
+                }
+            )
         }
     }
 }
