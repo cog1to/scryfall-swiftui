@@ -39,12 +39,15 @@ class NetworkClient: ScryfallClient {
 
     // MARK: - ScryfallClient
 
-    func cards(query: String) -> AnyPublisher<ObjectList<Card>, Error> {
+    func cards(query: String, type: QueryType) -> AnyPublisher<ObjectList<Card>, Error> {
         guard var components = URLComponents(url: Endpoint.cards.url, resolvingAgainstBaseURL: false) else {
             return AnyPublisher(Fail<ObjectList<Card>, Error>(error: ScryfallError.badUrl))
         }
 
-        components.queryItems = [URLQueryItem(name: "q", value: query)]
+        components.queryItems = [
+            URLQueryItem(name: "q", value: query),
+            URLQueryItem(name: "unique", value: type.rawValue)
+        ]
         guard let url = components.url else {
             return AnyPublisher(Fail<ObjectList<Card>, Error>(error: ScryfallError.badUrl))
         }

@@ -15,6 +15,8 @@ class SearchResultsViewModel: ObservableObject {
 
     private let client: ScryfallClient
 
+    private let settingsProvider: SettingsProvider
+
     private var nextPageUri = CurrentValueSubject<URL?, Never>(nil)
 
     private var subscriptions = Set<AnyCancellable>()
@@ -25,6 +27,8 @@ class SearchResultsViewModel: ObservableObject {
 
     @Input var searchText = ""
 
+    @Input var queryType = QueryType.cards
+
     @Published private(set) var cards: [Card] = []
 
     @Published private(set) var error: Error?
@@ -33,7 +37,8 @@ class SearchResultsViewModel: ObservableObject {
 
     let onNext = PassthroughSubject<Void, Never>()
 
-    init(client: ScryfallClient) {
+    init(client: ScryfallClient, settingsProvider: SettingsProvider) {
+        self.settingsProvider = settingsProvider
         self.client = client
         configure()
     }
@@ -45,14 +50,15 @@ class SearchResultsViewModel: ObservableObject {
         $searchText
             .filter { !$0.isEmpty }
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] string in
+            .combineLatest($queryType)
+            .sink(receiveValue: { [weak self] string, type in
                 guard let self = self else { return }
 
                 if let lastRequest = self.lastRequest {
                     lastRequest.cancel()
                 }
 
-                self.lastRequest = self.client.cards(query: string)
+                self.lastRequest = self.client.cards(query: string, type: type)
                     .receive(on: DispatchQueue.main)
                     .handleEvents(
                         receiveOutput: { [weak self] output in
@@ -108,6 +114,12 @@ class SearchResultsViewModel: ObservableObject {
                         self.cards = self.cards + data.data
                     }
             })
+            .store(in: &subscriptions)
+
+        // Query type changed.
+        $queryType
+            .handleEvents(receiveOutput: { self.settingsProvider.queryType = $0 })
+            .sink(receiveValue: { _ in return })
             .store(in: &subscriptions)
     }
 }

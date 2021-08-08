@@ -15,18 +15,28 @@ class UserDefaultsSettingsProvider: SettingsProvider {
 
     private enum Key: String {
         case presentationStyle
+        case queryType
     }
 
     // MARK: - SettingsProvider
 
     var presentationStyle: PresentationStyle? {
         get {
-            let v: PresentationStyle? = value(forKey: .presentationStyle)
-            print(v)
-            return v
+            let val: PresentationStyle? = value(forKey: .presentationStyle)
+            return val
         }
         set {
             setValue(newValue, forKey: .presentationStyle)
+        }
+    }
+
+    var queryType: QueryType? {
+        get {
+            let val: QueryType? = value(forKey: .queryType)
+            return val
+        }
+        set {
+            setValue(newValue, forKey: .queryType)
         }
     }
 

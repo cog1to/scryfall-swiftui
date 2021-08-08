@@ -18,6 +18,7 @@ class SettingsViewModel: ObservableObject {
     init(provider: SettingsProvider) {
         self.provider = provider
         presentationStyle = provider.presentationStyle ?? .text
+        queryType = provider.queryType ?? .cards
     }
 
     // MARK: - Observed state
@@ -25,6 +26,12 @@ class SettingsViewModel: ObservableObject {
     @Published var presentationStyle: PresentationStyle = .text {
         didSet {
             provider.presentationStyle = presentationStyle
+        }
+    }
+
+    @Published var queryType: QueryType = .cards {
+        didSet {
+            provider.queryType = queryType
         }
     }
 }

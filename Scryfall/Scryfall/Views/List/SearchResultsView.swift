@@ -7,10 +7,9 @@
 
 import SwiftUI
 import ScryfallModel
+import Combine
 
 struct SearchResultsView: View {
-
-    @State private var searchText = ""
 
     @State private var showSettings = false
 
@@ -18,19 +17,27 @@ struct SearchResultsView: View {
 
     @EnvironmentObject var settings: SettingsViewModel
 
+    @EnvironmentObject var common: CommonViewModel
+
+    // MARK: - Private
+
+    private var subscriptions = Set<AnyCancellable>()
+
     // MARK: - DI
 
-    let provider: SymbolProvider
+    //let provider: SymbolProvider
 
     let cache = ImageCache()
 
     // MARK: - Init
 
-    init(model: CommonViewModel, client: ScryfallClient) {
-        self.searchResult = SearchResultsViewModel(client: client)
-        self.provider = DefaultSymbolProvider(
-            fileCache: ImageCache(),
-            viewModel: model
+    init(
+        client: ScryfallClient,
+        provider: SettingsProvider
+    ) {
+        self.searchResult = SearchResultsViewModel(
+            client: client,
+            settingsProvider: provider
         )
     }
 
@@ -69,7 +76,11 @@ struct SearchResultsView: View {
 
     var body: some View {
         let presentationStyle = settings.presentationStyle
-
+        let provider = DefaultSymbolProvider(
+            fileCache: ImageCache(),
+            viewModel: common
+        )
+        
         NavigationView {
             VStack {
                 HStack {
@@ -118,6 +129,7 @@ struct SearchResultsView: View {
         .sheet(isPresented: $showSettings) {
             SettingsView()
                 .environmentObject(settings)
+                .environmentObject(searchResult)
         }
     }
 }
@@ -125,8 +137,11 @@ struct SearchResultsView: View {
 struct SearchResultsView_Previews: PreviewProvider {
     static var previews: some View {
         SearchResultsView(
-            model: CommonViewModel(client: StubClient()), client: StubClient()
+            client: StubClient(),
+            provider: UserDefaultsSettingsProvider()
         )
+        .environmentObject(CommonViewModel(client: StubClient()))
+        .environmentObject(SettingsViewModel(provider: UserDefaultsSettingsProvider()))
         .previewDevice("iPhone 8")
     }
 }

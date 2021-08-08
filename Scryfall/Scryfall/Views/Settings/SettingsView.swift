@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var settings: SettingsViewModel
-
-    let presentationStyle: [PresentationStyle] = [.text, .card]
+    let presentationStyle = PresentationStyle.all
+    let queryType = QueryType.all
 
     @Environment(\.presentationMode) var presentation
+    @EnvironmentObject var settings: SettingsViewModel
+    @EnvironmentObject var searchResult: SearchResultsViewModel
 
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    Picker("Show as", selection: $settings.presentationStyle) {
+                    Picker("Show", selection: $searchResult.queryType) {
+                        ForEach(queryType, id: \.self) {
+                            Text($0.title)
+                        }
+                    }
+                    Picker("As", selection: $settings.presentationStyle) {
                         ForEach(presentationStyle, id: \.self) {
                             Text($0.title)
                         }

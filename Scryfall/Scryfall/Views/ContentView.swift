@@ -9,10 +9,11 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @EnvironmentObject var model: CommonViewModel
-
     var body: some View {
-        SearchResultsView(model: model, client: NetworkClient())
+        SearchResultsView(
+            client: NetworkClient(),
+            provider: UserDefaultsSettingsProvider()
+        )
     }
 }
 
