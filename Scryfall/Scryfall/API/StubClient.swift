@@ -38,7 +38,9 @@ final class StubClient: ScryfallClient {
             .eraseToAnyPublisher()
     }
 
-    func cards(query: String, type: QueryType) -> AnyPublisher<ObjectList<Card>, Error> {
+    func cards(
+        query: String, type: QueryType, sort: SortOrder, direction: SortDirection
+    ) -> AnyPublisher<ObjectList<Card>, Error> {
         return load(filename: "card_search_sample")
     }
 

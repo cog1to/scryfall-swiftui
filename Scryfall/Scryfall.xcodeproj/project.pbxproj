@@ -63,6 +63,7 @@
 		BC4AD28326B1E6DC000875E2 /* SearchResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD28226B1E6DC000875E2 /* SearchResultsViewModel.swift */; };
 		BC4AD28826B1E9CE000875E2 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD28726B1E9CE000875E2 /* Input.swift */; };
 		BC4AD28D26B47F4F000875E2 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD28C26B47F4F000875E2 /* Spinner.swift */; };
+		BCA6005C26C2F7E600F5DFD4 /* Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6005B26C2F7E600F5DFD4 /* Sorting.swift */; };
 		BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594926873E0800677593 /* ScryfallApp.swift */; };
 		BCBE594C26873E0800677593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594B26873E0800677593 /* ContentView.swift */; };
 		BCBE594E26873E0900677593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE594D26873E0900677593 /* Assets.xcassets */; };
@@ -146,6 +147,7 @@
 		BC4AD28226B1E6DC000875E2 /* SearchResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewModel.swift; sourceTree = "<group>"; };
 		BC4AD28726B1E9CE000875E2 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		BC4AD28C26B47F4F000875E2 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		BCA6005B26C2F7E600F5DFD4 /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
 		BCBE594626873E0800677593 /* Scryfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scryfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE594926873E0800677593 /* ScryfallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallApp.swift; sourceTree = "<group>"; };
 		BCBE594B26873E0800677593 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -361,6 +363,14 @@
 			path = MPlantin;
 			sourceTree = "<group>";
 		};
+		BCA6005A26C2F7DB00F5DFD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BCA6005B26C2F7E600F5DFD4 /* Sorting.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BCBE593D26873E0800677593 = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +400,7 @@
 				BC29ABB326BAF93B0040F725 /* Settings */,
 				BC41D91726AD930600989253 /* Utility */,
 				BC41D8CA269AB31400989253 /* Cache */,
+				BCA6005A26C2F7DB00F5DFD4 /* Model */,
 				BC4850AC2694AA2000956E83 /* API */,
 				BC48512B2694E4E800956E83 /* Extensions */,
 				BCBE5986268F929300677593 /* Views */,
@@ -621,6 +632,7 @@
 				BC41D90026A3CC6000989253 /* Publisher+ShareReplay.swift in Sources */,
 				BCBE598A268F92D400677593 /* SearchResultsView.swift in Sources */,
 				BC41D8FB26A3BF5000989253 /* DefaultSymbolProvider.swift in Sources */,
+				BCA6005C26C2F7E600F5DFD4 /* Sorting.swift in Sources */,
 				BCBE594C26873E0800677593 /* ContentView.swift in Sources */,
 				BC29ABC326BB00CE0040F725 /* SettingsView.swift in Sources */,
 				BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */,

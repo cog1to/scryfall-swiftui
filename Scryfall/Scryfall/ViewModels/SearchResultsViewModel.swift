@@ -29,6 +29,10 @@ class SearchResultsViewModel: ObservableObject {
 
     @Input var queryType = QueryType.cards
 
+    @Input var sortOrder = SortOrder.name
+
+    @Input var sortDirection = SortDirection.auto
+
     @Published private(set) var cards: [Card] = []
 
     @Published private(set) var error: Error?
@@ -50,15 +54,20 @@ class SearchResultsViewModel: ObservableObject {
         $searchText
             .filter { !$0.isEmpty }
             .debounce(for: 0.5, scheduler: DispatchQueue.main)
-            .combineLatest($queryType)
-            .sink(receiveValue: { [weak self] string, type in
+            .combineLatest($queryType, $sortOrder, $sortDirection)
+            .sink(receiveValue: { [weak self] string, type, order, dir in
                 guard let self = self else { return }
 
                 if let lastRequest = self.lastRequest {
                     lastRequest.cancel()
                 }
 
-                self.lastRequest = self.client.cards(query: string, type: type)
+                self.lastRequest = self.client.cards(
+                    query: string,
+                    type: type,
+                    sort: order,
+                    direction: dir
+                )
                     .receive(on: DispatchQueue.main)
                     .handleEvents(
                         receiveOutput: { [weak self] output in

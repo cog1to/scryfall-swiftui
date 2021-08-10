@@ -10,6 +10,8 @@ import SwiftUI
 struct SettingsView: View {
     let presentationStyle = PresentationStyle.all
     let queryType = QueryType.all
+    let sortOrder = SortOrder.all
+    let sortDirection = SortDirection.all
 
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var settings: SettingsViewModel
@@ -26,6 +28,16 @@ struct SettingsView: View {
                     }
                     Picker("As", selection: $settings.presentationStyle) {
                         ForEach(presentationStyle, id: \.self) {
+                            Text($0.title)
+                        }
+                    }
+                    Picker("Sorted By", selection: $searchResult.sortOrder) {
+                        ForEach(sortOrder, id: \.self) {
+                            Text($0.title)
+                        }
+                    }
+                    Picker("Direction", selection: $searchResult.sortDirection) {
+                        ForEach(sortDirection, id: \.self) {
                             Text($0.title)
                         }
                     }
