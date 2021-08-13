@@ -25,8 +25,6 @@ struct SearchResultsView: View {
 
     // MARK: - DI
 
-    //let provider: SymbolProvider
-
     let cache = ImageCache()
 
     // MARK: - Init
@@ -100,11 +98,14 @@ struct SearchResultsView: View {
                             VStack {
                                 switch item {
                                 case let .card(card):
-                                    if presentationStyle == .text {
-                                        SearchTextView(card: card, provider: provider)
-                                    } else {
-                                        SearchCardView(card: card, cache: cache)
+                                    NavigationLink(destination: CardDetailsView(card: card, provider: provider)) {
+                                        if presentationStyle == .text {
+                                            SearchTextView(card: card, provider: provider)
+                                        } else {
+                                            SearchCardView(card: card, cache: cache)
+                                        }
                                     }
+                                    .buttonStyle(PlainButtonStyle())
                                 case .loader:
                                     HStack {
                                         Spacer()

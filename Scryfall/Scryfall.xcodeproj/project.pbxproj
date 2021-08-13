@@ -64,6 +64,12 @@
 		BC4AD28826B1E9CE000875E2 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD28726B1E9CE000875E2 /* Input.swift */; };
 		BC4AD28D26B47F4F000875E2 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4AD28C26B47F4F000875E2 /* Spinner.swift */; };
 		BCA6005C26C2F7E600F5DFD4 /* Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6005B26C2F7E600F5DFD4 /* Sorting.swift */; };
+		BCA6006826C4517F00F5DFD4 /* CardDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6006726C4517F00F5DFD4 /* CardDetailsView.swift */; };
+		BCA6006D26C459FC00F5DFD4 /* CardDescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6006C26C459FC00F5DFD4 /* CardDescriptionView.swift */; };
+		BCA6007226C460FB00F5DFD4 /* SmallTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6007126C460FB00F5DFD4 /* SmallTextView.swift */; };
+		BCA6007726C5B38900F5DFD4 /* SectionDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6007626C5B38900F5DFD4 /* SectionDivider.swift */; };
+		BCA6007C26C5B7F800F5DFD4 /* Plaque.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6007B26C5B7F800F5DFD4 /* Plaque.swift */; };
+		BCA6008426C5C7DA00F5DFD4 /* LegalityTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6008326C5C7DA00F5DFD4 /* LegalityTable.swift */; };
 		BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594926873E0800677593 /* ScryfallApp.swift */; };
 		BCBE594C26873E0800677593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594B26873E0800677593 /* ContentView.swift */; };
 		BCBE594E26873E0900677593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE594D26873E0900677593 /* Assets.xcassets */; };
@@ -148,6 +154,12 @@
 		BC4AD28726B1E9CE000875E2 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		BC4AD28C26B47F4F000875E2 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		BCA6005B26C2F7E600F5DFD4 /* Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sorting.swift; sourceTree = "<group>"; };
+		BCA6006726C4517F00F5DFD4 /* CardDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsView.swift; sourceTree = "<group>"; };
+		BCA6006C26C459FC00F5DFD4 /* CardDescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDescriptionView.swift; sourceTree = "<group>"; };
+		BCA6007126C460FB00F5DFD4 /* SmallTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallTextView.swift; sourceTree = "<group>"; };
+		BCA6007626C5B38900F5DFD4 /* SectionDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDivider.swift; sourceTree = "<group>"; };
+		BCA6007B26C5B7F800F5DFD4 /* Plaque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plaque.swift; sourceTree = "<group>"; };
+		BCA6008326C5C7DA00F5DFD4 /* LegalityTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalityTable.swift; sourceTree = "<group>"; };
 		BCBE594626873E0800677593 /* Scryfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scryfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE594926873E0800677593 /* ScryfallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallApp.swift; sourceTree = "<group>"; };
 		BCBE594B26873E0800677593 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -312,6 +324,9 @@
 				BC4851342694E8D400956E83 /* ColorIndicatorView.swift */,
 				BC48513C2694EFC000956E83 /* CardFaceView.swift */,
 				BC41D91226AD92E200989253 /* MagicTextView.swift */,
+				BCA6007126C460FB00F5DFD4 /* SmallTextView.swift */,
+				BCA6007626C5B38900F5DFD4 /* SectionDivider.swift */,
+				BCA6007B26C5B7F800F5DFD4 /* Plaque.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -369,6 +384,16 @@
 				BCA6005B26C2F7E600F5DFD4 /* Sorting.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BCA6006626C4506F00F5DFD4 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				BCA6006726C4517F00F5DFD4 /* CardDetailsView.swift */,
+				BCA6006C26C459FC00F5DFD4 /* CardDescriptionView.swift */,
+				BCA6008326C5C7DA00F5DFD4 /* LegalityTable.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		BCBE593D26873E0800677593 = {
@@ -447,6 +472,7 @@
 		BCBE5986268F929300677593 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BCA6006626C4506F00F5DFD4 /* Details */,
 				BC29ABC126BB00C10040F725 /* Settings */,
 				BC485158269776C500956E83 /* Utility */,
 				BC48514926976BBE00956E83 /* SearchBar */,
@@ -633,19 +659,23 @@
 				BCBE598A268F92D400677593 /* SearchResultsView.swift in Sources */,
 				BC41D8FB26A3BF5000989253 /* DefaultSymbolProvider.swift in Sources */,
 				BCA6005C26C2F7E600F5DFD4 /* Sorting.swift in Sources */,
+				BCA6007726C5B38900F5DFD4 /* SectionDivider.swift in Sources */,
 				BCBE594C26873E0800677593 /* ContentView.swift in Sources */,
 				BC29ABC326BB00CE0040F725 /* SettingsView.swift in Sources */,
+				BCA6006826C4517F00F5DFD4 /* CardDetailsView.swift in Sources */,
 				BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */,
 				BC4850AE2694AA4100956E83 /* ScryfallClient.swift in Sources */,
 				BC41D91326AD92E200989253 /* MagicTextView.swift in Sources */,
 				BC48514B26976BCB00956E83 /* SearchBar.swift in Sources */,
 				BC48513D2694EFC000956E83 /* CardFaceView.swift in Sources */,
+				BCA6007C26C5B7F800F5DFD4 /* Plaque.swift in Sources */,
 				BCBE5992268F930B00677593 /* SearchCardView.swift in Sources */,
 				BC4AD28326B1E6DC000875E2 /* SearchResultsViewModel.swift in Sources */,
 				BC41D8F626A3BEE500989253 /* SymbolProvider.swift in Sources */,
 				BC29ABB526BAF94D0040F725 /* SettingsProvider.swift in Sources */,
 				BC4850B62694AC2800956E83 /* NetworkClient.swift in Sources */,
 				BC29ABBA26BAF9A70040F725 /* UserDefaultsSettingsProvider.swift in Sources */,
+				BCA6007226C460FB00F5DFD4 /* SmallTextView.swift in Sources */,
 				BC4AD27026B0D740000875E2 /* CommonViewModel.swift in Sources */,
 				BC41D91926AD932000989253 /* TextTokenizer.swift in Sources */,
 				BC41D90926AA049600989253 /* AsyncSymbol.swift in Sources */,
@@ -661,6 +691,8 @@
 				BC41D91E26AD9C8400989253 /* AsyncSymbolSet.swift in Sources */,
 				BC4850FF2694CB5000956E83 /* Style.swift in Sources */,
 				BC41D8C6269AB2E800989253 /* SVGImageView.swift in Sources */,
+				BCA6006D26C459FC00F5DFD4 /* CardDescriptionView.swift in Sources */,
+				BCA6008426C5C7DA00F5DFD4 /* LegalityTable.swift in Sources */,
 				BC41D94426AF17E900989253 /* AsyncImage.swift in Sources */,
 				BC4851072694CBEE00956E83 /* ParagraphView.swift in Sources */,
 			);

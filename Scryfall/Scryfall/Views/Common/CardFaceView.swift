@@ -17,6 +17,7 @@ struct CardFaceView: View {
     let oracleText: String?
     let power: String?
     let toughness: String?
+    let loyalty: String?
     let provider: SymbolProvider
 
     var body: some View {
@@ -40,6 +41,11 @@ struct CardFaceView: View {
             if let oracleText = oracleText {
                 Divider()
                 ParagraphView(text: oracleText, provider: provider)
+            }
+
+            if let loyalty = loyalty {
+                Divider()
+                TitleView(name: "Loyalty: \(loyalty)", manaCost: nil, provider: provider)
             }
 
             if power != nil || toughness != nil {

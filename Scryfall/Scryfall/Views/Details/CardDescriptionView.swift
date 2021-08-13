@@ -1,14 +1,16 @@
 //
-//  SearchTextView.swift
+//  CardDescriptionView.swift
 //  Scryfall
 //
-//  Created by Alexander on 06.07.2021.
+//  Created by Alexander on 11.08.2021.
 //
+
+import SwiftUI
 
 import SwiftUI
 import ScryfallModel
 
-struct SearchTextView: View {
+struct CardDescriptionView: View {
     let card: Card
     let provider: SymbolProvider
 
@@ -46,8 +48,27 @@ struct SearchTextView: View {
                             provider: provider
                         )
                     }
-                    Spacer()
+
+                    if let artist = card.artist {
+                        Divider()
+                        HStack {
+                            LinkTextView(prefix: "Illustrated by ", link: artist)
+                            Spacer()
+                        }
+                        .padding(.top, Style.listElementPadding + 2)
+                        .padding(.bottom, Style.listElementPadding + 2)
+                        .padding(.horizontal, Style.listElementHorizontalPadding)
+                    }
+
+                    SectionDivider()
+                        .padding(.bottom, 4)
+
+                    LegalityTable(legalities: card.legalities!)
+                        .padding(.top, Style.listElementPadding)
+                        .padding(.bottom, Style.listElementPadding)
+                        .padding(.horizontal, Style.listElementHorizontalPadding)
                 }
+                .padding(.bottom, Style.listElementPadding)
                 .border(Color.gray, width: 1)
 
                 Color("Black")
@@ -58,10 +79,10 @@ struct SearchTextView: View {
     }
 }
 
-struct SearchTextView_Previews: PreviewProvider {
+struct CardDescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
-            SearchTextView(
+            CardDescriptionView(
                 card: ModelStubs.abominationOfGudul,
                 provider: DefaultSymbolProvider(
                     fileCache: ImageCache(),
