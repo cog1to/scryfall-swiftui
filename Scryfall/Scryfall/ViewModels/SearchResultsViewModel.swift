@@ -92,6 +92,13 @@ class SearchResultsViewModel: ObservableObject {
             })
             .store(in: &subscriptions)
 
+        $searchText
+            .filter { $0.isEmpty }
+            .sink(receiveValue: { [weak self] _ in
+                self?.cards = []
+            })
+            .store(in: &subscriptions)
+
         // Next page loading.
         onNext.compactMap { _ in self.nextPageUri.value }
             .sink(receiveValue: { [weak self] url in

@@ -10,6 +10,7 @@ import SwiftUI
 import SwiftUI
 
 struct SearchBar: View {
+
     @Binding var text: String
 
     @State private var isEditing = false
@@ -19,7 +20,7 @@ struct SearchBar: View {
             TextField("Search...", text: $text)
                 .padding(7)
                 .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
+                .background(Color(.systemGray5))
                 .cornerRadius(8)
                 .overlay(
                     HStack {
@@ -30,6 +31,7 @@ struct SearchBar: View {
 
                         if isEditing {
                             Button(action: {
+                                self.isEditing = false
                                 self.text = ""
                             }) {
                                 Image(systemName: "multiply.circle.fill")

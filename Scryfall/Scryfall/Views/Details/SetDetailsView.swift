@@ -21,7 +21,8 @@ struct SetDetailsView: View {
     var body: some View {
         HStack(alignment: .top, spacing: 6) {
             SetImage(set: setCode, provider: provider)
-                .frame(height: self.height, alignment: .center)
+                .frame(height: max(0, self.height - 8), alignment: .center)
+                .padding(.vertical, 4)
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(setName) (\(setCode.uppercased()))")
                     .font(Style.Fonts.subtitle)
