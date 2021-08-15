@@ -74,7 +74,13 @@ struct SearchResultsView: View {
 
     var body: some View {
         let presentationStyle = settings.presentationStyle
+
         let provider = DefaultSymbolProvider(
+            fileCache: ImageCache(),
+            viewModel: common
+        )
+
+        let setProvider = DefaultSetProvider(
             fileCache: ImageCache(),
             viewModel: common
         )
@@ -98,7 +104,11 @@ struct SearchResultsView: View {
                             VStack {
                                 switch item {
                                 case let .card(card):
-                                    NavigationLink(destination: CardDetailsView(card: card, provider: provider)) {
+                                    NavigationLink(destination: CardDetailsView(
+                                                    card: card,
+                                                    symbolProvider: provider,
+                                                    setProvider: setProvider
+                                    )) {
                                         if presentationStyle == .text {
                                             SearchTextView(card: card, provider: provider)
                                         } else {
@@ -124,6 +134,7 @@ struct SearchResultsView: View {
                 .padding(.horizontal, Style.listSpacing)
             }
             .padding(.top)
+            .background(Color("Background"))
             .navigationBarHidden(true)
         }
         .navigationViewStyle(StackNavigationViewStyle())

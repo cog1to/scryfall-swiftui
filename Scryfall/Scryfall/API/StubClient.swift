@@ -52,6 +52,10 @@ final class StubClient: ScryfallClient {
         load(filename: "symbology")
     }
 
+    func sets() -> AnyPublisher<ObjectList<CardSet>, Error> {
+        load(filename: "sets")
+    }
+
     func abilityWords() -> AnyPublisher<Catalog<String>, Error> {
         load(filename: "ability_words")
     }

@@ -41,5 +41,9 @@ class Style {
         static let smallFixed: Font = {
             Font.custom("Lato-Regular", fixedSize: 12)
         }()
+
+        static let subtitle: Font = {
+            Font.custom("Lato-Regular", size: 16, relativeTo: .body)
+        }()
     }
 }

@@ -29,6 +29,7 @@ class NetworkClient: ScryfallClient {
         case cards = "cards/search"
         case symbology = "symbology"
         case abilityWords = "catalog/ability-words"
+        case sets = "sets"
 
         static let baseUrl = URL(string: "https://api.scryfall.com/")!
 
@@ -74,6 +75,10 @@ class NetworkClient: ScryfallClient {
         return loadData(url: Endpoint.abilityWords.url)
     }
 
+    func sets() -> AnyPublisher<ObjectList<CardSet>, Error> {
+        return loadData(url: Endpoint.sets.url)
+    }
+
     func loadUri<T>(URL: URL) -> AnyPublisher<T, Error> where T : Decodable {
         return loadData(url: URL)
     }
@@ -82,11 +87,6 @@ class NetworkClient: ScryfallClient {
 
     private func loadData<T: Decodable>(url: URL) -> AnyPublisher<T, Error> {
         URLSession.shared.dataTaskPublisher(for: url)
-            .handleEvents(receiveOutput: { output in
-//                if let str = String(data: output.data, encoding: .utf8) {
-//                    print(str)
-//                }
-            })
             .mapError { urlError in
                 ScryfallError.networkError(urlError)
             }

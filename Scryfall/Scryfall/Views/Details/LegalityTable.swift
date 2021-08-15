@@ -34,7 +34,7 @@ struct LegalityTable: View {
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 4)
                         .padding(.horizontal, 4)
-                        .background(Color(legality == .legal ? "PlaqueGreen" : "PlaqueGray"))
+                        .background(legality.color)
                         .cornerRadius(2)
                 case let .name(name):
                     Text(name).font(Style.Fonts.small)

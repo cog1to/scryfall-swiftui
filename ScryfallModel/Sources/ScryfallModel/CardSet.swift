@@ -19,7 +19,7 @@ public final class CardSet: Identifiable, Codable {
     public var block: String?
     public var parentSetCode: String?
     public var cardCount: Int
-    public var printedSize: Int
+    public var printedSize: Int?
     public var digital: Bool
     public var foilOnly: Bool
     public var nonfoilOnly: Bool

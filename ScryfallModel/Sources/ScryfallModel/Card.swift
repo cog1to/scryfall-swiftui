@@ -12,7 +12,7 @@ public final class Card: Identifiable, Codable {
     // MARK: - Required fields
 
     public var id: String
-    public var lang: String
+    public var lang: Language
     public var oracleId: String
     public var printsSearchUri: URL
     public var rulingsUri: URL
@@ -29,6 +29,7 @@ public final class Card: Identifiable, Codable {
     public var cardmarketId: Int?
     public var imageUris: ImageList?
     public var cardFaces: [CardFace]?
+    public var legalities: LegalityList?
 
     // MARK: - Gameplay field
 
@@ -44,6 +45,12 @@ public final class Card: Identifiable, Codable {
     public var power: String?
     public var toughness: String?
     public var typeline: String?
+    public var loyalty: String?
+    public var artist: String?
+    public var set: String
+    public var setName: String
+    public var number: String
+    public var rarity: Rarity
 
     // MARK: - Decodable
 
@@ -75,5 +82,12 @@ public final class Card: Identifiable, Codable {
         case typeline = "type_line"
         case imageUris = "image_uris"
         case cardFaces = "card_faces"
+        case loyalty = "loyalty"
+        case artist = "artist"
+        case legalities = "legalities"
+        case set = "set"
+        case setName = "set_name"
+        case number = "collector_number"
+        case rarity = "rarity"
     }
 }

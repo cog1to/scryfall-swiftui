@@ -16,6 +16,8 @@ class CommonViewModel: ObservableObject {
 
     @Published var symbology: ObjectList<CardSymbol> = .empty()
 
+    @Published var sets: ObjectList<CardSet> = .empty()
+
     @Published var abilityWords: Catalog<String> = .empty()
 
     // MARK: - Internal state
@@ -30,8 +32,17 @@ class CommonViewModel: ObservableObject {
 
         client.abilityWords()
             .replaceError(with: .empty())
-            .print()
             .receive(on: DispatchQueue.main)
             .assign(to: &$abilityWords)
+
+        client.sets()
+            .handleEvents(receiveOutput: { data in
+                print(data)
+            }, receiveCompletion: { comp in
+                print(comp)
+            })
+            .replaceError(with: .empty())
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$sets)
     }
 }

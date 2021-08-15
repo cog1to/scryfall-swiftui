@@ -20,11 +20,14 @@ struct CardDetailsView: View {
 
     let cache = ImageCache()
 
-    let provider: SymbolProvider
+    let symbolProvider: SymbolProvider
 
-    init(card: Card, provider: SymbolProvider) {
+    let setProvider: SetProvider
+
+    init(card: Card, symbolProvider: SymbolProvider, setProvider: SetProvider) {
         self.card = card
-        self.provider = provider
+        self.symbolProvider = symbolProvider
+        self.setProvider = setProvider
 
         UINavigationBar.appearance().backgroundColor = UIColor(named: "Background")
     }
@@ -33,14 +36,25 @@ struct CardDetailsView: View {
 
     var body: some View {
         ScrollView(.vertical) {
-            VStack {
+            VStack(spacing: Style.listElementPadding) {
                 SearchCardView(card: card, cache: cache)
-                    .padding(.horizontal, Style.listElementHorizontalPadding)
-                    .padding(.vertical, Style.listElementPadding)
-                CardDescriptionView(card: card, provider: provider)
-                    .padding(.horizontal, Style.listElementHorizontalPadding)
-                    .padding(.vertical, Style.listElementPadding)
+                CardDescriptionView(card: card, provider: symbolProvider)
+
+                Button(action: {
+                    // TODO: Hook back to search.
+                }) {
+                    SetDetailsView(
+                        setName: card.setName,
+                        setCode: card.set,
+                        cardNumber: card.number,
+                        rarity: card.rarity,
+                        language: card.lang,
+                        provider: setProvider
+                    )
+                }
             }
+            .padding(.vertical, Style.listElementBottomPadding)
+            .padding(.horizontal, Style.listElementHorizontalPadding)
         }
         .background(Color("Background"))
         .navigationBarTitle("", displayMode: .inline)
@@ -51,7 +65,11 @@ struct CardDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         CardDetailsView(
             card: ModelStubs.akoumBattlesinger,
-            provider: DefaultSymbolProvider(
+            symbolProvider: DefaultSymbolProvider(
+                fileCache: ImageCache(),
+                viewModel: CommonViewModel(client: StubClient())
+            ),
+            setProvider: DefaultSetProvider(
                 fileCache: ImageCache(),
                 viewModel: CommonViewModel(client: StubClient())
             )

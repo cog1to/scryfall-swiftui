@@ -21,5 +21,6 @@ protocol ScryfallClient {
     ) -> AnyPublisher<ObjectList<Card>, Error>
     func symbology() -> AnyPublisher<ObjectList<CardSymbol>, Error>
     func abilityWords() -> AnyPublisher<Catalog<String>, Error>
+    func sets() -> AnyPublisher<ObjectList<CardSet>, Error>
     func loadUri<T: Decodable>(URL: URL) -> AnyPublisher<T, Error>
 }

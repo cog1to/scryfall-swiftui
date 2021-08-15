@@ -11,6 +11,9 @@
 		BC29ABB526BAF94D0040F725 /* SettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29ABB426BAF94D0040F725 /* SettingsProvider.swift */; };
 		BC29ABBA26BAF9A70040F725 /* UserDefaultsSettingsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29ABB926BAF9A70040F725 /* UserDefaultsSettingsProvider.swift */; };
 		BC29ABC326BB00CE0040F725 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29ABC226BB00CE0040F725 /* SettingsView.swift */; };
+		BC36570426C90986001B82C5 /* AsyncSetSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36570326C90986001B82C5 /* AsyncSetSymbol.swift */; };
+		BC36571126C90A5C001B82C5 /* SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36571026C90A5C001B82C5 /* SetImage.swift */; };
+		BC36571926C92044001B82C5 /* sets.json in Resources */ = {isa = PBXBuildFile; fileRef = BC36571826C92044001B82C5 /* sets.json */; };
 		BC41D8C6269AB2E800989253 /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8C5269AB2E800989253 /* SVGImageView.swift */; };
 		BC41D8CC269AB32400989253 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8CB269AB32400989253 /* ImageCache.swift */; };
 		BC41D8D4269AB56500989253 /* T.svg in Resources */ = {isa = PBXBuildFile; fileRef = BC41D8D3269AB56500989253 /* T.svg */; };
@@ -19,7 +22,6 @@
 		BC41D8F626A3BEE500989253 /* SymbolProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8F526A3BEE500989253 /* SymbolProvider.swift */; };
 		BC41D8FB26A3BF5000989253 /* DefaultSymbolProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8FA26A3BF5000989253 /* DefaultSymbolProvider.swift */; };
 		BC41D90026A3CC6000989253 /* Publisher+ShareReplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8FF26A3CC6000989253 /* Publisher+ShareReplay.swift */; };
-		BC41D90926AA049600989253 /* AsyncSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D90826AA049600989253 /* AsyncSymbol.swift */; };
 		BC41D91326AD92E200989253 /* MagicTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D91226AD92E200989253 /* MagicTextView.swift */; };
 		BC41D91926AD932000989253 /* TextTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D91826AD932000989253 /* TextTokenizer.swift */; };
 		BC41D91E26AD9C8400989253 /* AsyncSymbolSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D91D26AD9C8400989253 /* AsyncSymbolSet.swift */; };
@@ -70,6 +72,10 @@
 		BCA6007726C5B38900F5DFD4 /* SectionDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6007626C5B38900F5DFD4 /* SectionDivider.swift */; };
 		BCA6007C26C5B7F800F5DFD4 /* Plaque.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6007B26C5B7F800F5DFD4 /* Plaque.swift */; };
 		BCA6008426C5C7DA00F5DFD4 /* LegalityTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6008326C5C7DA00F5DFD4 /* LegalityTable.swift */; };
+		BCA6008926C6FC7B00F5DFD4 /* SetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6008826C6FC7B00F5DFD4 /* SetDetailsView.swift */; };
+		BCA6008E26C6FFF200F5DFD4 /* SetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6008D26C6FFF200F5DFD4 /* SetProvider.swift */; };
+		BCA6009326C7001700F5DFD4 /* DefaultSetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6009226C7001700F5DFD4 /* DefaultSetProvider.swift */; };
+		BCA6009826C7269700F5DFD4 /* Legality+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA6009726C7269700F5DFD4 /* Legality+Values.swift */; };
 		BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594926873E0800677593 /* ScryfallApp.swift */; };
 		BCBE594C26873E0800677593 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE594B26873E0800677593 /* ContentView.swift */; };
 		BCBE594E26873E0900677593 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCBE594D26873E0900677593 /* Assets.xcassets */; };
@@ -103,13 +109,15 @@
 		BC29ABB426BAF94D0040F725 /* SettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProvider.swift; sourceTree = "<group>"; };
 		BC29ABB926BAF9A70040F725 /* UserDefaultsSettingsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsSettingsProvider.swift; sourceTree = "<group>"; };
 		BC29ABC226BB00CE0040F725 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BC36570326C90986001B82C5 /* AsyncSetSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSetSymbol.swift; sourceTree = "<group>"; };
+		BC36571026C90A5C001B82C5 /* SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImage.swift; sourceTree = "<group>"; };
+		BC36571826C92044001B82C5 /* sets.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = sets.json; sourceTree = "<group>"; };
 		BC41D8C5269AB2E800989253 /* SVGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImageView.swift; sourceTree = "<group>"; };
 		BC41D8CB269AB32400989253 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		BC41D8D3269AB56500989253 /* T.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = T.svg; sourceTree = "<group>"; };
 		BC41D8F526A3BEE500989253 /* SymbolProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolProvider.swift; sourceTree = "<group>"; };
 		BC41D8FA26A3BF5000989253 /* DefaultSymbolProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSymbolProvider.swift; sourceTree = "<group>"; };
 		BC41D8FF26A3CC6000989253 /* Publisher+ShareReplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+ShareReplay.swift"; sourceTree = "<group>"; };
-		BC41D90826AA049600989253 /* AsyncSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSymbol.swift; sourceTree = "<group>"; };
 		BC41D91226AD92E200989253 /* MagicTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicTextView.swift; sourceTree = "<group>"; };
 		BC41D91826AD932000989253 /* TextTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTokenizer.swift; sourceTree = "<group>"; };
 		BC41D91D26AD9C8400989253 /* AsyncSymbolSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncSymbolSet.swift; sourceTree = "<group>"; };
@@ -160,6 +168,10 @@
 		BCA6007626C5B38900F5DFD4 /* SectionDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDivider.swift; sourceTree = "<group>"; };
 		BCA6007B26C5B7F800F5DFD4 /* Plaque.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plaque.swift; sourceTree = "<group>"; };
 		BCA6008326C5C7DA00F5DFD4 /* LegalityTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalityTable.swift; sourceTree = "<group>"; };
+		BCA6008826C6FC7B00F5DFD4 /* SetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailsView.swift; sourceTree = "<group>"; };
+		BCA6008D26C6FFF200F5DFD4 /* SetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProvider.swift; sourceTree = "<group>"; };
+		BCA6009226C7001700F5DFD4 /* DefaultSetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSetProvider.swift; sourceTree = "<group>"; };
+		BCA6009726C7269700F5DFD4 /* Legality+Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Legality+Values.swift"; sourceTree = "<group>"; };
 		BCBE594626873E0800677593 /* Scryfall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scryfall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCBE594926873E0800677593 /* ScryfallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallApp.swift; sourceTree = "<group>"; };
 		BCBE594B26873E0800677593 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -227,6 +239,8 @@
 				BC41D8CB269AB32400989253 /* ImageCache.swift */,
 				BC41D8F526A3BEE500989253 /* SymbolProvider.swift */,
 				BC41D8FA26A3BF5000989253 /* DefaultSymbolProvider.swift */,
+				BCA6008D26C6FFF200F5DFD4 /* SetProvider.swift */,
+				BCA6009226C7001700F5DFD4 /* DefaultSetProvider.swift */,
 			);
 			path = Cache;
 			sourceTree = "<group>";
@@ -304,6 +318,7 @@
 				BC4AD26126B09B0C000875E2 /* search_garruk.json */,
 				BC4AD26926B0D5F3000875E2 /* ability_words.json */,
 				BC4AD27D26B0F2F2000875E2 /* search_exalted.json */,
+				BC36571826C92044001B82C5 /* sets.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -319,6 +334,8 @@
 		BC48512A2694E4C900956E83 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				BC41D8C5269AB2E800989253 /* SVGImageView.swift */,
+				BC4AD28C26B47F4F000875E2 /* Spinner.swift */,
 				BC4850ED2694C9B000956E83 /* TitleView.swift */,
 				BC4851062694CBEE00956E83 /* ParagraphView.swift */,
 				BC4851342694E8D400956E83 /* ColorIndicatorView.swift */,
@@ -327,6 +344,7 @@
 				BCA6007126C460FB00F5DFD4 /* SmallTextView.swift */,
 				BCA6007626C5B38900F5DFD4 /* SectionDivider.swift */,
 				BCA6007B26C5B7F800F5DFD4 /* Plaque.swift */,
+				BC36571026C90A5C001B82C5 /* SetImage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -336,6 +354,7 @@
 			children = (
 				BC48512C2694E4FB00956E83 /* Color+UIColor.swift */,
 				BC41D8FF26A3CC6000989253 /* Publisher+ShareReplay.swift */,
+				BCA6009726C7269700F5DFD4 /* Legality+Values.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -351,11 +370,9 @@
 		BC485158269776C500956E83 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				BC41D8C5269AB2E800989253 /* SVGImageView.swift */,
-				BC41D90826AA049600989253 /* AsyncSymbol.swift */,
 				BC41D91D26AD9C8400989253 /* AsyncSymbolSet.swift */,
+				BC36570326C90986001B82C5 /* AsyncSetSymbol.swift */,
 				BC41D94326AF17E900989253 /* AsyncImage.swift */,
-				BC4AD28C26B47F4F000875E2 /* Spinner.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -392,6 +409,7 @@
 				BCA6006726C4517F00F5DFD4 /* CardDetailsView.swift */,
 				BCA6006C26C459FC00F5DFD4 /* CardDescriptionView.swift */,
 				BCA6008326C5C7DA00F5DFD4 /* LegalityTable.swift */,
+				BCA6008826C6FC7B00F5DFD4 /* SetDetailsView.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -623,6 +641,7 @@
 				BC4AD26226B09B0C000875E2 /* search_garruk.json in Resources */,
 				BC41D93626AF117300989253 /* OFL.txt in Resources */,
 				BC41D93426AF117300989253 /* Lato-Regular.ttf in Resources */,
+				BC36571926C92044001B82C5 /* sets.json in Resources */,
 				BC4AD27926B0E64F000875E2 /* mplantin-italic.ttf in Resources */,
 				BC41D93826AF117300989253 /* Lato-Light.ttf in Resources */,
 				BC4851422694F17E00956E83 /* abomination_of_gudul.json in Resources */,
@@ -657,6 +676,9 @@
 				BC4850BB2694AC3400956E83 /* StubClient.swift in Sources */,
 				BC41D90026A3CC6000989253 /* Publisher+ShareReplay.swift in Sources */,
 				BCBE598A268F92D400677593 /* SearchResultsView.swift in Sources */,
+				BCA6009326C7001700F5DFD4 /* DefaultSetProvider.swift in Sources */,
+				BC36570426C90986001B82C5 /* AsyncSetSymbol.swift in Sources */,
+				BCA6008E26C6FFF200F5DFD4 /* SetProvider.swift in Sources */,
 				BC41D8FB26A3BF5000989253 /* DefaultSymbolProvider.swift in Sources */,
 				BCA6005C26C2F7E600F5DFD4 /* Sorting.swift in Sources */,
 				BCA6007726C5B38900F5DFD4 /* SectionDivider.swift in Sources */,
@@ -676,9 +698,9 @@
 				BC4850B62694AC2800956E83 /* NetworkClient.swift in Sources */,
 				BC29ABBA26BAF9A70040F725 /* UserDefaultsSettingsProvider.swift in Sources */,
 				BCA6007226C460FB00F5DFD4 /* SmallTextView.swift in Sources */,
+				BCA6009826C7269700F5DFD4 /* Legality+Values.swift in Sources */,
 				BC4AD27026B0D740000875E2 /* CommonViewModel.swift in Sources */,
 				BC41D91926AD932000989253 /* TextTokenizer.swift in Sources */,
-				BC41D90926AA049600989253 /* AsyncSymbol.swift in Sources */,
 				BC4850E82694C8A000956E83 /* SearchTextView.swift in Sources */,
 				BC29ABAF26BAF9010040F725 /* SettingsViewModel.swift in Sources */,
 				BC4850CE2694B1F300956E83 /* ModelStubs.swift in Sources */,
@@ -688,6 +710,8 @@
 				BC41D8CC269AB32400989253 /* ImageCache.swift in Sources */,
 				BC4850EE2694C9B000956E83 /* TitleView.swift in Sources */,
 				BC4851352694E8D400956E83 /* ColorIndicatorView.swift in Sources */,
+				BCA6008926C6FC7B00F5DFD4 /* SetDetailsView.swift in Sources */,
+				BC36571126C90A5C001B82C5 /* SetImage.swift in Sources */,
 				BC41D91E26AD9C8400989253 /* AsyncSymbolSet.swift in Sources */,
 				BC4850FF2694CB5000956E83 /* Style.swift in Sources */,
 				BC41D8C6269AB2E800989253 /* SVGImageView.swift in Sources */,
