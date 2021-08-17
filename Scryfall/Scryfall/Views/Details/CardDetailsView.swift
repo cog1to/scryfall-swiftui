@@ -28,8 +28,6 @@ struct CardDetailsView: View {
         self.card = card
         self.symbolProvider = symbolProvider
         self.setProvider = setProvider
-
-        UINavigationBar.appearance().backgroundColor = UIColor(named: "Background")
     }
 
     // MARK: - Body
@@ -52,6 +50,9 @@ struct CardDetailsView: View {
                         provider: setProvider
                     )
                 }
+                .buttonStyle(TintedStyle())
+
+                TagListWrapper(tags: [])
             }
             .padding(.vertical, Style.listElementBottomPadding)
             .padding(.horizontal, Style.listElementHorizontalPadding)

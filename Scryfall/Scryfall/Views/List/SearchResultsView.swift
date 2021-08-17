@@ -94,6 +94,7 @@ struct SearchResultsView: View {
                     }, label: {
                         Image(systemName: "slider.horizontal.3")
                     })
+                    .foregroundColor(Color("Accent"))
                 }
                 .padding(.horizontal)
                 .padding(.vertical, Style.listSpacing)
@@ -137,7 +138,7 @@ struct SearchResultsView: View {
             .background(Color("Background"))
             .navigationBarHidden(true)
         }
-        .navigationViewStyle(StackNavigationViewStyle())
+
         .sheet(isPresented: $showSettings) {
             SettingsView()
                 .environmentObject(settings)

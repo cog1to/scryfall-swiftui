@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct SearchBar: View {
 
     @Binding var text: String
@@ -53,6 +51,7 @@ struct SearchBar: View {
                 }) {
                     Text("Cancel")
                 }
+                .foregroundColor(Color("Accent"))
                 .padding(.trailing, 10)
             }
         }

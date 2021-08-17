@@ -39,8 +39,6 @@ struct SetDetailsView: View {
             Spacer()
         }
         .padding(8)
-        .background(Color("Accent"))
-        .cornerRadius(2)
     }
 }
 

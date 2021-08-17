@@ -45,5 +45,12 @@ class Style {
         static let subtitle: Font = {
             Font.custom("Lato-Regular", size: 16, relativeTo: .body)
         }()
+
+        static var uiSmall: UIFont {
+            UIFont(
+                name: "Lato-Regular",
+                size: UIFontMetrics(forTextStyle: .body).scaledValue(for: 12)
+            )!
+        }
     }
 }
