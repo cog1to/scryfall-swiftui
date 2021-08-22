@@ -19,9 +19,15 @@ class TagList: UIView {
         }
     }
 
+    var selectedIndex: Int? {
+        didSet {
+            updateSelection(oldValue: oldValue)
+        }
+    }
+
     // MARK: - Private
 
-    var tagViews: [UIButton] = []
+    var tagViews: [HighlightedButton] = []
 
     // MARK: - Init
 
@@ -54,7 +60,9 @@ class TagList: UIView {
             tagView.titleLabel?.font = font
             tagView.setTitleColor(UIColor(named: "BrightText"), for: .normal)
 
-            tagView.backgroundColor = UIColor(named: "Accent")
+            tagView.backgroundColor = (index == selectedIndex)
+                ? UIColor(named: "Important")
+                : UIColor(named: "Accent")
             tagView.highlightColor = UIColor(named: "AccentTint")            
             tagView.layer.cornerRadius = 2.0
 
@@ -71,9 +79,25 @@ class TagList: UIView {
         setNeedsLayout()
     }
 
+    private func updateSelection(oldValue: Int?) {
+        if let oldValue = oldValue, tagViews.count > oldValue {
+            tagViews[oldValue].backgroundColor = UIColor(named: "Accent")
+        }
+
+        if let index = selectedIndex, tagViews.count > index {
+            tagViews[index].backgroundColor = UIColor(named: "Important")
+        }
+    }
+
     // MARK: - Action
 
-    var onActionTapped: ((Int) -> ())?
+    var onActionTapped: ((Int) -> ())? {
+        didSet {
+            tagViews.forEach { tagView in
+                tagView.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+            }
+        }
+    }
 
     @objc private func buttonTapped(_ sender: UIButton) {
         onActionTapped?(sender.tag)
@@ -101,9 +125,9 @@ class TagList: UIView {
      * So to make the view occupy parent's width and provide proper height value
      * it must calculate it's height manually, and then update intrinsic content
      * size according to the available width. Which is not what
-     * `intrinsicContentSize` is supposed to be fucking used for! Whatever.
+     * `intrinsicContentSize` is supposed to be fucking used for!
      *
-     * P.S. https://fix.code-error.com/multiline-label-with-uiviewrepresentable/
+     * Source: https://fix.code-error.com/multiline-label-with-uiviewrepresentable/
     **/
     var contentHeight: CGFloat = .zero {
         didSet {
@@ -111,10 +135,22 @@ class TagList: UIView {
         }
     }
 
+    /**
+     * On top of the previous rant, SwiftUI seems to do some "smart" caching of
+     * of the view, and not properly resizing them when displaying them for the
+     * N-th time. So the `contentWidth` occasionaly get reset to 0, without a
+     * way to force resize. Thus we have to use our own caching to store proper
+     * `contentWidth` value and set it in the intrinsicContentSize.
+    **/
+    var contentWidth: CGFloat = .zero
+
     override var intrinsicContentSize: CGSize {
         // Occupy all of the available width, provide a height required to fit
         // all of the content.
-        CGSize(width: UIView.noIntrinsicMetric, height: contentHeight)
+        CGSize(
+            width: contentWidth > 0 ? contentWidth : UIView.noIntrinsicMetric,
+            height: contentHeight
+        )
     }
 
     override var frame: CGRect {
@@ -123,6 +159,8 @@ class TagList: UIView {
             // based on available width.
             guard frame != oldValue else { return }
             contentHeight = height(forWidth: frame.width)
+            contentWidth = frame.width
+            setNeedsLayout()
         }
     }
 
@@ -152,12 +190,13 @@ class TagList: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
+        let size = CGSize(width: contentWidth, height: contentHeight)
         var currentX: CGFloat = 0, currentY: CGFloat = 0
         var lastSize: CGSize = .zero
 
         for button in tagViews {
-            lastSize = button.sizeThatFits(self.frame.size)
-            if (currentX + lastSize.width) > self.frame.size.width {
+            lastSize = button.sizeThatFits(size)
+            if (currentX + lastSize.width) > size.width {
                 currentY += lastSize.height + Dimensions.spacing
                 currentX =  0
             }
@@ -213,11 +252,14 @@ class TagList: UIView {
 }
 
 struct TagListWrapper: UIViewRepresentable {
-    let tags: [String]
+    var tags: [String]
+    var selectedIndex: Int?
+    var callBack: ((Int) -> Void)? = nil
 
     func makeUIView(context: Context) -> TagList {
         let view = TagList()
         view.tags = tags
+        view.selectedIndex = selectedIndex
         view.translatesAutoresizingMaskIntoConstraints = false
 
         view.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -225,10 +267,18 @@ struct TagListWrapper: UIViewRepresentable {
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         view.setContentCompressionResistancePriority(.required, for: .vertical)
 
+        view.onActionTapped = { [callBack] in
+            callBack?($0)
+        }
+
         return view
     }
 
     func updateUIView(_ uiView: TagList, context: Context) {
         uiView.tags = tags
+        uiView.selectedIndex = selectedIndex
+        uiView.onActionTapped = { [callBack] in
+            callBack?($0)
+        }
     }
 }

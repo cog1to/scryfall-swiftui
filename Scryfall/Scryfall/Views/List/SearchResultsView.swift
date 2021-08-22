@@ -8,6 +8,7 @@
 import SwiftUI
 import ScryfallModel
 import Combine
+import SwiftUIX
 
 struct SearchResultsView: View {
 
@@ -18,6 +19,8 @@ struct SearchResultsView: View {
     @EnvironmentObject var settings: SettingsViewModel
 
     @EnvironmentObject var common: CommonViewModel
+
+    @State private var selectedCard: Card?
 
     // MARK: - Private
 
@@ -95,9 +98,9 @@ struct SearchResultsView: View {
                         Image(systemName: "slider.horizontal.3")
                     })
                     .foregroundColor(Color("Accent"))
+                    .padding(.trailing, 4)
                 }
-                .padding(.horizontal)
-                .padding(.vertical, Style.listSpacing)
+                .padding(.horizontal, 4)
 
                 ScrollView {
                     LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
@@ -105,11 +108,13 @@ struct SearchResultsView: View {
                             VStack {
                                 switch item {
                                 case let .card(card):
-                                    NavigationLink(destination: CardDetailsView(
-                                                    card: card,
-                                                    symbolProvider: provider,
-                                                    setProvider: setProvider
-                                    )) {
+                                    NavigationLink(
+                                        destination: CardDetailsView(
+                                            card: card,
+                                            symbolProvider: provider,
+                                            setProvider: setProvider
+                                        )
+                                    ) {
                                         if presentationStyle == .text {
                                             SearchTextView(card: card, provider: provider)
                                         } else {
@@ -135,10 +140,10 @@ struct SearchResultsView: View {
                 .padding(.horizontal, Style.listSpacing)
             }
             .padding(.top)
-            .background(Color("Background"))
-            .navigationBarHidden(true)
+            .background(Color("Background")).ignoresSafeArea()
+            .hideNavigationBar()
         }
-
+        .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $showSettings) {
             SettingsView()
                 .environmentObject(settings)

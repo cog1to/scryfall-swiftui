@@ -7,12 +7,13 @@
 
 import SwiftUI
 import ScryfallModel
+import SwiftUILib_WrapStack
 
 struct CardDetailsView: View {
 
     // MARK: - Model
 
-    let card: Card
+    @ObservedObject var model: CardDetailsViewModel
 
     // MARK: - DI
 
@@ -25,17 +26,23 @@ struct CardDetailsView: View {
     let setProvider: SetProvider
 
     init(card: Card, symbolProvider: SymbolProvider, setProvider: SetProvider) {
-        self.card = card
         self.symbolProvider = symbolProvider
         self.setProvider = setProvider
+        self.model = CardDetailsViewModel(card: card, client: NetworkClient())
     }
 
     // MARK: - Body
 
     var body: some View {
+        let card = model.card
+        let languages = model.prints.map { $0.lang.abbreviation }
+            + (model.prints.count > 1 ? ["︙"] : [])
+        let selectedIndex = model.prints.firstIndex(where: { $0.lang == card.lang })
+
         ScrollView(.vertical) {
             VStack(spacing: Style.listElementPadding) {
                 SearchCardView(card: card, cache: cache)
+                    .frame(maxWidth: 400)
                 CardDescriptionView(card: card, provider: symbolProvider)
 
                 Button(action: {
@@ -52,7 +59,14 @@ struct CardDetailsView: View {
                 }
                 .buttonStyle(TintedStyle())
 
-                TagListWrapper(tags: [])
+                TagListWrapper(tags: languages, selectedIndex: selectedIndex) {
+                    if $0 < languages.count {
+                        model.card = model.prints[$0]
+                    } else {
+                        // TODO: Go back to search.
+                    }
+                }
+                    
             }
             .padding(.vertical, Style.listElementBottomPadding)
             .padding(.horizontal, Style.listElementHorizontalPadding)

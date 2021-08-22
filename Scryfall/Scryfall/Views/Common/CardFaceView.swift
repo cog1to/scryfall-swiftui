@@ -15,6 +15,7 @@ struct CardFaceView: View {
     let typeLine: String?
     let colorIndicator: [ScryfallModel.Color]?
     let oracleText: String?
+    let flavorText: String?
     let power: String?
     let toughness: String?
     let loyalty: String?
@@ -41,6 +42,10 @@ struct CardFaceView: View {
             if let oracleText = oracleText {
                 Divider()
                 ParagraphView(text: oracleText, provider: provider)
+            }
+
+            if let flavorText = flavorText {
+                ItalicTextView(text: flavorText)
             }
 
             if let loyalty = loyalty {

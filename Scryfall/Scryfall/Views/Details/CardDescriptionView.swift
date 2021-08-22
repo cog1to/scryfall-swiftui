@@ -24,11 +24,12 @@ struct CardDescriptionView: View {
                     if let cardFaces = card.cardFaces, !cardFaces.isEmpty {
                         ForEach(cardFaces) { face in
                             CardFaceView(
-                                name: face.name,
+                                name: face.printedName ?? face.name,
                                 manaCost: face.manaCost,
-                                typeLine: face.typeline,
+                                typeLine: face.printedTypeLine ?? face.typeline,
                                 colorIndicator: face.colorIndicator,
-                                oracleText: face.oracleText,
+                                oracleText: face.printedText ?? face.oracleText,
+                                flavorText: face.flavorText,
                                 power: face.power,
                                 toughness: face.toughness,
                                 loyalty: face.loyalty,
@@ -37,11 +38,12 @@ struct CardDescriptionView: View {
                         }
                     } else {
                         CardFaceView(
-                            name: card.name,
+                            name: card.printedName ?? card.name,
                             manaCost: card.manaCost,
-                            typeLine: card.typeline,
+                            typeLine: card.printedTypeLine ?? card.typeline,
                             colorIndicator: card.colorIndicator,
-                            oracleText: card.oracleText,
+                            oracleText: card.printedText ?? card.oracleText,
+                            flavorText: card.flavorText,
                             power: card.power,
                             toughness: card.toughness,
                             loyalty: card.loyalty,

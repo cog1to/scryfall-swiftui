@@ -13,10 +13,10 @@ struct LegalityTable: View {
     let legalities: LegalityList
 
     var columns: [GridItem] = [
-        GridItem(.flexible()),
-        GridItem(.adaptive(minimum: 40), spacing: 2, alignment: .leading),
-        GridItem(.flexible()),
-        GridItem(.adaptive(minimum: 40), spacing: 2, alignment: .leading)
+        GridItem(.flexible(maximum: 100)),
+        GridItem(.flexible(minimum: 40), spacing: 2, alignment: .leading),
+        GridItem(.flexible(maximum: 100)),
+        GridItem(.flexible(minimum: 40), spacing: 2, alignment: .leading)
     ]
 
     var body: some View {

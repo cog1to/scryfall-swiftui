@@ -40,7 +40,7 @@ public enum Language: Codable, RawRepresentable {
         case "jp": self = .japanese
         case "ko": self = .korean
         case "ru": self = .russian
-        case "zsh": self = .chineseSimplified
+        case "zhs": self = .chineseSimplified
         case "zht": self = .chineseTraditional
         case "he": self = .hebrew
         case "la": self = .latin
@@ -97,6 +97,29 @@ public enum Language: Codable, RawRepresentable {
         case .latin: return "Latin"
         case .phyrexian: return "Phyrexian"
         case .spanish: return "Spanish"
+        case let .unknown(lang): return lang.uppercased()
+        }
+    }
+
+    public var abbreviation: String {
+        switch self {
+        case .english: return "EN"
+        case .french: return "FR"
+        case .german: return "DE"
+        case .italian: return "IT"
+        case .portuguese: return "PT"
+        case .japanese: return "JA"
+        case .korean: return "KR"
+        case .chineseSimplified: return "汉语"
+        case .chineseTraditional: return "漢語"
+        case .russian: return "RU"
+        case .arabic: return "AR"
+        case .hebrew: return "HE"
+        case .sanskrit: return "SA"
+        case .antientGreek: return "GRC"
+        case .latin: return "LA"
+        case .phyrexian: return "PH"
+        case .spanish: return "SP"
         case let .unknown(lang): return lang.uppercased()
         }
     }

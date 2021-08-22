@@ -30,6 +30,10 @@ public final class Card: Identifiable, Codable {
     public var imageUris: ImageList?
     public var cardFaces: [CardFace]?
     public var legalities: LegalityList?
+    public var printedTypeLine: String?
+    public var printedName: String?
+    public var printedText: String?
+    public var flavorText: String?
 
     // MARK: - Gameplay field
 
@@ -89,5 +93,9 @@ public final class Card: Identifiable, Codable {
         case setName = "set_name"
         case number = "collector_number"
         case rarity = "rarity"
+        case printedText = "printed_text"
+        case printedName = "printed_name"
+        case printedTypeLine = "printed_type_line"
+        case flavorText = "flavor_text"
     }
 }
