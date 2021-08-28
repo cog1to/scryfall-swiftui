@@ -17,6 +17,8 @@ struct CardDetailsView: View {
 
     // MARK: - DI
 
+    @Environment(\.presentationMode) var presentation
+
     @EnvironmentObject var common: CommonViewModel
 
     let cache = ImageCache()
@@ -60,10 +62,11 @@ struct CardDetailsView: View {
                 .buttonStyle(TintedStyle())
 
                 TagListWrapper(tags: languages, selectedIndex: selectedIndex) {
-                    if $0 < languages.count {
+                    if $0 < (languages.count - 1) {
                         model.card = model.prints[$0]
                     } else {
-                        // TODO: Go back to search.
+                        // TODO: Update search.
+                        presentation.wrappedValue.dismiss()
                     }
                 }
                     
