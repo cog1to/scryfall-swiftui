@@ -46,7 +46,7 @@ struct PrintHeader: View {
                     .font(Style.Fonts.small)
             }
             .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: 160)
+            .frame(minWidth: titleWidth)
 
             ZStack {
                 Text("USD".uppercased())
@@ -78,6 +78,12 @@ struct PrintHeader: View {
         .padding(8)
         .background(Color("Accent"))
     }
+
+    var titleWidth: CGFloat {
+        UITraitCollection.current.horizontalSizeClass == .regular
+            ? 400
+            : 140
+    }
 }
 
 struct PrintRow: View {
@@ -97,8 +103,9 @@ struct PrintRow: View {
                     .offset(CGSize(width: -17, height: 0))
             }
             .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: 160)
-
+            .frame(minWidth: titleWidth)
+            // TODO: Deal with very small screens + Long price tags
+            // Example: !"Ancestral Recall" r:bonus
 
             ZStack {
                 Text(usdPrice)
@@ -135,6 +142,8 @@ struct PrintRow: View {
     var usdPrice: String {
         if let usdString = card.prices.usd {
             return "$\(usdString)"
+        } else if let foilString = card.prices.usdFoil {
+            return "✶ $\(foilString)"
         } else {
             return ""
         }
@@ -143,6 +152,8 @@ struct PrintRow: View {
     var eurPrice: String {
         if let eurPrice = card.prices.eur {
             return "€\(eurPrice)"
+        } else if let foilString = card.prices.eurFoil {
+            return "✶ €\(foilString)"
         } else {
             return ""
         }
@@ -154,6 +165,12 @@ struct PrintRow: View {
         } else {
             return ""
         }
+    }
+
+    var titleWidth: CGFloat {
+        UITraitCollection.current.horizontalSizeClass == .regular
+            ? 400
+            : 140
     }
 }
 
