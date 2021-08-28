@@ -109,7 +109,7 @@ class NetworkClient: ScryfallClient {
             }
             .tryMap { response in
                 try Self.decoder.decode(T.self, from: response.data)
-            }
+            }      
             .eraseToAnyPublisher()
     }
 }

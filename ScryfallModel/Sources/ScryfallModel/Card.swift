@@ -56,6 +56,10 @@ public final class Card: Identifiable, Codable {
     public var number: String
     public var rarity: Rarity
 
+    // MARK: - Prices
+
+    public var prices: CardPrices
+
     // MARK: - Decodable
 
     enum CodingKeys: String, CodingKey {
@@ -97,5 +101,6 @@ public final class Card: Identifiable, Codable {
         case printedName = "printed_name"
         case printedTypeLine = "printed_type_line"
         case flavorText = "flavor_text"
+        case prices = "prices"
     }
 }

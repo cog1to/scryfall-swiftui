@@ -20,6 +20,7 @@
 		BC36573E26D241AF001B82C5 /* CardDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36573D26D241AF001B82C5 /* CardDetailsViewModel.swift */; };
 		BC36574326D24563001B82C5 /* avacyn_prints.json in Resources */ = {isa = PBXBuildFile; fileRef = BC36574226D24563001B82C5 /* avacyn_prints.json */; };
 		BC36578D26D2BE48001B82C5 /* ItalicTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36578C26D2BE48001B82C5 /* ItalicTextView.swift */; };
+		BC36579826DA2D30001B82C5 /* PrintsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36579726DA2D30001B82C5 /* PrintsTable.swift */; };
 		BC41D8C6269AB2E800989253 /* SVGImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8C5269AB2E800989253 /* SVGImageView.swift */; };
 		BC41D8CC269AB32400989253 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC41D8CB269AB32400989253 /* ImageCache.swift */; };
 		BC41D8D4269AB56500989253 /* T.svg in Resources */ = {isa = PBXBuildFile; fileRef = BC41D8D3269AB56500989253 /* T.svg */; };
@@ -90,6 +91,7 @@
 		BCBE597E2687402D00677593 /* ScryfallModel in Frameworks */ = {isa = PBXBuildFile; productRef = BCBE597D2687402D00677593 /* ScryfallModel */; };
 		BCBE598A268F92D400677593 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE5989268F92D400677593 /* SearchResultsView.swift */; };
 		BCBE5992268F930B00677593 /* SearchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE5991268F930B00677593 /* SearchCardView.swift */; };
+		BCC771D826DA468F004A03C4 /* Rarity+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +124,7 @@
 		BC36573D26D241AF001B82C5 /* CardDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailsViewModel.swift; sourceTree = "<group>"; };
 		BC36574226D24563001B82C5 /* avacyn_prints.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = avacyn_prints.json; sourceTree = "<group>"; };
 		BC36578C26D2BE48001B82C5 /* ItalicTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItalicTextView.swift; sourceTree = "<group>"; };
+		BC36579726DA2D30001B82C5 /* PrintsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintsTable.swift; sourceTree = "<group>"; };
 		BC41D8C5269AB2E800989253 /* SVGImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVGImageView.swift; sourceTree = "<group>"; };
 		BC41D8CB269AB32400989253 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		BC41D8D3269AB56500989253 /* T.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = T.svg; sourceTree = "<group>"; };
@@ -195,6 +198,7 @@
 		BCBE596D26873E0A00677593 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCBE5989268F92D400677593 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		BCBE5991268F930B00677593 /* SearchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardView.swift; sourceTree = "<group>"; };
+		BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rarity+Colors.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +380,7 @@
 				BC48512C2694E4FB00956E83 /* Color+UIColor.swift */,
 				BC41D8FF26A3CC6000989253 /* Publisher+ShareReplay.swift */,
 				BCA6009726C7269700F5DFD4 /* Legality+Values.swift */,
+				BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -424,6 +429,7 @@
 				BCA6006C26C459FC00F5DFD4 /* CardDescriptionView.swift */,
 				BCA6008326C5C7DA00F5DFD4 /* LegalityTable.swift */,
 				BCA6008826C6FC7B00F5DFD4 /* SetDetailsView.swift */,
+				BC36579726DA2D30001B82C5 /* PrintsTable.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -694,6 +700,8 @@
 				BC41D90026A3CC6000989253 /* Publisher+ShareReplay.swift in Sources */,
 				BCBE598A268F92D400677593 /* SearchResultsView.swift in Sources */,
 				BCA6009326C7001700F5DFD4 /* DefaultSetProvider.swift in Sources */,
+				BCC771D826DA468F004A03C4 /* Rarity+Colors.swift in Sources */,
+				BC36579826DA2D30001B82C5 /* PrintsTable.swift in Sources */,
 				BC36570426C90986001B82C5 /* AsyncSetSymbol.swift in Sources */,
 				BCA6008E26C6FFF200F5DFD4 /* SetProvider.swift in Sources */,
 				BC41D8FB26A3BF5000989253 /* DefaultSymbolProvider.swift in Sources */,

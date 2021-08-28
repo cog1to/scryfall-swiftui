@@ -17,6 +17,8 @@ class CardDetailsViewModel: ObservableObject {
 
     // MARK: - Models
 
+    @Published var languages: [Card] = []
+
     @Published var prints: [Card] = []
 
     @Published var card: Card
@@ -34,6 +36,14 @@ class CardDetailsViewModel: ObservableObject {
         client.prints(card: card)
             .subscribe(on: DispatchQueue.global(qos: .default))
             .replaceError(with: .empty())
+            .receive(on: DispatchQueue.main)
+            .map { $0.data }
+            .sink { self.languages = $0 }
+            .store(in: &subsciptions)
+
+        client.loadUri(URL: card.printsSearchUri)
+            .subscribe(on: DispatchQueue.global(qos: .default))
+            .replaceError(with: ObjectList<Card>.empty())
             .receive(on: DispatchQueue.main)
             .map { $0.data }
             .sink { self.prints = $0 }

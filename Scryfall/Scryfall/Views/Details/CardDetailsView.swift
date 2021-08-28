@@ -7,7 +7,6 @@
 
 import SwiftUI
 import ScryfallModel
-import SwiftUILib_WrapStack
 
 struct CardDetailsView: View {
 
@@ -37,9 +36,9 @@ struct CardDetailsView: View {
 
     var body: some View {
         let card = model.card
-        let languages = model.prints.map { $0.lang.abbreviation }
-            + (model.prints.count > 1 ? ["︙"] : [])
-        let selectedIndex = model.prints.firstIndex(where: { $0.lang == card.lang })
+        let languages = model.languages.map { $0.lang.abbreviation }
+            + (model.languages.count > 1 ? ["︙"] : [])
+        let selectedIndex = model.languages.firstIndex(where: { $0.lang == card.lang })
 
         ScrollView(.vertical) {
             VStack(spacing: Style.listElementPadding) {
@@ -63,13 +62,14 @@ struct CardDetailsView: View {
 
                 TagListWrapper(tags: languages, selectedIndex: selectedIndex) {
                     if $0 < (languages.count - 1) {
-                        model.card = model.prints[$0]
+                        model.card = model.languages[$0]
                     } else {
                         // TODO: Update search.
                         presentation.wrappedValue.dismiss()
                     }
                 }
-                    
+
+                PrintsTable(cards: model.prints)
             }
             .padding(.vertical, Style.listElementBottomPadding)
             .padding(.horizontal, Style.listElementHorizontalPadding)
