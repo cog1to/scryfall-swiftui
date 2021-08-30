@@ -33,7 +33,7 @@ class CardDetailsViewModel: ObservableObject {
         self.card = card
         self.client = client
 
-        client.prints(card: card)
+        client.languages(card: card)
             .subscribe(on: DispatchQueue.global(qos: .default))
             .replaceError(with: .empty())
             .receive(on: DispatchQueue.main)

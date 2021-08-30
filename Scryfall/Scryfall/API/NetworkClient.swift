@@ -83,7 +83,7 @@ class NetworkClient: ScryfallClient {
         return loadData(url: URL)
     }
 
-    func prints(card: Card) -> AnyPublisher<ObjectList<Card>, Error> {
+    func languages(card: Card) -> AnyPublisher<ObjectList<Card>, Error> {
         guard var components = URLComponents(url: Endpoint.cards.url, resolvingAgainstBaseURL: false) else {
             return AnyPublisher(Fail<ObjectList<Card>, Error>(error: ScryfallError.badUrl))
         }
@@ -91,6 +91,24 @@ class NetworkClient: ScryfallClient {
         components.queryItems = [
             URLQueryItem(name: "q", value: "!\"\(card.name)\" set:\(card.set) lang:any"),
             URLQueryItem(name: "unique", value: QueryType.allPrints.rawValue)
+        ]
+
+        guard let url = components.url else {
+            return AnyPublisher(Fail<ObjectList<Card>, Error>(error: ScryfallError.badUrl))
+        }
+
+        return loadData(url: url)
+    }
+
+    func prints(card: Card) -> AnyPublisher<ObjectList<Card>, Error> {
+        guard var components = URLComponents(url: Endpoint.cards.url, resolvingAgainstBaseURL: false) else {
+            return AnyPublisher(Fail<ObjectList<Card>, Error>(error: ScryfallError.badUrl))
+        }
+
+        components.queryItems = [
+            URLQueryItem(name: "q", value: "!\"\(card.name)\" include:extras"),
+            URLQueryItem(name: "unique", value: QueryType.allPrints.rawValue),
+            URLQueryItem(name: "order", value: SortOrder.releaseDate.rawValue)
         ]
 
         guard let url = components.url else {
@@ -109,7 +127,7 @@ class NetworkClient: ScryfallClient {
             }
             .tryMap { response in
                 try Self.decoder.decode(T.self, from: response.data)
-            }      
+            }
             .eraseToAnyPublisher()
     }
 }

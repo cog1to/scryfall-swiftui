@@ -60,6 +60,10 @@ final class StubClient: ScryfallClient {
         load(filename: "ability_words")
     }
 
+    func languages(card: Card) -> AnyPublisher<ObjectList<Card>, Error> {
+        load(filename: "avacyn_prints")
+    }
+
     func prints(card: Card) -> AnyPublisher<ObjectList<Card>, Error> {
         load(filename: "avacyn_prints")
     }
