@@ -44,6 +44,10 @@ struct SearchCardView: View {
                     minWidth: Style.cardSize.width,
                     minHeight: Style.cardSize.height
                 )
+                .rotation3DEffect(
+                    .degrees(face == 0 ? 0 : 180),
+                    axis: (x: 0.0, y: 1.0, z: 0.0)
+                )
             image.image == nil
                 ? Text(card.name)
                     .multilineTextAlignment(.center)

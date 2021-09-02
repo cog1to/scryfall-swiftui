@@ -36,6 +36,8 @@ struct CardDetailsView: View {
 
     @State var flipped = false
 
+    @State var cardRotationAngle = 0.0
+
     // MARK: - Body
 
     var body: some View {
@@ -55,10 +57,21 @@ struct CardDetailsView: View {
                             : (flipped ? 1 : 0)
                     )
                     .frame(maxWidth: 400)
+                    .shadow(radius: 4)
+                    .rotation3DEffect(
+                        .degrees(cardRotationAngle),
+                        axis: (x: 0.0, y: 1.0, z: 0.0)
+                    )
 
                     if (card.cardFaces?.count ?? 0) > 1 {
                         Button(action: {
-                            self.flipped = !self.flipped
+                            withAnimation(Animation.linear(duration: Self.animationDuration)) {
+                                self.cardRotationAngle += 180
+                            }
+
+                            DispatchQueue.main.asyncAfter(deadline: .now() + Self.animationDuration/2.0) {
+                                self.flipped = !self.flipped
+                            }
                         }) {
                             HStack {
                                 Image("Transform")
@@ -124,6 +137,10 @@ struct CardDetailsView: View {
         .background(Color("Background"))
         .navigationBarTitle("", displayMode: .inline)
     }
+
+    // MARK: - Config
+
+    static let animationDuration: Double = 0.4
 }
 
 struct CardDetailsView_Previews: PreviewProvider {
