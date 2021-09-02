@@ -34,6 +34,10 @@ class Style {
             Font.custom("mplantin-italic", size: 19, relativeTo: .body)
         }()
 
+        static let flavor: Font = {
+            Font.custom("mplantin-italic", size: 17, relativeTo: .body).italic()
+        }()
+
         static let small: Font = {
             Font.custom("Lato-Regular", size: 12, relativeTo: .body)
         }()
@@ -44,6 +48,18 @@ class Style {
 
         static let subtitle: Font = {
             Font.custom("Lato-Regular", size: 16, relativeTo: .body)
+        }()
+
+        static let ruling: Font = {
+            Font.custom("Lato-Regular", size: 14, relativeTo: .body)
+        }()
+
+        static let rulingSubtitle: Font = {
+            Font.custom("mplantin-italic", size: 15, relativeTo: .body)
+        }()
+
+        static let rulingHeavy: Font = {
+            Font.custom("Lato-Bold", size: 14, relativeTo: .body)
         }()
 
         static var uiSmall: UIFont {

@@ -15,7 +15,7 @@ struct ItalicTextView: View {
     var body: some View {
         HStack {
             Text(text)
-                .font(Style.Fonts.italic)
+                .font(Style.Fonts.flavor)                
                 .fixedSize(horizontal: false, vertical: true)
             Spacer()
         }

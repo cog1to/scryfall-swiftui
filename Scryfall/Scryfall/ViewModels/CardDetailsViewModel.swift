@@ -23,6 +23,8 @@ class CardDetailsViewModel: ObservableObject {
 
     @Published var card: Card
 
+    @Published var rulings: [Ruling] = []
+
     // MARK: - Private
 
     private let client: ScryfallClient
@@ -47,6 +49,14 @@ class CardDetailsViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .map { $0.data }
             .sink { self.prints = $0 }
+            .store(in: &subsciptions)
+
+        client.loadUri(URL: card.rulingsUri)
+            .subscribe(on: DispatchQueue.global(qos: .default))
+            .replaceError(with: ObjectList<Ruling>.empty())
+            .receive(on: DispatchQueue.main)
+            .map { $0.data }
+            .sink { self.rulings = $0 }
             .store(in: &subsciptions)
     }
 }

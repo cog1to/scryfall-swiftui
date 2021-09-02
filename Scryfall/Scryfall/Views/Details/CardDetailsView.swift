@@ -41,38 +41,52 @@ struct CardDetailsView: View {
         let selectedIndex = model.languages.firstIndex(where: { $0.lang == card.lang })
 
         ScrollView(.vertical) {
-            VStack(spacing: Style.listElementPadding) {
-                SearchCardView(card: card, cache: cache)
-                    .frame(maxWidth: 400)
-                CardDescriptionView(card: card, provider: symbolProvider)
+            VStack {
+                VStack(spacing: Style.listElementPadding) {
+                    SearchCardView(card: card, cache: cache)
+                        .frame(maxWidth: 400)
+                    CardDescriptionView(card: card, provider: symbolProvider)
 
-                Button(action: {
-                    // TODO: Hook back to search.
-                }) {
-                    SetDetailsView(
-                        setName: card.setName,
-                        setCode: card.set,
-                        cardNumber: card.number,
-                        rarity: card.rarity,
-                        language: card.lang,
-                        provider: setProvider
-                    )
-                }
-                .buttonStyle(TintedStyle())
-
-                TagListWrapper(tags: languages, selectedIndex: selectedIndex) {
-                    if $0 < (languages.count - 1) {
-                        model.card = model.languages[$0]
-                    } else {
-                        // TODO: Update search.
-                        presentation.wrappedValue.dismiss()
+                    Button(action: {
+                        // TODO: Hook back to search.
+                    }) {
+                        SetDetailsView(
+                            setName: card.setName,
+                            setCode: card.set,
+                            cardNumber: card.number,
+                            rarity: card.rarity,
+                            language: card.lang,
+                            provider: setProvider
+                        )
                     }
-                }
+                    .buttonStyle(TintedStyle())
 
-                PrintsTable(cards: model.prints)
+                    TagListWrapper(
+                        tags: languages,
+                        selectedIndex: selectedIndex
+                    ) {
+                        if $0 < (languages.count - 1) {
+                            model.card = model.languages[$0]
+                            
+                        } else {
+                            // TODO: Update search.
+                            presentation.wrappedValue.dismiss()
+                        }
+                    }
+
+                    PrintsTable(cards: model.prints)
+                }
+                .padding(.vertical, Style.listElementBottomPadding)
+                .padding(.horizontal, Style.listElementHorizontalPadding)
+
+                if let rulings = model.rulings {
+                    VStack {
+                        DashedLine()
+                        RulingsView(items: rulings)
+                    }
+                    .background(Color.systemBackground)
+                }
             }
-            .padding(.vertical, Style.listElementBottomPadding)
-            .padding(.horizontal, Style.listElementHorizontalPadding)
         }
         .background(Color("Background"))
         .navigationBarTitle("", displayMode: .inline)

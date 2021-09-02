@@ -92,6 +92,8 @@
 		BCBE598A268F92D400677593 /* SearchResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE5989268F92D400677593 /* SearchResultsView.swift */; };
 		BCBE5992268F930B00677593 /* SearchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCBE5991268F930B00677593 /* SearchCardView.swift */; };
 		BCC771D826DA468F004A03C4 /* Rarity+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */; };
+		BCC771DD26DD3F68004A03C4 /* RulingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771DC26DD3F68004A03C4 /* RulingsView.swift */; };
+		BCC771E226DD4540004A03C4 /* DashedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771E126DD4540004A03C4 /* DashedLine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +201,8 @@
 		BCBE5989268F92D400677593 /* SearchResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsView.swift; sourceTree = "<group>"; };
 		BCBE5991268F930B00677593 /* SearchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCardView.swift; sourceTree = "<group>"; };
 		BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rarity+Colors.swift"; sourceTree = "<group>"; };
+		BCC771DC26DD3F68004A03C4 /* RulingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulingsView.swift; sourceTree = "<group>"; };
+		BCC771E126DD4540004A03C4 /* DashedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedLine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -370,6 +374,7 @@
 				BC36571026C90A5C001B82C5 /* SetImage.swift */,
 				BC36572326CAD8D4001B82C5 /* TagList+Wrapper.swift */,
 				BC36578C26D2BE48001B82C5 /* ItalicTextView.swift */,
+				BCC771E126DD4540004A03C4 /* DashedLine.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				BCA6008326C5C7DA00F5DFD4 /* LegalityTable.swift */,
 				BCA6008826C6FC7B00F5DFD4 /* SetDetailsView.swift */,
 				BC36579726DA2D30001B82C5 /* PrintsTable.swift */,
+				BCC771DC26DD3F68004A03C4 /* RulingsView.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -709,12 +715,14 @@
 				BCA6007726C5B38900F5DFD4 /* SectionDivider.swift in Sources */,
 				BCBE594C26873E0800677593 /* ContentView.swift in Sources */,
 				BC29ABC326BB00CE0040F725 /* SettingsView.swift in Sources */,
+				BCC771E226DD4540004A03C4 /* DashedLine.swift in Sources */,
 				BCA6006826C4517F00F5DFD4 /* CardDetailsView.swift in Sources */,
 				BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */,
 				BC4850AE2694AA4100956E83 /* ScryfallClient.swift in Sources */,
 				BC41D91326AD92E200989253 /* MagicTextView.swift in Sources */,
 				BC48513D2694EFC000956E83 /* CardFaceView.swift in Sources */,
 				BCA6007C26C5B7F800F5DFD4 /* Plaque.swift in Sources */,
+				BCC771DD26DD3F68004A03C4 /* RulingsView.swift in Sources */,
 				BCBE5992268F930B00677593 /* SearchCardView.swift in Sources */,
 				BC4AD28326B1E6DC000875E2 /* SearchResultsViewModel.swift in Sources */,
 				BC41D8F626A3BEE500989253 /* SymbolProvider.swift in Sources */,
