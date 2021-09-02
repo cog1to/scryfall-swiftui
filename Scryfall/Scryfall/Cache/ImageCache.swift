@@ -27,8 +27,18 @@ final class ImageCache {
 
     // MARK: - API
 
+    func immediateLocalUrl(for url: URL) -> URL? {
+        let path = localPath(for: url)
+        if FileManager.default.fileExists(atPath: path.path) {
+            return path
+        } else {
+            return nil
+        }
+    }
+
     func localUrl(for url: URL) -> AnyPublisher<URL, URLError> {
         let path = localPath(for: url)
+
         if FileManager.default.fileExists(atPath: path.path) {
             return Just(path)
                 .setFailureType(to: URLError.self)
@@ -41,6 +51,15 @@ final class ImageCache {
                 .print()
                 .handleEvents(
                     receiveOutput: { output in
+                        let pathToDirectory = path.deletingLastPathComponent()
+                        if !FileManager.default.fileExists(atPath: pathToDirectory.path) {
+                            try? FileManager.default.createDirectory(
+                                at: pathToDirectory,
+                                withIntermediateDirectories: true,
+                                attributes: nil
+                            )
+                        }
+
                         try? output.data.write(to: path)
                     },
                     receiveCompletion: { [weak self] _ in
@@ -60,9 +79,9 @@ final class ImageCache {
     // MARK: - Private
 
     private func localPath(for url: URL) -> URL {
-        let lastPathComponent = url.lastPathComponent
+        let path = url.pathComponents.dropFirst(2).joined(separator: "/")
         return baseCacheUrl
             .appendingPathComponent("images")
-            .appendingPathComponent(lastPathComponent)
+            .appendingPathComponent(path)
     }
 }

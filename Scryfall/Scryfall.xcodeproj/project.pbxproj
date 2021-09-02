@@ -94,6 +94,7 @@
 		BCC771D826DA468F004A03C4 /* Rarity+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */; };
 		BCC771DD26DD3F68004A03C4 /* RulingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771DC26DD3F68004A03C4 /* RulingsView.swift */; };
 		BCC771E226DD4540004A03C4 /* DashedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771E126DD4540004A03C4 /* DashedLine.swift */; };
+		BCC771EA26E1354C004A03C4 /* Optionals+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771E926E1354C004A03C4 /* Optionals+Empty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +204,7 @@
 		BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rarity+Colors.swift"; sourceTree = "<group>"; };
 		BCC771DC26DD3F68004A03C4 /* RulingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulingsView.swift; sourceTree = "<group>"; };
 		BCC771E126DD4540004A03C4 /* DashedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedLine.swift; sourceTree = "<group>"; };
+		BCC771E926E1354C004A03C4 /* Optionals+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optionals+Empty.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -386,6 +388,7 @@
 				BC41D8FF26A3CC6000989253 /* Publisher+ShareReplay.swift */,
 				BCA6009726C7269700F5DFD4 /* Legality+Values.swift */,
 				BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */,
+				BCC771E926E1354C004A03C4 /* Optionals+Empty.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				BC4AD28326B1E6DC000875E2 /* SearchResultsViewModel.swift in Sources */,
 				BC41D8F626A3BEE500989253 /* SymbolProvider.swift in Sources */,
 				BC29ABB526BAF94D0040F725 /* SettingsProvider.swift in Sources */,
+				BCC771EA26E1354C004A03C4 /* Optionals+Empty.swift in Sources */,
 				BC4850B62694AC2800956E83 /* NetworkClient.swift in Sources */,
 				BC29ABBA26BAF9A70040F725 /* UserDefaultsSettingsProvider.swift in Sources */,
 				BCA6007226C460FB00F5DFD4 /* SmallTextView.swift in Sources */,

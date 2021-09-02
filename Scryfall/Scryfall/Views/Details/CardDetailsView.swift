@@ -32,6 +32,10 @@ struct CardDetailsView: View {
         self.model = CardDetailsViewModel(card: card, client: NetworkClient())
     }
 
+    // MARK: - State
+
+    @State var flipped = false
+
     // MARK: - Body
 
     var body: some View {
@@ -43,8 +47,37 @@ struct CardDetailsView: View {
         ScrollView(.vertical) {
             VStack {
                 VStack(spacing: Style.listElementPadding) {
-                    SearchCardView(card: card, cache: cache)
-                        .frame(maxWidth: 400)
+                    SearchCardView(
+                        card: card,
+                        cache: cache,
+                        face: card.cardFaces.isNilOrEmpty
+                            ? nil
+                            : (flipped ? 1 : 0)
+                    )
+                    .frame(maxWidth: 400)
+
+                    if (card.cardFaces?.count ?? 0) > 1 {
+                        Button(action: {
+                            self.flipped = !self.flipped
+                        }) {
+                            HStack {
+                                Image("Transform")
+                                    .resizable()
+                                    .frame(width: 14, height: 14)
+                                Text("Transform")
+                            }
+                            .padding(8)
+                            .background(.systemBackground)
+                            .border(
+                                Color("Link"),
+                                width: 1,
+                                cornerRadius: 4,
+                                style: .circular
+                            )
+                        }
+                        .foregroundColor(Color("Link"))
+                    }
+
                     CardDescriptionView(card: card, provider: symbolProvider)
 
                     Button(action: {
