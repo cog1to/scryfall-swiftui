@@ -120,6 +120,15 @@ struct CardDetailsView: View {
                         }
                     }
 
+                    if let relatedCards = model.relatedCards, !relatedCards.isEmpty {
+                        RelatedItemsTable(
+                            cards: relatedCards,
+                            currentCard: model.card
+                        ) { card in
+                            model.card = card
+                        }
+                    }
+
                     PrintsTable(
                         cards: model.prints,
                         currentCard: model.card
@@ -130,7 +139,7 @@ struct CardDetailsView: View {
                 .padding(.vertical, Style.listElementBottomPadding)
                 .padding(.horizontal, Style.listElementHorizontalPadding)
 
-                if let rulings = model.rulings {
+                if let rulings = model.rulings, !rulings.isEmpty {
                     VStack {
                         DashedLine()
                         RulingsView(items: rulings)

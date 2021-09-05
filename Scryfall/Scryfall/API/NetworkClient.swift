@@ -89,7 +89,7 @@ class NetworkClient: ScryfallClient {
         }
 
         components.queryItems = [
-            URLQueryItem(name: "q", value: "!\"\(card.name)\" set:\(card.set) lang:any"),
+            URLQueryItem(name: "q", value: "oracleId=\(card.oracleId) set:\(card.set) lang:any"),
             URLQueryItem(name: "unique", value: QueryType.allPrints.rawValue)
         ]
 
@@ -116,6 +116,10 @@ class NetworkClient: ScryfallClient {
         }
 
         return loadData(url: url)
+    }
+
+    public func card(forUri uri: URL) -> AnyPublisher<Card, Error> {
+        loadData(url: uri)
     }
 
     // MARK: - Private

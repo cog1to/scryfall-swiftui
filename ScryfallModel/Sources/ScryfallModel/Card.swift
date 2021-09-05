@@ -34,6 +34,7 @@ public final class Card: Identifiable, Codable {
     public var printedName: String?
     public var printedText: String?
     public var flavorText: String?
+    public var allParts: [RelatedCard]?
 
     // MARK: - Gameplay field
 
@@ -102,5 +103,6 @@ public final class Card: Identifiable, Codable {
         case printedTypeLine = "printed_type_line"
         case flavorText = "flavor_text"
         case prices = "prices"
+        case allParts = "all_parts"
     }
 }
