@@ -75,7 +75,11 @@ class TagList: UIView {
 
         tagViews.forEach { self.addSubview($0) }
 
+        contentHeight = 0
+        contentWidth = 0
+
         invalidateIntrinsicContentSize()
+        setNeedsUpdateConstraints()
         setNeedsLayout()
     }
 

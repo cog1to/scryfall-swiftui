@@ -12,6 +12,7 @@ import ScryfallModel
 struct PrintsTable: View {
     let cards: [Card]
     let currentCard: Card
+    let onCardSelected: ((Card) -> ())?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -19,6 +20,9 @@ struct PrintsTable: View {
             VStack(spacing: 0.5) {
                 ForEach(visibleSection) { card in
                     PrintRow(card: card, isSelected: card.id == currentCard.id)
+                        .onTapGesture {
+                            onCardSelected?(card)
+                        }
                 }
                 if cards.count > 1 {
                     AllPrintsRow()
@@ -226,7 +230,8 @@ struct PrintsTable_Previews: PreviewProvider {
     static var previews: some View {
         PrintsTable(
             cards: [ModelStubs.avacyn, ModelStubs.avacyn, ModelStubs.avacyn],
-            currentCard: ModelStubs.avacyn
+            currentCard: ModelStubs.avacyn,
+            onCardSelected: nil
         )
     }
 }

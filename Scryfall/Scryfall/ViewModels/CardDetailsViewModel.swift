@@ -21,7 +21,17 @@ class CardDetailsViewModel: ObservableObject {
 
     @Published var prints: [Card] = []
 
-    @Published var card: Card
+    @Published var card: Card {
+        didSet {
+            client.languages(card: card)
+                .subscribe(on: DispatchQueue.global(qos: .default))
+                .replaceError(with: .empty())
+                .receive(on: DispatchQueue.main)
+                .map { $0.data }
+                .sink { self.languages = $0 }
+                .store(in: &subsciptions)
+        }
+    }
 
     @Published var rulings: [Ruling] = []
 
