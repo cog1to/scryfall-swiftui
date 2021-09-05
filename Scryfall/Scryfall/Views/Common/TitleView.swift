@@ -11,11 +11,12 @@ import ScryfallModel
 struct TitleView: View {
     let name: String
     let manaCost: String?
+    let language: Language
     let provider: SymbolProvider
 
     var body: some View {
         HStack {
-            MagicTextView(text: fullText, bold: true, provider: provider)
+            MagicTextView(text: fullText, bold: true, language: language, provider: provider)
                 .font(Style.Fonts.title)
                 .lineLimit(nil)
             Spacer()
@@ -38,6 +39,7 @@ struct TitleView_Previews: PreviewProvider {
         TitleView(
             name: "Akoum Battleslinger",
             manaCost: "{2}{R}{R}",
+            language: .english,
             provider: DefaultSymbolProvider(
                 fileCache: ImageCache(),
                 viewModel: CommonViewModel(client: StubClient())

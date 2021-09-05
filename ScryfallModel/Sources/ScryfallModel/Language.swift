@@ -32,7 +32,7 @@ public enum Language: Codable, RawRepresentable {
     public init?(rawValue: String) {
         switch rawValue {
         case "en": self = .english
-        case "sp": self = .spanish
+        case "es": self = .spanish
         case "fr": self = .french
         case "de": self = .german
         case "it": self = .italian
@@ -47,7 +47,7 @@ public enum Language: Codable, RawRepresentable {
         case "grc": self = .antientGreek
         case "ar": self = .arabic
         case "sa": self = .sanskrit
-        case "phy": self = .phyrexian
+        case "ph": self = .phyrexian
         default:
             self = .unknown(rawValue)
         }
@@ -57,7 +57,7 @@ public enum Language: Codable, RawRepresentable {
         switch self {
         case .english: return "en"
         case .french: return "fr"
-        case .spanish: return "sp"
+        case .spanish: return "es"
         case .german: return "de"
         case .portuguese: return "pt"
         case .italian: return "it"
@@ -71,7 +71,7 @@ public enum Language: Codable, RawRepresentable {
         case .antientGreek: return "grc"
         case .arabic: return "ar"
         case .sanskrit: return "sa"
-        case .phyrexian: return "phy"
+        case .phyrexian: return "ph"
         case let .unknown(lang): return lang
         }
     }
@@ -119,7 +119,7 @@ public enum Language: Codable, RawRepresentable {
         case .antientGreek: return "GRC"
         case .latin: return "LA"
         case .phyrexian: return "PH"
-        case .spanish: return "SP"
+        case .spanish: return "ES"
         case let .unknown(lang): return lang.uppercased()
         }
     }

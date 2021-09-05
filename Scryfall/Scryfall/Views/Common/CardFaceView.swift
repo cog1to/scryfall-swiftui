@@ -19,13 +19,14 @@ struct CardFaceView: View {
     let power: String?
     let toughness: String?
     let loyalty: String?
+    let language: Language
     let provider: SymbolProvider
 
     var body: some View {
         VStack(spacing: 0) {
             Divider()
 
-            TitleView(name: name, manaCost: manaCost, provider: provider)
+            TitleView(name: name, manaCost: manaCost, language: language, provider: provider)
 
             if let type = typeLine {
                 Divider()
@@ -35,28 +36,28 @@ struct CardFaceView: View {
                             .frame(width: 15, height: 15)
                             .padding(.leading, Style.listElementHorizontalPadding)
                     }
-                    ParagraphView(text: type, provider: provider)
+                    ParagraphView(text: type, language: language, provider: provider)
                 }
             }
 
             if let oracleText = oracleText {
                 Divider()
-                ParagraphView(text: oracleText, provider: provider)
+                ParagraphView(text: oracleText, language: language, provider: provider)
             }
 
             if let flavorText = flavorText {
-                ItalicTextView(text: flavorText)
+                ItalicTextView(text: flavorText, language: language)
             }
 
             if let loyalty = loyalty {
                 Divider()
-                TitleView(name: "Loyalty: \(loyalty)", manaCost: nil, provider: provider)
+                TitleView(name: "Loyalty: \(loyalty)", manaCost: nil, language: language, provider: provider)
             }
 
             if power != nil || toughness != nil {
                 Divider()
                 ParagraphView(
-                    text: "\(power ?? "")/\(toughness ?? "")",
+                    text: "\(power ?? "")/\(toughness ?? "")", language: language,
                     provider: provider
                 )
             }

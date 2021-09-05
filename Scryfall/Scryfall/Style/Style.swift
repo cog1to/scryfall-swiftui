@@ -30,14 +30,6 @@ class Style {
             Font.custom("Lato-Bold", size: 17, relativeTo: .body)
         }()
 
-        static let italic: Font = {
-            Font.custom("mplantin-italic", size: 19, relativeTo: .body)
-        }()
-
-        static let flavor: Font = {
-            Font.custom("mplantin-italic", size: 17, relativeTo: .body).italic()
-        }()
-
         static let small: Font = {
             Font.custom("Lato-Regular", size: 12, relativeTo: .body)
         }()
@@ -68,5 +60,45 @@ class Style {
                 size: UIFontMetrics(forTextStyle: .body).scaledValue(for: 12)
             )!
         }
+
+        static let phyrexian: Font = {
+            Font.custom("PhyrexianHorizontalTTF", size: 17, relativeTo: .body)
+        }()
+
+        // MARK: - Italics
+
+        static let flavor: Font = {
+            Font.custom("mplantin-italic", size: 19, relativeTo: .body)
+        }()
+
+        static let flavorCyrillic: Font = {
+            return Font.custom("Georgia", size: 17, relativeTo: .body).italic()
+        }()
+
+        static let flavorHieroglyphic: Font = {
+            var matrix = CGAffineTransform(
+                a: 1.0,
+                b: 0.0,
+                c: CGFloat(tanf(15.0 * Float.pi / 180.0)),
+                d: 1.0,
+                tx: 0.0,
+                ty: 0.0
+            )
+
+            let fontSize = UIFontMetrics(forTextStyle: .body).scaledValue(for: 19)
+            let desc = UIFontDescriptor(name: "Sans", size: fontSize)
+            let ctFont: CTFont = withUnsafePointer(to: &matrix) { matrix -> CTFont in
+                return CTFontCreateWithFontDescriptor(desc, fontSize, matrix)
+            }
+            return Font(ctFont)
+        }()
+
+        static let italic: Font = {
+            Font.custom("mplantin-italic", size: 19, relativeTo: .body)
+        }()
+
+        static let italicCyrillic: Font = {
+            return Font.custom("Georgia", size: 17, relativeTo: .body).italic()
+        }()
     }
 }

@@ -31,6 +31,7 @@ struct SearchTextView: View {
                                 power: face.power,
                                 toughness: face.toughness,
                                 loyalty: face.loyalty,
+                                language: card.lang,
                                 provider: provider
                             )
                         }
@@ -45,6 +46,7 @@ struct SearchTextView: View {
                             power: card.power,
                             toughness: card.toughness,
                             loyalty: card.loyalty,
+                            language: card.lang,
                             provider: provider
                         )
                     }

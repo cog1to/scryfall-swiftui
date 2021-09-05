@@ -12,15 +12,15 @@ import ScryfallModel
 struct ParagraphView: View {
 
     let text: String
-
+    let language: Language
     let provider: SymbolProvider
 
     var body: some View {
         VStack(spacing: 0) {
             ForEach(paragraphs) { par in
                 HStack {
-                    MagicTextView(text: par.text, bold: false, provider: provider)
-                        .font(Style.Fonts.main)
+                    MagicTextView(text: par.text, bold: false, language: language, provider: provider)
+                        //.font(Style.Fonts.main)
                         .lineLimit(nil)
                     Spacer()
                 }
@@ -50,6 +50,7 @@ struct ParagraphView_Previews: PreviewProvider {
     static var previews: some View {
         ParagraphView(
             text: ModelStubs.akoumBattlesinger.oracleText ?? "",
+            language: .english,
             provider: DefaultSymbolProvider(
                 fileCache: ImageCache(),
                 viewModel: CommonViewModel(client: StubClient())
