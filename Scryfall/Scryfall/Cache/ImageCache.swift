@@ -48,7 +48,6 @@ final class ImageCache {
         } else {
             let downloadPublisher = URLSession.shared
                 .dataTaskPublisher(for: url)
-                .print()
                 .handleEvents(
                     receiveOutput: { output in
                         let pathToDirectory = path.deletingLastPathComponent()
