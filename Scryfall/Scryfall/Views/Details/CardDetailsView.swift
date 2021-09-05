@@ -120,7 +120,10 @@ struct CardDetailsView: View {
                         }
                     }
 
-                    PrintsTable(cards: model.prints)
+                    PrintsTable(
+                        cards: model.prints,
+                        currentCard: model.card
+                    )
                 }
                 .padding(.vertical, Style.listElementBottomPadding)
                 .padding(.horizontal, Style.listElementHorizontalPadding)

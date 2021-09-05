@@ -11,13 +11,14 @@ import ScryfallModel
 
 struct PrintsTable: View {
     let cards: [Card]
+    let currentCard: Card
 
     var body: some View {
         VStack(spacing: 0) {
             PrintHeader()
             VStack(spacing: 0.5) {
-                ForEach(cards.prefix(10)) { card in
-                    PrintRow(card: card)
+                ForEach(visibleSection) { card in
+                    PrintRow(card: card, isSelected: card.id == currentCard.id)
                 }
                 if cards.count > 1 {
                     AllPrintsRow()
@@ -33,6 +34,19 @@ struct PrintsTable: View {
         Color("Accent")
             .frame(maxWidth: .infinity)
             .frame(height: 3)
+    }
+
+    var visibleSection: [Card] {
+        guard cards.count > 10
+            else { return cards }
+
+        guard let currentIndex = cards.firstIndex(where: { $0.id == currentCard.id })
+            else { return [Card](cards.prefix(10)) }
+
+        let startIndex = max(0, currentIndex - 4)
+        let endIndex = min(startIndex + 10, cards.count)
+
+        return [Card](cards[startIndex..<endIndex])
     }
 }
 
@@ -88,6 +102,7 @@ struct PrintHeader: View {
 
 struct PrintRow: View {
     let card: Card
+    let isSelected: Bool
 
     var body: some View {
         HStack(spacing: 4) {
@@ -136,7 +151,9 @@ struct PrintRow: View {
         }
         .padding(.horizontal, 8)
         .padding(.vertical, 6)
-        .background(Color("White"))
+        .background(
+            isSelected ? Color("Selected") : Color("White")
+        )
     }
 
     var usdPrice: String {
@@ -208,7 +225,8 @@ struct RaritySymbol: View {
 struct PrintsTable_Previews: PreviewProvider {
     static var previews: some View {
         PrintsTable(
-            cards: [ModelStubs.avacyn, ModelStubs.avacyn, ModelStubs.avacyn]
+            cards: [ModelStubs.avacyn, ModelStubs.avacyn, ModelStubs.avacyn],
+            currentCard: ModelStubs.avacyn
         )
     }
 }
