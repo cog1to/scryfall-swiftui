@@ -135,11 +135,11 @@ struct SearchResultsView: View {
                             }
                         }
                     }
-                    .padding(.bottom)
+                    .padding(.bottom, 8)
                 }
                 .padding(.horizontal, Style.listSpacing)
             }
-            .padding(.top)
+            .padding(.top, 8)
             .background(Color("Background").ignoresSafeArea())
             .hideNavigationBar()
         }

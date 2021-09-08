@@ -13,7 +13,7 @@ public final class CardFace: Codable, Identifiable {
 
     public var name: String
     public var manaCost: String
-    public var typeline: String
+    public var typeline: String?
 
     // MARK: - Optional fields
 

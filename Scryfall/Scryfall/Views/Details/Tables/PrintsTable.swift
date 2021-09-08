@@ -14,15 +14,18 @@ struct PrintsTable: View {
     let cards: [Card]
     let currentCard: Card
     let onCardSelected: ((Card) -> ())?
+    let onAllPrintsSelected: (() -> ())?
 
     init(
         cards: [Card],
         currentCard: Card,
-        onCardSelected: ((Card) -> ())?
+        onCardSelected: ((Card) -> ())? = nil,
+        onAllPrintsSelected: (() -> ())? = nil
     ) {
         self.cards = cards.sorted { $0.number < $1.number }
         self.currentCard = currentCard
         self.onCardSelected = onCardSelected
+        self.onAllPrintsSelected = onAllPrintsSelected
     }
 
     var body: some View {
@@ -41,6 +44,9 @@ struct PrintsTable: View {
                 }
                 if cards.count > 1 {
                     AllPrintsRow()
+                        .onTapGesture {
+                            onAllPrintsSelected?()
+                        }
                 }
             }
             .padding(.leading, 0.5)

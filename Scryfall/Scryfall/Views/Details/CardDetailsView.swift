@@ -131,10 +131,14 @@ struct CardDetailsView: View {
 
                     PrintsTable(
                         cards: model.prints,
-                        currentCard: model.card
-                    ) { card in
-                        model.card = card
-                    }
+                        currentCard: model.card,
+                        onCardSelected:  { card in
+                            model.card = card
+                        },
+                        onAllPrintsSelected: {
+                            // TODO: Update search
+                        }
+                    )
                 }
                 .padding(.vertical, Style.listElementBottomPadding)
                 .padding(.horizontal, Style.listElementHorizontalPadding)
