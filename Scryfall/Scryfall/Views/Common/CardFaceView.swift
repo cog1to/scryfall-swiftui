@@ -40,27 +40,45 @@ struct CardFaceView: View {
                 }
             }
 
-            if let oracleText = oracleText {
+            if let oracleText = oracleText, !oracleText.isEmpty {
                 Divider()
-                ParagraphView(text: oracleText, language: language, provider: provider)
+                ParagraphView(
+                    text: formattedString(for: oracleText, language: language),
+                    language: language,
+                    provider: provider
+                )
             }
 
             if let flavorText = flavorText {
-                ItalicTextView(text: flavorText, language: language)
+                ItalicTextView(
+                    text: formattedString(for: flavorText, language: language),
+                    language: language
+                )
             }
 
             if let loyalty = loyalty {
                 Divider()
-                TitleView(name: "Loyalty: \(loyalty)", manaCost: nil, language: language, provider: provider)
+                TitleView(name: "Loyalty: \(loyalty)", manaCost: nil, language: .english, provider: provider)
             }
 
             if power != nil || toughness != nil {
                 Divider()
                 ParagraphView(
-                    text: "\(power ?? "")/\(toughness ?? "")", language: language,
+                    text: "\(power ?? "")/\(toughness ?? "")",
+                    language: .english,
                     provider: provider
                 )
             }
+        }
+    }
+
+    // MARK: - Formatting
+
+    private func formattedString(for string: String, language: Language) -> String {
+        if language == .phyrexian {
+            return string.replacingOccurrences(of: "|", with: "|\u{200D}")
+        } else {
+            return string
         }
     }
 }

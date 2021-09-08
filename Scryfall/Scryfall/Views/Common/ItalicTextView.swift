@@ -18,6 +18,7 @@ struct ItalicTextView: View {
     var body: some View {
         HStack {
             Text(text)
+                .lineBreakMode(language == .phyrexian ? .byCharWrapping : .byWordWrapping)
                 .font(font)
                 .fixedSize(horizontal: false, vertical: true)
             Spacer()
@@ -33,8 +34,10 @@ struct ItalicTextView: View {
             return Style.Fonts.flavor
         case .russian:
             return Style.Fonts.flavorCyrillic
+        case .phyrexian:
+            return Style.Fonts.phyrexian
         default:
-            return Style.Fonts.flavorHieroglyphic
+            return Font.body
         }
     }
 }

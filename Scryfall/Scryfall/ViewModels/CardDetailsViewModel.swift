@@ -59,6 +59,8 @@ class CardDetailsViewModel: ObservableObject {
             .replaceError(with: .empty())
             .receive(on: DispatchQueue.main)
             .map { $0.data }
+            // Workaround for non-existent "all languages prints" endpoints.
+            .map { $0.unique(keyPath: \.lang) }
             .sink { self.languages = $0 }
             .store(in: &subsciptions)
     }

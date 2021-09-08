@@ -8,21 +8,36 @@
 import Foundation
 import SwiftUI
 import ScryfallModel
+import UIKit
 
 struct PrintsTable: View {
     let cards: [Card]
     let currentCard: Card
     let onCardSelected: ((Card) -> ())?
 
+    init(
+        cards: [Card],
+        currentCard: Card,
+        onCardSelected: ((Card) -> ())?
+    ) {
+        self.cards = cards.sorted { $0.number < $1.number }
+        self.currentCard = currentCard
+        self.onCardSelected = onCardSelected
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             PrintHeader()
             VStack(spacing: 0.5) {
                 ForEach(visibleSection) { card in
-                    PrintRow(card: card, isSelected: card.id == currentCard.id)
-                        .onTapGesture {
-                            onCardSelected?(card)
-                        }
+                    PrintRow(
+                        card: card,
+                        isSelected: card.id == currentCard.id,
+                        showNumber: cards.filter { $0.set == card.set }.count > 1
+                    )
+                    .onTapGesture {
+                        onCardSelected?(card)
+                    }
                 }
                 if cards.count > 1 {
                     AllPrintsRow()
@@ -100,18 +115,19 @@ struct PrintHeader: View {
     var titleWidth: CGFloat {
         UITraitCollection.current.horizontalSizeClass == .regular
             ? 400
-            : 140
+            : (UIScreen.main.bounds.size.width * 0.45)
     }
 }
 
 struct PrintRow: View {
     let card: Card
     let isSelected: Bool
+    let showNumber: Bool
 
     var body: some View {
         HStack(spacing: 4) {
             ZStack(alignment: .leading) {
-                Text(card.setName)
+                Text(card.setName + (showNumber ? " #\(card.number)" : ""))
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(Style.Fonts.small)
@@ -191,7 +207,7 @@ struct PrintRow: View {
     var titleWidth: CGFloat {
         UITraitCollection.current.horizontalSizeClass == .regular
             ? 400
-            : 140
+            : (UIScreen.main.bounds.size.width * 0.45)
     }
 }
 

@@ -62,7 +62,7 @@ class Style {
         }
 
         static let phyrexian: Font = {
-            Font.custom("PhyrexianHorizontalTTF", size: 17, relativeTo: .body)
+            Font.custom("Phi_horizontal_gbrsh_9.7", size: 17, relativeTo: .body)
         }()
 
         // MARK: - Italics

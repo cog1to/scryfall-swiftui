@@ -140,7 +140,7 @@ struct SearchResultsView: View {
                 .padding(.horizontal, Style.listSpacing)
             }
             .padding(.top)
-            .background(Color("Background")).ignoresSafeArea()
+            .background(Color("Background").ignoresSafeArea())
             .hideNavigationBar()
         }
         .navigationViewStyle(StackNavigationViewStyle())

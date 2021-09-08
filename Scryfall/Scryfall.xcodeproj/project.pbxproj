@@ -97,6 +97,7 @@
 		BCC771EA26E1354C004A03C4 /* Optionals+Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771E926E1354C004A03C4 /* Optionals+Empty.swift */; };
 		BCC771EF26E4BCB0004A03C4 /* RelatedItemsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771EE26E4BCB0004A03C4 /* RelatedItemsTable.swift */; };
 		BCC7720926E507AE004A03C4 /* PhyrexianHorizontalTTF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCC7720826E507AE004A03C4 /* PhyrexianHorizontalTTF.ttf */; };
+		BCC7721126E922B2004A03C4 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC7721026E922B2004A03C4 /* Array+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +210,7 @@
 		BCC771E926E1354C004A03C4 /* Optionals+Empty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optionals+Empty.swift"; sourceTree = "<group>"; };
 		BCC771EE26E4BCB0004A03C4 /* RelatedItemsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedItemsTable.swift; sourceTree = "<group>"; };
 		BCC7720826E507AE004A03C4 /* PhyrexianHorizontalTTF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PhyrexianHorizontalTTF.ttf; sourceTree = "<group>"; };
+		BCC7721026E922B2004A03C4 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,6 +396,7 @@
 				BCA6009726C7269700F5DFD4 /* Legality+Values.swift */,
 				BCC771D726DA468F004A03C4 /* Rarity+Colors.swift */,
 				BCC771E926E1354C004A03C4 /* Optionals+Empty.swift */,
+				BCC7721026E922B2004A03C4 /* Array+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -731,6 +734,7 @@
 				BC4850BB2694AC3400956E83 /* StubClient.swift in Sources */,
 				BC41D90026A3CC6000989253 /* Publisher+ShareReplay.swift in Sources */,
 				BCBE598A268F92D400677593 /* SearchResultsView.swift in Sources */,
+				BCC7721126E922B2004A03C4 /* Array+Extensions.swift in Sources */,
 				BCA6009326C7001700F5DFD4 /* DefaultSetProvider.swift in Sources */,
 				BCC771D826DA468F004A03C4 /* Rarity+Colors.swift in Sources */,
 				BC36579826DA2D30001B82C5 /* PrintsTable.swift in Sources */,

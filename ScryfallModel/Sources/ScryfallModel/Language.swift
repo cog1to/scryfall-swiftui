@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Language: Codable, RawRepresentable {
+public enum Language: Codable, RawRepresentable, Equatable {
     public typealias RawValue = String
 
     case english
@@ -75,8 +75,6 @@ public enum Language: Codable, RawRepresentable {
         case let .unknown(lang): return lang
         }
     }
-
-
 
     public var title: String {
         switch self {
