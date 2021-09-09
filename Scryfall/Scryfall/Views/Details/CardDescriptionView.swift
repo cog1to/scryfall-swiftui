@@ -25,6 +25,7 @@ struct CardDescriptionView: View {
                         ForEach(cardFaces) { face in
                             CardFaceView(
                                 name: face.printedName ?? face.name,
+                                flavorName: nil,
                                 manaCost: face.manaCost,
                                 typeLine: face.printedTypeLine ?? face.typeline,
                                 colorIndicator: face.colorIndicator,
@@ -39,7 +40,10 @@ struct CardDescriptionView: View {
                         }
                     } else {
                         CardFaceView(
-                            name: card.printedName ?? card.name,
+                            name: (card.flavorName != nil
+                                    ? card.name
+                                    : (card.printedName ?? card.name)),
+                            flavorName: card.flavorName,
                             manaCost: card.manaCost,
                             typeLine: card.printedTypeLine ?? card.typeline,
                             colorIndicator: card.colorIndicator,

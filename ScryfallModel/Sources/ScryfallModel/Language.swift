@@ -37,7 +37,7 @@ public enum Language: Codable, RawRepresentable, Equatable {
         case "de": self = .german
         case "it": self = .italian
         case "pt": self = .portuguese
-        case "jp": self = .japanese
+        case "ja": self = .japanese
         case "ko": self = .korean
         case "ru": self = .russian
         case "zhs": self = .chineseSimplified
@@ -61,7 +61,7 @@ public enum Language: Codable, RawRepresentable, Equatable {
         case .german: return "de"
         case .portuguese: return "pt"
         case .italian: return "it"
-        case .japanese: return "jp"
+        case .japanese: return "ja"
         case .korean: return "ko"
         case .russian: return "ru"
         case .chineseSimplified: return "zhs"

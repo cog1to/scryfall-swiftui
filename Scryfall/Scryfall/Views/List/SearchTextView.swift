@@ -23,6 +23,7 @@ struct SearchTextView: View {
                         ForEach(cardFaces) { face in
                             CardFaceView(
                                 name: face.name,
+                                flavorName: nil,
                                 manaCost: face.manaCost,
                                 typeLine: face.typeline,
                                 colorIndicator: face.colorIndicator,
@@ -37,7 +38,10 @@ struct SearchTextView: View {
                         }
                     } else {
                         CardFaceView(
-                            name: card.name,
+                            name: (card.flavorName != nil
+                                ? card.name
+                                : card.printedName ?? card.name),
+                            flavorName: card.flavorName,
                             manaCost: card.manaCost,
                             typeLine: card.typeline,
                             colorIndicator: card.colorIndicator,

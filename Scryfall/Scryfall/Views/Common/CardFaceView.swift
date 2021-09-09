@@ -11,6 +11,7 @@ import ScryfallModel
 
 struct CardFaceView: View {
     let name: String
+    let flavorName: String?
     let manaCost: String?
     let typeLine: String?
     let colorIndicator: [ScryfallModel.Color]?
@@ -26,7 +27,13 @@ struct CardFaceView: View {
         VStack(spacing: 0) {
             Divider()
 
-            TitleView(name: name, manaCost: manaCost, language: language, provider: provider)
+            TitleView(
+                name: name,
+                flavorName: flavorName,
+                manaCost: manaCost,
+                language: language,
+                provider: provider
+            )
 
             if let type = typeLine {
                 Divider()
@@ -58,7 +65,13 @@ struct CardFaceView: View {
 
             if let loyalty = loyalty {
                 Divider()
-                TitleView(name: "Loyalty: \(loyalty)", manaCost: nil, language: .english, provider: provider)
+                TitleView(
+                    name: "Loyalty: \(loyalty)",
+                    flavorName: nil,
+                    manaCost: nil,
+                    language: .english,
+                    provider: provider
+                )
             }
 
             if power != nil || toughness != nil {

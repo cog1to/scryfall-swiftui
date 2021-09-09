@@ -122,6 +122,23 @@ class NetworkClient: ScryfallClient {
         loadData(url: uri)
     }
 
+    public func variations(card: Card) -> AnyPublisher<ObjectList<Card>, Error> {
+        guard var components = URLComponents(url: Endpoint.cards.url, resolvingAgainstBaseURL: false) else {
+            return AnyPublisher(Fail<ObjectList<Card>, Error>(error: ScryfallError.badUrl))
+        }
+
+        components.queryItems = [
+            URLQueryItem(name: "q", value: "!\"\(card.name)\" is:variation"),
+            URLQueryItem(name: "order", value: SortOrder.releaseDate.rawValue)
+        ]
+
+        guard let url = components.url else {
+            return AnyPublisher(Fail<ObjectList<Card>, Error>(error: ScryfallError.badUrl))
+        }
+
+        return loadData(url: url)
+    }
+
     // MARK: - Private
 
     private func loadData<T: Decodable>(url: URL) -> AnyPublisher<T, Error> {

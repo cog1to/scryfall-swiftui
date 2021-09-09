@@ -44,4 +44,7 @@ protocol ScryfallClient {
 
     /// Loads a single card from a direct card URI
     func card(forUri: URL) -> AnyPublisher<Card, Error>
+
+    /// Gets all known variations of the card
+    func variations(card: Card) -> AnyPublisher<ObjectList<Card>, Error>
 }

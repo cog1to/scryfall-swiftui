@@ -37,7 +37,7 @@ struct ItalicTextView: View {
         case .phyrexian:
             return Style.Fonts.phyrexian
         default:
-            return Font.body
+            return Style.Fonts.flavorHieroglyphic
         }
     }
 }

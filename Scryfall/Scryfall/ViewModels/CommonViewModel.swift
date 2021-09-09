@@ -36,11 +36,6 @@ class CommonViewModel: ObservableObject {
             .assign(to: &$abilityWords)
 
         client.sets()
-            .handleEvents(receiveOutput: { data in
-                print(data)
-            }, receiveCompletion: { comp in
-                print(comp)
-            })
             .replaceError(with: .empty())
             .receive(on: DispatchQueue.main)
             .assign(to: &$sets)
