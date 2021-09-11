@@ -26,11 +26,33 @@ struct CardDetailsView: View {
 
     let setProvider: SetProvider
 
-    init(card: Card, symbolProvider: SymbolProvider, setProvider: SetProvider) {
+    init(
+        card: Card,
+        symbolProvider: SymbolProvider,
+        setProvider: SetProvider,
+        onAllPrintsSelected: ((Card) -> ())? = nil,
+        onAllLanguagesSelected: ((Card) -> ())? = nil,
+        onSetSelected: ((String) -> ())? = nil,
+        onArtistSelected: ((String) -> ())? = nil
+    ) {
         self.symbolProvider = symbolProvider
         self.setProvider = setProvider
         self.model = CardDetailsViewModel(card: card, client: NetworkClient())
+        self.onAllPrintsSelected = onAllPrintsSelected
+        self.onAllLanguagesSelected = onAllLanguagesSelected
+        self.onSetSelected = onSetSelected
+        self.onArtistSelected = onArtistSelected
     }
+
+    // MARK: - Callbacks
+
+    let onAllPrintsSelected: ((Card) -> ())?
+
+    let onAllLanguagesSelected: ((Card) -> ())?
+
+    let onSetSelected: ((String) -> ())?
+
+    let onArtistSelected: ((String) -> ())?
 
     // MARK: - State
 
@@ -91,10 +113,22 @@ struct CardDetailsView: View {
                         .foregroundColor(Color("Link"))
                     }
 
-                    CardDescriptionView(card: card, provider: symbolProvider)
+                    CardDescriptionView(
+                        card: card,
+                        provider: symbolProvider,
+                        onArtistSelected: { artist in
+                            if let callback = onArtistSelected {
+                                callback(artist)
+                                presentation.wrappedValue.dismiss()
+                            }
+                        }
+                    )
 
                     Button(action: {
-                        // TODO: Hook back to search.
+                        if let callback = onSetSelected {
+                            callback(model.card.set)
+                            presentation.wrappedValue.dismiss()
+                        }
                     }) {
                         SetDetailsView(
                             setName: card.setName,
@@ -115,8 +149,10 @@ struct CardDetailsView: View {
                             model.card = model.languages[$0]
                             
                         } else {
-                            // TODO: Update search.
-                            presentation.wrappedValue.dismiss()
+                            if let callback = onAllLanguagesSelected {
+                                callback(model.card)
+                                presentation.wrappedValue.dismiss()
+                            }
                         }
                     }
 
@@ -136,7 +172,10 @@ struct CardDetailsView: View {
                             model.card = card
                         },
                         onAllPrintsSelected: {
-                            // TODO: Update search
+                            if let callback = onAllPrintsSelected {
+                                callback(model.card)
+                                presentation.wrappedValue.dismiss()
+                            }
                         }
                     )
                 }

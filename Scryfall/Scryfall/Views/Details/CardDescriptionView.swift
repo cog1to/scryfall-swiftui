@@ -13,6 +13,7 @@ import ScryfallModel
 struct CardDescriptionView: View {
     let card: Card
     let provider: SymbolProvider
+    let onArtistSelected: ((String) -> ())?
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -66,6 +67,9 @@ struct CardDescriptionView: View {
                         .padding(.top, Style.listElementPadding + 2)
                         .padding(.bottom, Style.listElementPadding + 2)
                         .padding(.horizontal, Style.listElementHorizontalPadding)
+                        .onTapGesture {
+                            onArtistSelected?(artist)
+                        }
                     }
 
                     SectionDivider()
@@ -95,7 +99,8 @@ struct CardDescriptionView_Previews: PreviewProvider {
                 provider: DefaultSymbolProvider(
                     fileCache: ImageCache(),
                     viewModel: CommonViewModel(client: StubClient())
-                )
+                ),
+                onArtistSelected: { _ in }
             )
         }
     }

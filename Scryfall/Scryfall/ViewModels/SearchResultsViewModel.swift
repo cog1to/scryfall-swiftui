@@ -47,14 +47,38 @@ class SearchResultsViewModel: ObservableObject {
         configure()
     }
 
+    // MARK: - Public interface
+
+    func loadPrints(for card: Card) {
+        searchText = "!\"\(card.name)\" include:extras"
+        queryType = .allPrints
+        sortOrder = .releaseDate
+    }
+
+    func loadLanguages(for card: Card) {
+        searchText = "oracleId=\(card.oracleId) set:\(card.set) lang:any"
+        queryType = .allPrints
+    }
+
+    func loadSet(_ set: String) {
+        searchText = "set:\(set)"
+        queryType = .cards
+        sortOrder = .setAndNumber
+    }
+
+    func loadArtist(_ artist: String) {
+        searchText = "artist:\"\(artist)\""
+        queryType = .cards
+    }
+
     // MARK: - Private
 
     func configure() {
         // Search text.
         $searchText
             .filter { !$0.isEmpty }
-            .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .combineLatest($queryType, $sortOrder, $sortDirection)
+            .debounce(for: 0.5, scheduler: DispatchQueue.main)
             .sink(receiveValue: { [weak self] string, type, order, dir in
                 guard let self = self else { return }
 

@@ -12,8 +12,11 @@ struct LinkTextView: View {
     let link: String
 
     var body: some View {
-        Text(prefix).font(Style.Fonts.small)
-            + Text(link).font(Style.Fonts.small).foregroundColor(Color("Link"))
+        Text(prefix)
+            .font(Style.Fonts.small)
+        + Text(link)
+            .font(Style.Fonts.small)
+            .foregroundColor(Color("Link"))
     }
 }
 

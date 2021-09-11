@@ -112,7 +112,20 @@ struct SearchResultsView: View {
                                         destination: CardDetailsView(
                                             card: card,
                                             symbolProvider: provider,
-                                            setProvider: setProvider
+                                            setProvider: setProvider,
+                                            onAllPrintsSelected: { card in
+                                                searchResult.loadPrints(for: card)
+                                            },
+                                            onAllLanguagesSelected: { card in
+                                                searchResult.loadLanguages(for: card)
+                                            },
+                                            onSetSelected: { set in
+                                                searchResult.loadSet(set)
+                                            },
+                                            onArtistSelected: { artist in
+                                                searchResult.loadArtist(artist)
+                                                settings.presentationStyle = .card
+                                            }
                                         )
                                     ) {
                                         if presentationStyle == .text {
