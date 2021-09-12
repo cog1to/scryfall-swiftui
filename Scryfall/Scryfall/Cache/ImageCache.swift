@@ -16,12 +16,14 @@ final class ImageCache {
 
     private var pendingDownloads = [URL: AnyPublisher<URL, URLError>]()
 
+    private let manager = FileManager.default
+
     // MARK: - Init
 
     init() {
         let imagesPath = baseCacheUrl.appendingPathComponent("images")
-        if !FileManager.default.fileExists(atPath: imagesPath.path) {
-            try! FileManager.default.createDirectory(at: imagesPath, withIntermediateDirectories: false, attributes: nil)
+        if !manager.fileExists(atPath: imagesPath.path) {
+            try! manager.createDirectory(at: imagesPath, withIntermediateDirectories: false, attributes: nil)
         }
     }
 
@@ -29,7 +31,7 @@ final class ImageCache {
 
     func immediateLocalUrl(for url: URL) -> URL? {
         let path = localPath(for: url)
-        if FileManager.default.fileExists(atPath: path.path) {
+        if manager.fileExists(atPath: path.path) {
             return path
         } else {
             return nil
@@ -39,40 +41,46 @@ final class ImageCache {
     func localUrl(for url: URL) -> AnyPublisher<URL, URLError> {
         let path = localPath(for: url)
 
-        if FileManager.default.fileExists(atPath: path.path) {
+        if manager.fileExists(atPath: path.path),
+           let attributes = try? manager.attributesOfItem(atPath: path.path),
+           let creationDate = attributes[FileAttributeKey.creationDate] as? Date,
+           creationDate > (Date().addingTimeInterval(TimeInterval(-cacheExpiration)))
+        {
             return Just(path)
                 .setFailureType(to: URLError.self)
                 .eraseToAnyPublisher()
-        } else if let download = pendingDownloads[url] {
-            return download
-        } else {
-            let downloadPublisher = URLSession.shared
-                .dataTaskPublisher(for: url)
-                .handleEvents(
-                    receiveOutput: { output in
-                        let pathToDirectory = path.deletingLastPathComponent()
-                        if !FileManager.default.fileExists(atPath: pathToDirectory.path) {
-                            try? FileManager.default.createDirectory(
-                                at: pathToDirectory,
-                                withIntermediateDirectories: true,
-                                attributes: nil
-                            )
-                        }
-
-                        try? output.data.write(to: path)
-                    },
-                    receiveCompletion: { [weak self] _ in
-                        self?.pendingDownloads[url] = nil
-                    }
-                )
-                .map { _ in path }
-                .share()
-                .eraseToAnyPublisher()
-
-            pendingDownloads[url] = downloadPublisher
-
-            return downloadPublisher
         }
+
+        if let download = pendingDownloads[url] {
+            return download
+        }
+
+        let downloadPublisher = URLSession.shared
+            .dataTaskPublisher(for: url)
+            .handleEvents(
+                receiveOutput: { [manager] output in
+                    let pathToDirectory = path.deletingLastPathComponent()
+                    if !manager.fileExists(atPath: pathToDirectory.path) {
+                        try? manager.createDirectory(
+                            at: pathToDirectory,
+                            withIntermediateDirectories: true,
+                            attributes: nil
+                        )
+                    }
+
+                    try? output.data.write(to: path)
+                },
+                receiveCompletion: { [weak self] _ in
+                    self?.pendingDownloads[url] = nil
+                }
+            )
+            .map { _ in path }
+            .share()
+            .eraseToAnyPublisher()
+
+        pendingDownloads[url] = downloadPublisher
+
+        return downloadPublisher
     }
 
     // MARK: - Private
@@ -83,4 +91,8 @@ final class ImageCache {
             .appendingPathComponent("images")
             .appendingPathComponent(path)
     }
+
+    // MARK: - Constants
+
+    let cacheExpiration: Double = 60 * 60 * 24 * 7 // 1 week
 }

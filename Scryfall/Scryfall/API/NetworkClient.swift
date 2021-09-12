@@ -11,6 +11,10 @@ import ScryfallModel
 
 class NetworkClient: ScryfallClient {
 
+    // MARK: - Internal
+
+    let cache = RequestCache()
+
     // MARK: - Private state
 
     private static let baseUrl = URL(string: "https://api.scryfall.com/")
@@ -142,10 +146,21 @@ class NetworkClient: ScryfallClient {
     // MARK: - Private
 
     private func loadData<T: Decodable>(url: URL) -> AnyPublisher<T, Error> {
-        URLSession.shared.dataTaskPublisher(for: url)
+        if let data = cache.data(forURL: url) {
+            return Just(data)
+                .tryMap { data in
+                    try Self.decoder.decode(T.self, from: data)
+                }
+                .eraseToAnyPublisher()
+        }
+
+        return URLSession.shared.dataTaskPublisher(for: url)
             .mapError { urlError in
                 ScryfallError.networkError(urlError)
             }
+            .handleEvents(receiveOutput: { [cache] data in
+                cache.save(data: data.data, forURL: url)
+            })
             .tryMap { response in
                 try Self.decoder.decode(T.self, from: response.data)
             }

@@ -98,6 +98,7 @@
 		BCC771EF26E4BCB0004A03C4 /* RelatedItemsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC771EE26E4BCB0004A03C4 /* RelatedItemsTable.swift */; };
 		BCC7720926E507AE004A03C4 /* PhyrexianHorizontalTTF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCC7720826E507AE004A03C4 /* PhyrexianHorizontalTTF.ttf */; };
 		BCC7721126E922B2004A03C4 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC7721026E922B2004A03C4 /* Array+Extensions.swift */; };
+		BCEA662F26EE1DE400EEA99B /* RequestCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEA662E26EE1DE400EEA99B /* RequestCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +212,7 @@
 		BCC771EE26E4BCB0004A03C4 /* RelatedItemsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedItemsTable.swift; sourceTree = "<group>"; };
 		BCC7720826E507AE004A03C4 /* PhyrexianHorizontalTTF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PhyrexianHorizontalTTF.ttf; sourceTree = "<group>"; };
 		BCC7721026E922B2004A03C4 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
+		BCEA662E26EE1DE400EEA99B /* RequestCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +272,7 @@
 		BC41D8CA269AB31400989253 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				BCEA662E26EE1DE400EEA99B /* RequestCache.swift */,
 				BC41D8CB269AB32400989253 /* ImageCache.swift */,
 				BC41D8F526A3BEE500989253 /* SymbolProvider.swift */,
 				BC41D8FA26A3BF5000989253 /* DefaultSymbolProvider.swift */,
@@ -749,6 +752,7 @@
 				BCA6006826C4517F00F5DFD4 /* CardDetailsView.swift in Sources */,
 				BCBE594A26873E0800677593 /* ScryfallApp.swift in Sources */,
 				BC4850AE2694AA4100956E83 /* ScryfallClient.swift in Sources */,
+				BCEA662F26EE1DE400EEA99B /* RequestCache.swift in Sources */,
 				BC41D91326AD92E200989253 /* MagicTextView.swift in Sources */,
 				BC48513D2694EFC000956E83 /* CardFaceView.swift in Sources */,
 				BCA6007C26C5B7F800F5DFD4 /* Plaque.swift in Sources */,
