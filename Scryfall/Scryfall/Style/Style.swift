@@ -31,11 +31,11 @@ class Style {
         }()
 
         static let small: Font = {
-            Font.custom("Lato-Regular", size: 12, relativeTo: .body)
+            Font.custom("Lato-Regular", size: Self.smallFontSize, relativeTo: .body)
         }()
 
         static let smallFixed: Font = {
-            Font.custom("Lato-Regular", fixedSize: 12)
+            Font.custom("Lato-Regular", fixedSize: Self.smallFontSize)
         }()
 
         static let subtitle: Font = {
@@ -57,7 +57,7 @@ class Style {
         static var uiSmall: UIFont {
             UIFont(
                 name: "Lato-Regular",
-                size: UIFontMetrics(forTextStyle: .body).scaledValue(for: 12)
+                size: UIFontMetrics(forTextStyle: .body).scaledValue(for: Self.smallFontSize)
             )!
         }
 
@@ -68,7 +68,7 @@ class Style {
         // MARK: - Italics
 
         static let flavor: Font = {
-            Font.custom("mplantin-italic", size: 19, relativeTo: .body)
+            Font.custom("mplantin-italic", size: Self.flavorFontSize, relativeTo: .body)
         }()
 
         static let flavorCyrillic: Font = {
@@ -85,7 +85,7 @@ class Style {
                 ty: 0.0
             )
 
-            let fontSize = UIFontMetrics(forTextStyle: .body).scaledValue(for: 19)
+            let fontSize = UIFontMetrics(forTextStyle: .body).scaledValue(for: Self.flavorFontSize)
             let desc = UIFontDescriptor(name: "Sans", size: fontSize)
             let ctFont: CTFont = withUnsafePointer(to: &matrix) { matrix -> CTFont in
                 return CTFontCreateWithFontDescriptor(desc, fontSize, matrix)
@@ -100,5 +100,11 @@ class Style {
         static let italicCyrillic: Font = {
             return Font.custom("Georgia", size: 17, relativeTo: .body).italic()
         }()
+
+        // MARK: - Sizes
+
+        static let smallFontSize: CGFloat = 12
+
+        static let flavorFontSize: CGFloat = 19
     }
 }

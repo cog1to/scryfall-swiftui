@@ -31,6 +31,7 @@ struct PrintsTable: View {
     var body: some View {
         VStack(spacing: 0) {
             PrintHeader()
+                .frame(height: rowHeight)
             VStack(spacing: 0.5) {
                 ForEach(visibleSection) { card in
                     PrintRow(
@@ -38,6 +39,7 @@ struct PrintsTable: View {
                         isSelected: card.id == currentCard.id,
                         showNumber: cards.filter { $0.set == card.set }.count > 1
                     )
+                    .frame(maxHeight: rowHeight)
                     .onTapGesture {
                         onCardSelected?(card)
                     }
@@ -73,55 +75,74 @@ struct PrintsTable: View {
 
         return [Card](cards[startIndex..<endIndex])
     }
+
+    var rowHeight: CGFloat {
+        return UIFontMetrics(forTextStyle: .body).scaledValue(for: Style.Fonts.smallFontSize) + 16
+    }
 }
 
 struct PrintHeader: View {
     var body: some View {
-        HStack(spacing: 4) {
-            ZStack {
-                Text("Prints".uppercased())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(Color("BrightText"))
-                    .font(Style.Fonts.small)
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: titleWidth)
+        GeometryReader { proxy in
+            HStack(spacing: rowSpacing) {
+                ZStack {
+                    Text("Prints".uppercased())
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(Color("BrightText"))
+                        .font(Style.Fonts.small)
+                }
+                .frame(width: titleWidth(proxy.size.width))
 
-            ZStack {
-                Text("USD".uppercased())
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .foregroundColor(Color("BrightText"))
-                    .font(Style.Fonts.small)
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: 30)
+                ZStack {
+                    Text("USD".uppercased())
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .foregroundColor(Color("BrightText"))
+                        .font(Style.Fonts.small)
+                }
+                .frame(maxWidth: colWidth(proxy.size.width))
 
-            ZStack {
-                Text("EUR".uppercased())
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .foregroundColor(Color("BrightText"))
-                    .font(Style.Fonts.small)
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: 30)
+                ZStack {
+                    Text("EUR".uppercased())
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .foregroundColor(Color("BrightText"))
+                        .font(Style.Fonts.small)
+                }
+                .frame(maxWidth: colWidth(proxy.size.width))
 
-            ZStack {
-                Text("TIX".uppercased())
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .foregroundColor(Color("BrightText"))
-                    .font(Style.Fonts.small)
+                ZStack {
+                    Text("TIX".uppercased())
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .foregroundColor(Color("BrightText"))
+                        .font(Style.Fonts.small)
+                }
+                .frame(maxWidth: colWidth(proxy.size.width))
             }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: 30)
+            .padding(rowPadding)
+            .frame(height: rowHeight)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(8)
         .background(Color("Accent"))
     }
 
-    var titleWidth: CGFloat {
-        UITraitCollection.current.horizontalSizeClass == .regular
+    func colWidth(_ width: CGFloat) -> CGFloat {
+        (width - titleWidth(width) - rowPadding * 2 - rowSpacing * 3) / 3.0
+    }
+
+    func titleWidth(_ width: CGFloat) -> CGFloat {
+        (width > 768)
             ? 400
-            : (UIScreen.main.bounds.size.width * 0.45)
+            : (width * 0.45)
+    }
+
+    // MARK: - Config
+
+    var rowPadding: CGFloat = 8
+
+    var rowSpacing: CGFloat = 4
+
+    var rowHeight: CGFloat {
+        return UIFontMetrics(forTextStyle: .body)
+            .scaledValue(for: Style.Fonts.smallFontSize) + rowPadding * 2
     }
 }
 
@@ -131,55 +152,54 @@ struct PrintRow: View {
     let showNumber: Bool
 
     var body: some View {
-        HStack(spacing: 4) {
-            ZStack(alignment: .leading) {
-                Text(card.setName + (showNumber ? " #\(card.number)" : ""))
-                    .lineLimit(1)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(Style.Fonts.small)
-                    .padding(.leading, 6)
+        GeometryReader { proxy in
+            HStack(spacing: rowPadding) {
+                ZStack(alignment: .leading) {
+                    Text(card.setName + (showNumber ? " #\(card.number)" : ""))
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(Style.Fonts.small)
+                        .padding(.leading, 6)
 
-                RaritySymbol(rarity: card.rarity)
-                    .frame(width: 18, height: 18)
-                    .offset(CGSize(width: -17, height: 0))
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: titleWidth)
-            // TODO: Deal with very small screens + Long price tags
-            // Example: !"Ancestral Recall" r:bonus
+                    RaritySymbol(rarity: card.rarity)
+                        .frame(width: 18, height: 18)
+                        .offset(CGSize(width: -17, height: 0))
+                }
+                .frame(width: titleWidth(proxy.size.width))
+                // TODO: Deal with very small screens + Long price tags
+                // Example: !"Ancestral Recall" r:bonus
 
-            ZStack {
-                Text(usdPrice)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .font(Style.Fonts.small)
-                    .foregroundColor(Color("PriceUSD"))
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: 30)
+                ZStack {
+                    Text(usdPrice)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .font(Style.Fonts.small)
+                        .foregroundColor(Color("PriceUSD"))
+                }
+                .frame(maxWidth: colWidth(proxy.size.width))
 
-            ZStack {
-                Text(eurPrice)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .font(Style.Fonts.small)
-                    .foregroundColor(Color("PriceEUR"))
-            }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: 30)
+                ZStack {
+                    Text(eurPrice)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .font(Style.Fonts.small)
+                        .foregroundColor(Color("PriceEUR"))
+                }
+                .frame(maxWidth: colWidth(proxy.size.width))
 
-            ZStack {
-                Text(tixPrice)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .font(Style.Fonts.small)
-                    .foregroundColor(Color("PriceTIX"))
+                ZStack {
+                    Text(tixPrice)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .font(Style.Fonts.small)
+                        .foregroundColor(Color("PriceTIX"))
+                }
+                .frame(maxWidth: colWidth(proxy.size.width))
             }
-            .fixedSize(horizontal: false, vertical: true)
-            .frame(minWidth: 30)
+            .padding(rowPadding)
+            .frame(height: rowHeight)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                isSelected ? Color("Selected") : Color("White")
+            )
         }
-        .padding(.horizontal, 8)
-        .padding(.vertical, 6)
-        .background(
-            isSelected ? Color("Selected") : Color("White")
-        )
     }
 
     var usdPrice: String {
@@ -210,10 +230,25 @@ struct PrintRow: View {
         }
     }
 
-    var titleWidth: CGFloat {
-        UITraitCollection.current.horizontalSizeClass == .regular
+    func colWidth(_ width: CGFloat) -> CGFloat {
+        (width - titleWidth(width) - rowPadding * 2 - rowSpacing * 3) / 3.0
+    }
+
+    func titleWidth(_ width: CGFloat) -> CGFloat {
+        (width > 768)
             ? 400
-            : (UIScreen.main.bounds.size.width * 0.45)
+            : (width * 0.45)
+    }
+
+    // MARK: - Config
+
+    var rowPadding: CGFloat = 8
+
+    var rowSpacing: CGFloat = 4
+
+    var rowHeight: CGFloat {
+        return UIFontMetrics(forTextStyle: .body)
+            .scaledValue(for: Style.Fonts.smallFontSize) + rowPadding * 2
     }
 }
 
@@ -226,11 +261,10 @@ struct AllPrintsRow: View {
                     .font(Style.Fonts.small)
                     .padding(.leading, 6)
             }
-            .fixedSize(horizontal: false, vertical: true)
             .frame(minWidth: 240)
         }
         .padding(.horizontal, 8)
-        .padding(.vertical, 6)
+        .padding(.vertical, 8)
         .background(Color("White"))
     }
 }
