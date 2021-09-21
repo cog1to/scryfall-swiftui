@@ -64,27 +64,30 @@ struct PrintsTable: View {
     }
 
     var visibleSection: [Card] {
-        guard cards.count > 10
+        guard cards.count > maxItems
             else { return cards }
 
         guard let currentIndex = cards.firstIndex(where: { $0.id == currentCard.id })
-            else { return [Card](cards.prefix(10)) }
+            else { return [Card](cards.prefix(maxItems)) }
 
         let startIndex = max(0, currentIndex - 4)
-        let endIndex = min(startIndex + 10, cards.count)
+        let endIndex = min(startIndex + maxItems, cards.count)
 
         return [Card](cards[startIndex..<endIndex])
     }
 
     var rowHeight: CGFloat {
-        return UIFontMetrics(forTextStyle: .body).scaledValue(for: Style.Fonts.smallFontSize) + 16
+        return UIFontMetrics(forTextStyle: .body).scaledValue(for: Style.Fonts.smallFontSize)
+            + (PrintHeader.rowPadding * 2)
     }
+
+    var maxItems: Int { 10 }
 }
 
 struct PrintHeader: View {
     var body: some View {
         GeometryReader { proxy in
-            HStack(spacing: rowSpacing) {
+            HStack(spacing: Self.rowSpacing) {
                 ZStack {
                     Text("Prints".uppercased())
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -117,7 +120,7 @@ struct PrintHeader: View {
                 }
                 .frame(maxWidth: colWidth(proxy.size.width))
             }
-            .padding(rowPadding)
+            .padding(Self.rowPadding)
             .frame(height: rowHeight)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -125,7 +128,7 @@ struct PrintHeader: View {
     }
 
     func colWidth(_ width: CGFloat) -> CGFloat {
-        (width - titleWidth(width) - rowPadding * 2 - rowSpacing * 3) / 3.0
+        (width - titleWidth(width) - Self.rowPadding * 2 - Self.rowSpacing * 3) / 3.0
     }
 
     func titleWidth(_ width: CGFloat) -> CGFloat {
@@ -136,13 +139,13 @@ struct PrintHeader: View {
 
     // MARK: - Config
 
-    var rowPadding: CGFloat = 8
+    static let rowPadding: CGFloat = 8
 
-    var rowSpacing: CGFloat = 4
+    static let rowSpacing: CGFloat = 4
 
     var rowHeight: CGFloat {
         return UIFontMetrics(forTextStyle: .body)
-            .scaledValue(for: Style.Fonts.smallFontSize) + rowPadding * 2
+            .scaledValue(for: Style.Fonts.smallFontSize) + Self.rowPadding * 2
     }
 }
 
@@ -242,9 +245,9 @@ struct PrintRow: View {
 
     // MARK: - Config
 
-    var rowPadding: CGFloat = 8
+    let rowPadding: CGFloat = 8
 
-    var rowSpacing: CGFloat = 4
+    let rowSpacing: CGFloat = 4
 
     var rowHeight: CGFloat {
         return UIFontMetrics(forTextStyle: .body)
