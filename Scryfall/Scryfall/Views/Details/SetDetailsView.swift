@@ -16,12 +16,13 @@ struct SetDetailsView: View {
     let language: Language
     let provider: SetProvider
 
-    @State var height: CGFloat = .zero
-
     var body: some View {
         HStack(alignment: .top, spacing: 6) {
             SetImage(set: setCode, provider: provider)
-                .frame(height: max(0, self.height - 8), alignment: .center)
+                .frame(
+                    height: UIFontMetrics(forTextStyle: .body).scaledValue(for: 32),
+                    alignment: .center
+                )
                 .padding(.vertical, 4)
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(setName) (\(setCode.uppercased()))")
@@ -30,12 +31,7 @@ struct SetDetailsView: View {
                     .font(Style.Fonts.small)
             }
             .foregroundColor(Color("BrightText"))
-            .alignmentGuide(.top, computeValue: { d in
-                DispatchQueue.main.async {
-                    self.height = d.height
-                }
-                return d[.top]
-            })
+
             Spacer()
         }
         .padding(8)
