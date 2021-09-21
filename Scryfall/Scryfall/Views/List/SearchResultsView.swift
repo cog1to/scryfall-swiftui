@@ -102,55 +102,64 @@ struct SearchResultsView: View {
                 }
                 .padding(.horizontal, 4)
 
-                ScrollView {
-                    LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
-                        ForEach(self.items) { item in
-                            VStack {
-                                switch item {
-                                case let .card(card):
-                                    NavigationLink(
-                                        destination: CardDetailsView(
-                                            card: card,
-                                            symbolProvider: provider,
-                                            setProvider: setProvider,
-                                            onAllPrintsSelected: { card in
-                                                searchResult.loadPrints(for: card)
-                                            },
-                                            onAllLanguagesSelected: { card in
-                                                searchResult.loadLanguages(for: card)
-                                            },
-                                            onSetSelected: { set in
-                                                searchResult.loadSet(set)
-                                            },
-                                            onArtistSelected: { artist in
-                                                searchResult.loadArtist(artist)
-                                                settings.presentationStyle = .card
+                if searchResult.isEmpty {
+                    VStack(alignment: .center) {
+                        Text("Nothing is found.\nTry to adjust your query")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(Color("Black"))
+                            .font(Style.Fonts.small)
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    ScrollView {
+                        LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
+                            ForEach(self.items) { item in
+                                VStack {
+                                    switch item {
+                                    case let .card(card):
+                                        NavigationLink(
+                                            destination: CardDetailsView(
+                                                card: card,
+                                                symbolProvider: provider,
+                                                setProvider: setProvider,
+                                                onAllPrintsSelected: { card in
+                                                    searchResult.loadPrints(for: card)
+                                                },
+                                                onAllLanguagesSelected: { card in
+                                                    searchResult.loadLanguages(for: card)
+                                                },
+                                                onSetSelected: { set in
+                                                    searchResult.loadSet(set)
+                                                },
+                                                onArtistSelected: { artist in
+                                                    searchResult.loadArtist(artist)
+                                                    settings.presentationStyle = .card
+                                                }
+                                            )
+                                        ) {
+                                            if presentationStyle == .text {
+                                                SearchTextView(card: card, provider: provider)
+                                            } else {
+                                                SearchCardView(card: card, cache: cache)
                                             }
-                                        )
-                                    ) {
-                                        if presentationStyle == .text {
-                                            SearchTextView(card: card, provider: provider)
-                                        } else {
-                                            SearchCardView(card: card, cache: cache)
                                         }
+                                        .buttonStyle(PlainButtonStyle())
+                                    case .loader:
+                                        HStack {
+                                            Spacer()
+                                            Spinner(isAnimating: true, style: .medium)
+                                            Spacer()
+                                        }
+                                        .onAppear(perform: {
+                                            self.searchResult.onNext.send(())
+                                        })
                                     }
-                                    .buttonStyle(PlainButtonStyle())
-                                case .loader:
-                                    HStack {
-                                        Spacer()
-                                        Spinner(isAnimating: true, style: .medium)
-                                        Spacer()
-                                    }
-                                    .onAppear(perform: {
-                                        self.searchResult.onNext.send(())
-                                    })
                                 }
                             }
                         }
+                        .padding(.bottom, 8)
                     }
-                    .padding(.bottom, 8)
+                    .padding(.horizontal, Style.listSpacing)
                 }
-                .padding(.horizontal, Style.listSpacing)
             }
             .padding(.top, 8)
             .background(Color("Background").ignoresSafeArea())

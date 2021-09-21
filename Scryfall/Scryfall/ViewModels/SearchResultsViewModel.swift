@@ -33,13 +33,19 @@ class SearchResultsViewModel: ObservableObject {
 
     @Input var sortDirection = SortDirection.auto
 
+    // MARK: - Observables
+
     @Published private(set) var cards: [Card] = []
 
     @Published private(set) var error: Error?
 
     @Published private(set) var hasMore: Bool = false
 
+    @Published private(set) var isEmpty: Bool = false
+
     let onNext = PassthroughSubject<Void, Never>()
+
+    // MARK: - Init
 
     init(client: ScryfallClient, settingsProvider: SettingsProvider) {
         self.settingsProvider = settingsProvider
@@ -95,6 +101,10 @@ class SearchResultsViewModel: ObservableObject {
                     .receive(on: DispatchQueue.main)
                     .handleEvents(
                         receiveOutput: { [weak self] output in
+                            guard self?.searchText == string else {
+                                return
+                            }
+
                             if let nextPage = output.nextPage {
                                 self?.nextPageUri.send(nextPage)
                                 self?.hasMore = true
@@ -111,7 +121,12 @@ class SearchResultsViewModel: ObservableObject {
                     .replaceError(with: .empty())
                     .map { data in data.data }
                     .sink(receiveValue: { [weak self] cards in
+                        guard self?.searchText == string else {
+                            return
+                        }
+
                         self?.cards = cards
+                        self?.isEmpty = cards.isEmpty
                     })
             })
             .store(in: &subscriptions)
@@ -119,7 +134,11 @@ class SearchResultsViewModel: ObservableObject {
         $searchText
             .filter { $0.isEmpty }
             .sink(receiveValue: { [weak self] _ in
+                self?.lastRequest?.cancel()
                 self?.cards = []
+                self?.hasMore = false
+                self?.isEmpty = false
+                self?.nextPageUri.send(nil)
             })
             .store(in: &subscriptions)
 
@@ -136,6 +155,8 @@ class SearchResultsViewModel: ObservableObject {
                     .receive(on: DispatchQueue.main)
                     .handleEvents(
                         receiveOutput: { [weak self] (output: ObjectList<Card>) in
+                            guard !(self?.searchText.isEmpty ?? true) else { return }
+
                             if let nextPage = output.nextPage {
                                 self?.nextPageUri.send(nextPage)
                                 self?.hasMore = true
@@ -150,7 +171,8 @@ class SearchResultsViewModel: ObservableObject {
                     )
                     .replaceError(with: .empty())
                     .sink { [weak self] data in
-                        guard let self = self else { return }
+                        guard self?.searchText != nil else { return }
+                        guard let self = self, !self.searchText.isEmpty else { return }
                         self.cards = self.cards + data.data
                     }
             })
