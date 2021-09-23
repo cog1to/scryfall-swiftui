@@ -252,6 +252,25 @@ struct CardDetailsView: View {
                     }
                 }
             )
+
+            if let variationSource = model.variationSource {
+                VariationsTable(
+                    isVariation: true,
+                    cards: [variationSource],
+                    onCardSelected: { card in
+                        print("\(model.card.id) -> \(card.id)")
+                        model.card = card
+                    }
+                )
+            } else if case let variations = model.variations, !variations.isEmpty {
+                VariationsTable(
+                    isVariation: false,
+                    cards: variations,
+                    onCardSelected: { card in
+                        model.card = card
+                    }
+                )
+            }
         }
     }
 

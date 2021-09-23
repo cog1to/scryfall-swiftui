@@ -47,4 +47,7 @@ protocol ScryfallClient {
 
     /// Gets all known variations of the card
     func variations(card: Card) -> AnyPublisher<ObjectList<Card>, Error>
+
+    /// Gets card by ID
+    func card(id: String) -> AnyPublisher<Card, Error>
 }

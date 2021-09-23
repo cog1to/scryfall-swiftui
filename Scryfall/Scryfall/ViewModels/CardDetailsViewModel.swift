@@ -31,6 +31,10 @@ class CardDetailsViewModel: ObservableObject {
 
     @Published var rulings: [Ruling] = []
 
+    @Published var variationSource: Card?
+
+    @Published var variations: [Card] = []
+
     // MARK: - Private
 
     private let client: ScryfallClient
@@ -51,6 +55,8 @@ class CardDetailsViewModel: ObservableObject {
         loadPrints()
         loadRulings()
         loadRelatedCards()
+        loadVariationSource()
+        loadVariations()
     }
 
     private func loadLanguages() {
@@ -103,5 +109,29 @@ class CardDetailsViewModel: ObservableObject {
                 .sink { self.relatedCards = $0 }
                 .store(in: &subsciptions)
         }
+    }
+
+    private func loadVariationSource() {
+        if card.variation, let cardId = card.variationOfId {
+            client.card(id: cardId)
+                .subscribe(on: DispatchQueue.global(qos: .default))
+                .map { card -> Card? in card }
+                .replaceError(with: nil)
+                .receive(on: DispatchQueue.main)
+                .sink { self.variationSource = $0 }
+                .store(in: &subsciptions)
+        } else {
+            variationSource = nil
+        }
+    }
+
+    private func loadVariations() {
+        client.variations(card: card)
+            .subscribe(on: DispatchQueue.global(qos: .default))
+            .replaceError(with: ObjectList<Card>.empty())
+            .receive(on: DispatchQueue.main)
+            .map { $0.data }
+            .sink { self.variations = $0 }
+            .store(in: &subsciptions)
     }
 }

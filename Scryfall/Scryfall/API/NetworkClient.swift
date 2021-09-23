@@ -34,6 +34,7 @@ class NetworkClient: ScryfallClient {
         case symbology = "symbology"
         case abilityWords = "catalog/ability-words"
         case sets = "sets"
+        case card = "cards"
 
         static let baseUrl = URL(string: "https://api.scryfall.com/")!
 
@@ -124,6 +125,11 @@ class NetworkClient: ScryfallClient {
 
     public func card(forUri uri: URL) -> AnyPublisher<Card, Error> {
         loadData(url: uri)
+    }
+
+    public func card(id: String) -> AnyPublisher<Card, Error> {
+        let url = Endpoint.card.url.appendingPathComponent(id, isDirectory: false)
+        return loadData(url: url)
     }
 
     public func variations(card: Card) -> AnyPublisher<ObjectList<Card>, Error> {

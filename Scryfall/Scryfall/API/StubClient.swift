@@ -75,4 +75,8 @@ final class StubClient: ScryfallClient {
     func variations(card: Card) -> AnyPublisher<ObjectList<Card>, Error> {
         Fail(error: ScryfallError.parsingError).eraseToAnyPublisher()
     }
+
+    func card(id: String) -> AnyPublisher<Card, Error> {
+        load(filename: "avacyn")
+    }
 }
