@@ -47,7 +47,7 @@ final class DefaultSetProvider: SetProvider {
                 .map { localUrl in
                     let image = SVGKImage(contentsOf: localUrl)!
                     // Resize to some reasonable value.
-                    // 30px@3 seems like a good starting point.
+                    // 30px@3 seems good for now.
                     image.scaleToFit(inside: CGSize(width: 90, height: 90))
                     return image
                 }
