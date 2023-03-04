@@ -168,7 +168,7 @@ class TagList: UIView {
         }
     }
 
-    private func height(forWidth width: CGFloat) -> CGFloat {
+    func height(forWidth width: CGFloat) -> CGFloat {
         var currentX: CGFloat = 0, currentY: CGFloat = 0
         var lastSize: CGSize = .zero
 
@@ -276,6 +276,11 @@ struct TagListWrapper: UIViewRepresentable {
         }
 
         return view
+    }
+
+    @available(iOS 16.0, *)
+    func sizeThatFits(_ proposal: ProposedViewSize, uiView: TagList, context: Context) -> CGSize? {
+        return CGSize(width: proposal.width ?? 0, height: uiView.height(forWidth: proposal.width ?? 0))
     }
 
     func updateUIView(_ uiView: TagList, context: Context) {
