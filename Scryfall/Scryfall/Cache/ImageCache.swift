@@ -69,26 +69,7 @@ final class ImageCache {
                     }
 
                     let data: Data = {
-                        // A fix for SVGKit bug with not recognizing leading zeroes
-                        // in SVG data as separate numbers. E.g. "01.1" should be
-                        // parsed as "0;1.1" but is parsed as single "1.1", which
-                        // fails overall parsing due to arguments mismatch in some
-                        // draw commands.
-                        if url.pathExtension == "svg",
-                           let string = String(data: output.data, encoding: .utf8),
-                           let regex = try? NSRegularExpression(pattern: " 0([0-9])"
-                        ) {
-                            let range = NSRange(location: 0, length: string.utf8.count)
-                            let fixedString = regex.stringByReplacingMatches(
-                                in: string,
-                                options: [],
-                                range: range,
-                                withTemplate: " 0 $1"
-                            )
-                            return fixedString.data(using: .utf8) ?? output.data
-                        } else {
-                            return output.data
-                        }
+                        return output.data
                     }()
 
                     try? data.write(to: path)

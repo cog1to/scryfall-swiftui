@@ -163,7 +163,7 @@ struct SearchResultsView: View {
             }
             .padding(.top, 8)
             .background(Color("Background").ignoresSafeArea())
-            .hideNavigationBar()
+            .navigationBarTitle("Scryfall Search", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $showSettings) {
