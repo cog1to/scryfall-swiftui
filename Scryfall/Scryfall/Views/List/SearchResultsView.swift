@@ -102,7 +102,14 @@ struct SearchResultsView: View {
                 }
                 .padding(.horizontal, 4)
 
-                if searchResult.isEmpty {
+                if searchResult.searchText.isEmpty {
+                    VStack(alignment: .center) {
+                        Text("Powered by\nScryfall")
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(Color("Gray"))
+                            .font(Style.Fonts.small)
+                    }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else if searchResult.isEmpty {
                     VStack(alignment: .center) {
                         Text("Nothing is found.\nTry to adjust your query")
                             .multilineTextAlignment(.center)
@@ -111,7 +118,11 @@ struct SearchResultsView: View {
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     ScrollView {
-                        LazyVGrid(columns: gridItems, alignment: .center, spacing: Style.listSpacing) {
+                        LazyVGrid(
+                            columns: gridItems,
+                            alignment: .center,
+                            spacing: Style.listSpacing
+                        ) {
                             ForEach(self.items) { item in
                                 VStack {
                                     switch item {
@@ -163,7 +174,7 @@ struct SearchResultsView: View {
             }
             .padding(.top, 8)
             .background(Color("Background").ignoresSafeArea())
-            .navigationBarTitle("Scryfall Search", displayMode: .inline)
+            .navigationBarTitle("Search", displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .sheet(isPresented: $showSettings) {

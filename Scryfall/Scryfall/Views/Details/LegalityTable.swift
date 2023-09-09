@@ -69,6 +69,9 @@ struct LegalityTable: View {
             .value("Penny", legalities.penny), .name("Penny"),
             .value("Vintage", legalities.vintage), .name("Vintage"),
             .value("Commander", legalities.commander), .name("Commander"),
+            .value("Alchemy", legalities.alchemy), .name("Alchemy"),
+            .value("Explorer", legalities.explorer), .name("Explorer"),
+            .value("Oathbreaker", legalities.oathbreaker), .name("Oathbreaker"),
         ]
     }
 }

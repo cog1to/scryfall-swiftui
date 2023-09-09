@@ -30,6 +30,9 @@ public final class LegalityList: Codable {
     public let duel: Legality
     public let oldschool: Legality
     public let premodern: Legality
+    public let alchemy: Legality
+    public let oathbreaker: Legality
+    public let explorer: Legality
 
     enum CodingKeys: String, CodingKey {
         case standard = "standard"
@@ -47,5 +50,8 @@ public final class LegalityList: Codable {
         case duel = "duel"
         case oldschool = "oldschool"
         case premodern = "premodern"
+        case oathbreaker = "oathbreaker"
+        case alchemy = "alchemy"
+        case explorer = "explorer"
     }
 }
