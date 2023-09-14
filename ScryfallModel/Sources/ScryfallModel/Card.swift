@@ -38,6 +38,7 @@ public final class Card: Identifiable, Codable {
     public var variation: Bool
     public var variationOfId: String?
     public var flavorName: String?
+    public var cardBackId: String?
 
     // MARK: - Gameplay field
 
@@ -110,5 +111,6 @@ public final class Card: Identifiable, Codable {
         case variation = "variation"
         case variationOfId = "variation_of"
         case flavorName = "flavor_name"
+        case cardBackId = "card_back_id"
     }
 }

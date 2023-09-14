@@ -155,7 +155,7 @@ class NetworkClient: ScryfallClient {
         if let data = cache.data(forURL: url) {
             return Just(data)
                 .tryMap { data in
-                    try Self.decoder.decode(T.self, from: data)
+                    return try Self.decoder.decode(T.self, from: data)
                 }
                 .eraseToAnyPublisher()
         }
@@ -168,7 +168,7 @@ class NetworkClient: ScryfallClient {
                 cache.save(data: data.data, forURL: url)
             })
             .tryMap { response in
-                try Self.decoder.decode(T.self, from: response.data)
+                return try Self.decoder.decode(T.self, from: response.data)
             }
             .eraseToAnyPublisher()
     }
