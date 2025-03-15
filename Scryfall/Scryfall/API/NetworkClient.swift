@@ -167,7 +167,7 @@ class NetworkClient: ScryfallClient {
             .handleEvents(receiveOutput: { [cache] data in
                 cache.save(data: data.data, forURL: url)
             })
-            .tryMap { response in
+            .tryMap { response in                
                 return try Self.decoder.decode(T.self, from: response.data)
             }
             .eraseToAnyPublisher()

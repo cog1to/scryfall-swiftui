@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "SVGKit",
-        "repositoryURL": "https://github.com/SVGKit/SVGKit",
-        "state": {
-          "branch": null,
-          "revision": "58152b9f7c85eab239160b36ffdfd364aa43d666",
-          "version": "3.0.0"
-        }
-      },
-      {
         "package": "swift-log",
         "repositoryURL": "https://github.com/apple/swift-log.git",
         "state": {
@@ -33,8 +24,8 @@
         "repositoryURL": "https://github.com/swiftuix/SwiftUIX",
         "state": {
           "branch": null,
-          "revision": "6aa1b4ec2e0d3e5cfc7494c84519402a16dd1316",
-          "version": "0.0.8"
+          "revision": "e984fd2e08140ad5a95d084be38fe02b774bc15d",
+          "version": "0.2.3"
         }
       }
     ]

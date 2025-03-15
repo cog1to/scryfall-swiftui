@@ -77,7 +77,8 @@ struct PrintsTable: View {
     }
 
     var rowHeight: CGFloat {
-        return UIFontMetrics(forTextStyle: .body).scaledValue(for: Style.Fonts.smallFontSize)
+        return UIFontMetrics(forTextStyle: .body)
+            .scaledValue(for: Style.Fonts.smallFontSize)
             + (PrintHeader.rowPadding * 2)
     }
 
@@ -121,9 +122,9 @@ struct PrintHeader: View {
                 .frame(maxWidth: colWidth(proxy.size.width))
             }
             .padding(Self.rowPadding)
-            .frame(height: rowHeight)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
+        .frame(height: rowHeight)
         .background(Color("Accent"))
     }
 
@@ -145,7 +146,8 @@ struct PrintHeader: View {
 
     var rowHeight: CGFloat {
         return UIFontMetrics(forTextStyle: .body)
-            .scaledValue(for: Style.Fonts.smallFontSize) + Self.rowPadding * 2
+            .scaledValue(for: Style.Fonts.smallFontSize)
+            + Self.rowPadding * 2
     }
 }
 
@@ -197,12 +199,12 @@ struct PrintRow: View {
                 .frame(maxWidth: colWidth(proxy.size.width))
             }
             .padding(rowPadding)
-            .frame(height: rowHeight)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(
                 isSelected ? Color("Selected") : Color("White")
             )
         }
+        .frame(height: rowHeight)
     }
 
     var usdPrice: String {
@@ -251,7 +253,8 @@ struct PrintRow: View {
 
     var rowHeight: CGFloat {
         return UIFontMetrics(forTextStyle: .body)
-            .scaledValue(for: Style.Fonts.smallFontSize) + rowPadding * 2
+            .scaledValue(for: Style.Fonts.smallFontSize)
+            + rowPadding * 2
     }
 }
 

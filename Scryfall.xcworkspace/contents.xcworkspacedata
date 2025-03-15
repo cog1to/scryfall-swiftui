@@ -7,4 +7,7 @@
    <FileRef
       location = "group:ScryfallModel">
    </FileRef>
+   <FileRef
+      location = "group:SVGKit">
+   </FileRef>
 </Workspace>

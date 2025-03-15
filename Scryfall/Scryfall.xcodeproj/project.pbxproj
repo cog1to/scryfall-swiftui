@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1121,7 +1121,7 @@
 			repositoryURL = "https://github.com/swiftuix/SwiftUIX";
 			requirement = {
 				kind = exactVersion;
-				version = 0.0.8;
+				version = 0.2.3;
 			};
 		};
 		BC41D8D8269AB73500989253 /* XCRemoteSwiftPackageReference "SVGKit" */ = {

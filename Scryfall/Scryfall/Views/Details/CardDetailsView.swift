@@ -88,7 +88,7 @@ struct CardDetailsView: View {
                         shortLayout
                     }
 
-                    if let rulings = model.rulings, !rulings.isEmpty {
+                    if case let rulings = model.rulings, !rulings.isEmpty {
                         VStack {
                             DashedLine()
                             RulingsView(items: rulings)
@@ -230,7 +230,7 @@ struct CardDetailsView: View {
                 }
             }
 
-            if let relatedCards = model.relatedCards, !relatedCards.isEmpty {
+            if case let relatedCards = model.relatedCards, !relatedCards.isEmpty {
                 RelatedItemsTable(
                     cards: relatedCards,
                     currentCard: model.card
